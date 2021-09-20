@@ -1,0 +1,1 @@
+/usr/bin/c++   -std=c++0x   CMakeFiles/Breakout.dir/src/breakout.cpp.o  -o Breakout -rdynamic -lSDL2 -lSDL2_image 
