@@ -18,7 +18,7 @@ class view{
     public:
 
         view(model &m_);
-        SDL_Rect getTarget();
+        SDL_Rect* getTarget();
         const Uint8* getState();
         int init();
         void render();

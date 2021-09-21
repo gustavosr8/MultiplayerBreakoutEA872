@@ -6,7 +6,7 @@ const int SCREEN_HEIGHT = 480;
 
 view::view(model &m_):m(m_){}
 
-SDL_Rect view::getTarget(){return target;}
+SDL_Rect* view::getTarget(){return &target;}
 const Uint8* view::getState(){return state;}
 
 int view::init(){
