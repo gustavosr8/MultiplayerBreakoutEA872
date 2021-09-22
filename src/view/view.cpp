@@ -37,8 +37,8 @@ int view::init(){
         SDL_Quit();
         return 1;
     }
-    capivara = IMG_LoadTexture(renderer, "../../assets/capi.png" );
-    taquaral = IMG_LoadTexture(renderer, "../../assets/park.jpeg" );
+    capivara = IMG_LoadTexture(renderer, "../assets/capi.png" );
+    taquaral = IMG_LoadTexture(renderer, "../assets/park.jpeg" );
     target.x = 0;
     target.y = 0;
     SDL_QueryTexture(capivara, nullptr, nullptr, &target.w, &target.h);

@@ -1,4 +1,4 @@
-#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
 
 #IncludeRegexScan: ^.*$
 
@@ -24,11 +24,11 @@ SDL2/SDL_image.h
 model.h
 ../include/model.h
 
-/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/breakout.cpp
+/home/gustavo/Área de Trabalho/Unicamp/Sexto semestre/EA872/MultiplayerBreakoutEA872/src/breakout.cpp
 model.h
-/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/model.h
+/home/gustavo/Área de Trabalho/Unicamp/Sexto semestre/EA872/MultiplayerBreakoutEA872/src/model.h
 view.h
-/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/view.h
+/home/gustavo/Área de Trabalho/Unicamp/Sexto semestre/EA872/MultiplayerBreakoutEA872/src/view.h
 controller.h
-/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/controller.h
+/home/gustavo/Área de Trabalho/Unicamp/Sexto semestre/EA872/MultiplayerBreakoutEA872/src/controller.h
 
