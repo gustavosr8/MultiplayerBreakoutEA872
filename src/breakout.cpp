@@ -4,6 +4,7 @@
 #include "tijolo.h"
 
 int main(){
+    //Adicionando Tijolo
     tijolo t = tijolo(0,0);
     model m = model(0,0);
     view v = view(m, &t);
