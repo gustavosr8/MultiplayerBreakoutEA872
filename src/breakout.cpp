@@ -1,6 +1,6 @@
-#include "model.hpp"
-#include "view.hpp"
-#include "controller.hpp"
+#include "model.h"
+#include "view.h"
+#include "controller.h"
 
 int main(){
 

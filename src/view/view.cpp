@@ -1,4 +1,4 @@
-#include "view.hpp"
+#include "view.h"
 #include <iostream>
 
 const int SCREEN_WIDTH = 640;

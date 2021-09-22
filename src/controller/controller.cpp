@@ -1,4 +1,4 @@
-#include "controller.hpp"
+#include "controller.h"
 
 void controller::update(){
     const Uint8 *state = v.getState();
