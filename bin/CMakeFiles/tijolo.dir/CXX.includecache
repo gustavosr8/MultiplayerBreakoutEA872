@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/tijolo.h
+
+/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/model/tijolo.cpp
+tijolo.h
+/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/model/tijolo.h
+

@@ -1,11 +1,12 @@
 #include "model.h"
 #include "view.h"
 #include "controller.h"
+#include "tijolo.h"
 
 int main(){
-
+    tijolo t = tijolo(0,0);
     model m = model(0,0);
-    view v = view(m);
+    view v = view(m, &t);
     v.init();
     controller c = controller(v,m);
 

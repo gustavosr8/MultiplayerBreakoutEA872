@@ -2,11 +2,13 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include "model.h"
+#include "tijolo.h"
 
 class view{
     private:
         
         model &m;
+        tijolo *t;
 
         SDL_Window *window;
         SDL_Renderer *renderer;
@@ -17,7 +19,7 @@ class view{
     
     public:
 
-        view(model &m_);
+        view(model &m_, tijolo* t_);
         SDL_Rect* getTarget();
         const Uint8* getState();
         int init();

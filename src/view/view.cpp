@@ -4,7 +4,7 @@
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
-view::view(model &m_):m(m_){}
+view::view(model &m_, tijolo* t_):m(m_),t(t_){}
 
 SDL_Rect* view::getTarget(){return &target;}
 const Uint8* view::getState(){return state;}
@@ -39,8 +39,8 @@ int view::init(){
     }
     capivara = IMG_LoadTexture(renderer, "../assets/capi.png" );
     taquaral = IMG_LoadTexture(renderer, "../assets/park.jpeg" );
-    target.x = 0;
-    target.y = 0;
+    target.x = m.getX();
+    target.y = m.getY();
     SDL_QueryTexture(capivara, nullptr, nullptr, &target.w, &target.h);
     state = SDL_GetKeyboardState(nullptr);
 }
