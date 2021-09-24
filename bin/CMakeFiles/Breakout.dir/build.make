@@ -83,6 +83,8 @@ Breakout: libmodel.a
 Breakout: libview.a
 Breakout: libcontroller.a
 Breakout: libtijolo.a
+Breakout: libbarra.a
+Breakout: libbolinha.a
 Breakout: CMakeFiles/Breakout.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable Breakout"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Breakout.dir/link.txt --verbose=$(VERBOSE)

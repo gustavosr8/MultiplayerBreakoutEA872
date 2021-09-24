@@ -19,7 +19,10 @@ add_library(controller src/controller/controller.cpp)
 target_link_libraries(Breakout controller)
 add_library(tijolo src/model/tijolo.cpp)
 target_link_libraries(Breakout tijolo)
-
+add_library(barra src/model/barra.cpp)
+target_link_libraries(Breakout barra)
+add_library(bolinha src/model/bolinha.cpp)
+target_link_libraries(Breakout bolinha)
 
 # Garantir que usaremos C++11 (ou superior, se preciso)
 set(CMAKE_CXX_STANDARD 11)

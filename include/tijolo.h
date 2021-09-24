@@ -3,8 +3,8 @@
 class tijolo{
     private:
         int x,y;
-        int w = 40;
-        int h = 20;
+        int w = 260;
+        int h = 80;
         int color;
 
     public:

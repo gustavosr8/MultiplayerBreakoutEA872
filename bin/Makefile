@@ -111,6 +111,32 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named bolinha
+
+# Build rule for target.
+bolinha: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 bolinha
+.PHONY : bolinha
+
+# fast build rule for target.
+bolinha/fast:
+	$(MAKE) -f CMakeFiles/bolinha.dir/build.make CMakeFiles/bolinha.dir/build
+.PHONY : bolinha/fast
+
+#=============================================================================
+# Target rules for targets named barra
+
+# Build rule for target.
+barra: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 barra
+.PHONY : barra
+
+# fast build rule for target.
+barra/fast:
+	$(MAKE) -f CMakeFiles/barra.dir/build.make CMakeFiles/barra.dir/build
+.PHONY : barra/fast
+
+#=============================================================================
 # Target rules for targets named tijolo
 
 # Build rule for target.
@@ -229,6 +255,60 @@ src/controller/controller.cpp.s:
 	$(MAKE) -f CMakeFiles/controller.dir/build.make CMakeFiles/controller.dir/src/controller/controller.cpp.s
 .PHONY : src/controller/controller.cpp.s
 
+src/model/barra.o: src/model/barra.cpp.o
+
+.PHONY : src/model/barra.o
+
+# target to build an object file
+src/model/barra.cpp.o:
+	$(MAKE) -f CMakeFiles/barra.dir/build.make CMakeFiles/barra.dir/src/model/barra.cpp.o
+.PHONY : src/model/barra.cpp.o
+
+src/model/barra.i: src/model/barra.cpp.i
+
+.PHONY : src/model/barra.i
+
+# target to preprocess a source file
+src/model/barra.cpp.i:
+	$(MAKE) -f CMakeFiles/barra.dir/build.make CMakeFiles/barra.dir/src/model/barra.cpp.i
+.PHONY : src/model/barra.cpp.i
+
+src/model/barra.s: src/model/barra.cpp.s
+
+.PHONY : src/model/barra.s
+
+# target to generate assembly for a file
+src/model/barra.cpp.s:
+	$(MAKE) -f CMakeFiles/barra.dir/build.make CMakeFiles/barra.dir/src/model/barra.cpp.s
+.PHONY : src/model/barra.cpp.s
+
+src/model/bolinha.o: src/model/bolinha.cpp.o
+
+.PHONY : src/model/bolinha.o
+
+# target to build an object file
+src/model/bolinha.cpp.o:
+	$(MAKE) -f CMakeFiles/bolinha.dir/build.make CMakeFiles/bolinha.dir/src/model/bolinha.cpp.o
+.PHONY : src/model/bolinha.cpp.o
+
+src/model/bolinha.i: src/model/bolinha.cpp.i
+
+.PHONY : src/model/bolinha.i
+
+# target to preprocess a source file
+src/model/bolinha.cpp.i:
+	$(MAKE) -f CMakeFiles/bolinha.dir/build.make CMakeFiles/bolinha.dir/src/model/bolinha.cpp.i
+.PHONY : src/model/bolinha.cpp.i
+
+src/model/bolinha.s: src/model/bolinha.cpp.s
+
+.PHONY : src/model/bolinha.s
+
+# target to generate assembly for a file
+src/model/bolinha.cpp.s:
+	$(MAKE) -f CMakeFiles/bolinha.dir/build.make CMakeFiles/bolinha.dir/src/model/bolinha.cpp.s
+.PHONY : src/model/bolinha.cpp.s
+
 src/model/model.o: src/model/model.cpp.o
 
 .PHONY : src/model/model.o
@@ -318,6 +398,8 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... bolinha"
+	@echo "... barra"
 	@echo "... tijolo"
 	@echo "... controller"
 	@echo "... view"
@@ -329,6 +411,12 @@ help:
 	@echo "... src/controller/controller.o"
 	@echo "... src/controller/controller.i"
 	@echo "... src/controller/controller.s"
+	@echo "... src/model/barra.o"
+	@echo "... src/model/barra.i"
+	@echo "... src/model/barra.s"
+	@echo "... src/model/bolinha.o"
+	@echo "... src/model/bolinha.i"
+	@echo "... src/model/bolinha.s"
 	@echo "... src/model/model.o"
 	@echo "... src/model/model.i"
 	@echo "... src/model/model.s"

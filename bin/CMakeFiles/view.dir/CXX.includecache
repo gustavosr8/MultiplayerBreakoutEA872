@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+../include/barra.h
+
+../include/bolinha.h
+
 ../include/model.h
 
 ../include/tijolo.h
@@ -19,6 +23,10 @@ model.h
 ../include/model.h
 tijolo.h
 ../include/tijolo.h
+bolinha.h
+../include/bolinha.h
+barra.h
+../include/barra.h
 
 /home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/view/view.cpp
 view.h

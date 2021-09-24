@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/bolinha.h
+
+/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/model/bolinha.cpp
+bolinha.h
+/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/model/bolinha.h
+

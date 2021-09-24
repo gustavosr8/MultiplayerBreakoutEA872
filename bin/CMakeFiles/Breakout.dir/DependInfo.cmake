@@ -19,6 +19,8 @@ set(CMAKE_TARGET_LINKED_INFO_FILES
   "/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/bin/CMakeFiles/view.dir/DependInfo.cmake"
   "/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/bin/CMakeFiles/controller.dir/DependInfo.cmake"
   "/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/bin/CMakeFiles/tijolo.dir/DependInfo.cmake"
+  "/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/bin/CMakeFiles/barra.dir/DependInfo.cmake"
+  "/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/bin/CMakeFiles/bolinha.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

@@ -6,11 +6,17 @@
 
 #IncludeRegexTransform: 
 
+../include/barra.h
+
+../include/bolinha.h
+
 ../include/controller.h
-model.h
-../include/model.h
+barra.h
+../include/barra.h
 view.h
 ../include/view.h
+bolinha.h
+../include/bolinha.h
 SDL2/SDL.h
 -
 
@@ -27,6 +33,10 @@ model.h
 ../include/model.h
 tijolo.h
 ../include/tijolo.h
+bolinha.h
+../include/bolinha.h
+barra.h
+../include/barra.h
 
 /home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/breakout.cpp
 model.h
@@ -37,4 +47,8 @@ controller.h
 /home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/controller.h
 tijolo.h
 /home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/tijolo.h
+bolinha.h
+/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/bolinha.h
+barra.h
+/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/barra.h
 

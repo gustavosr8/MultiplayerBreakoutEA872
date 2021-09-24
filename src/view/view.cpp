@@ -1,12 +1,21 @@
 #include "view.h"
 #include <iostream>
 
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+const int SCREEN_WIDTH = 1920;
+const int SCREEN_HEIGHT = 1080;
 
-view::view(model &m_, tijolo* t_):m(m_),t(t_){}
+view::view(model &m_, tijolo* t_, barra* ba_, bolinha* bo_):m(m_),t(t_),ba(ba_),bo(bo_){}
 
 SDL_Rect* view::getTarget(){return &target;}
+SDL_Rect* view::getBloco(){return &bloco;}
+SDL_Rect* view::getBolinha(){return &bol;}
+SDL_Rect* view::getBarra(){return &bar;}
+tijolo* view::getTijolos(){return t;}
+
+int view::getWidth(){return SCREEN_WIDTH;};
+int view::getHeigth(){return SCREEN_HEIGHT;};
+
+
 const Uint8* view::getState(){return state;}
 
 int view::init(){
@@ -37,22 +46,61 @@ int view::init(){
         SDL_Quit();
         return 1;
     }
-    capivara = IMG_LoadTexture(renderer, "../assets/capi.png" );
-    taquaral = IMG_LoadTexture(renderer, "../assets/park.jpeg" );
-    target.x = m.getX();
-    target.y = m.getY();
-    SDL_QueryTexture(capivara, nullptr, nullptr, &target.w, &target.h);
+    
+    //Inicializando o Bloco
+    for(int i  = 0; i < 5; i++){
+        bloco.h = t[i].getH();
+        bloco.w = t[i].getW();
+        bloco.x = t[i].getX();
+        bloco.y = t[i].getY();
+    }    
+    
+    //Inicializando a Bolinha
+    bol.h = bo->getH();
+    bol.w = bo->getW();
+    bol.x = bo->getX();
+    bol.y = bo->getY();
+   
+    //Inicializando a Barra
+    bar.h = ba->getH();
+    bar.w = ba->getW();
+    bar.x = ba->getX();
+    bar.y = ba->getY();
+
+
+
     state = SDL_GetKeyboardState(nullptr);
 }
 void view::render(){
     SDL_RenderClear(renderer);
-    SDL_RenderCopy(renderer, taquaral, nullptr, nullptr);
-    SDL_RenderCopy(renderer, capivara, nullptr, &target);
+    SDL_SetRenderDrawColor( renderer, 0, 0, 0, 0);
+    SDL_RenderClear(renderer);
+
+    //Imprimindo os tijolos
+    for(int i  = 0; i < 100; i++){
+        bloco.h = t[i].getH();
+        bloco.w = t[i].getW();
+        bloco.x = t[i].getX();
+        bloco.y = t[i].getY();
+        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+        SDL_RenderDrawRect(renderer, &bloco);
+        SDL_RenderFillRect( renderer, &bloco );
+    } 
+    
+    //Imprimindo as barras
+    SDL_SetRenderDrawColor(renderer, 64, 244, 208, 255);
+    SDL_RenderDrawRect(renderer, &bar);
+    SDL_RenderFillRect( renderer, &bar );
+    
+    //Imprimindo as bolinhas
+    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+    SDL_RenderDrawRect(renderer, &bol);
+    SDL_RenderFillRect( renderer, &bol );
+
     SDL_RenderPresent(renderer);
     SDL_Delay(10);
 }
 void view::quit(){
-    SDL_DestroyTexture(capivara);
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
