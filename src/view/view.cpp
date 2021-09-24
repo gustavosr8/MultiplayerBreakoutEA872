@@ -47,14 +47,7 @@ int view::init(){
         return 1;
     }
     
-    //Inicializando o Bloco
-    for(int i  = 0; i < 5; i++){
-        bloco.h = t[i].getH();
-        bloco.w = t[i].getW();
-        bloco.x = t[i].getX();
-        bloco.y = t[i].getY();
-    }    
-    
+  
     //Inicializando a Bolinha
     bol.h = bo->getH();
     bol.w = bo->getW();
