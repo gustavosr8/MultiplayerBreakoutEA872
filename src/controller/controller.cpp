@@ -13,7 +13,7 @@ void controller::update(){
     barra->x = ba->getX();
     barra->y = ba->getY();  
 
-    //Movimentação da Bolinha
+    //Movimentação da Bolinhas
     if(bo->getY() <= 0)
         dir = 5; 
     if (bo->getY() >= v.getHeigth())
