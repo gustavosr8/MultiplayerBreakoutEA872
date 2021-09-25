@@ -1,4 +1,4 @@
-#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
 
 #IncludeRegexScan: ^.*$
 
@@ -38,17 +38,17 @@ bolinha.h
 barra.h
 ../include/barra.h
 
-/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/breakout.cpp
+/home/gustavo/Área de Trabalho/Unicamp/Sexto semestre/EA872/MultiplayerBreakoutEA872/src/breakout.cpp
 model.h
-/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/model.h
+/home/gustavo/Área de Trabalho/Unicamp/Sexto semestre/EA872/MultiplayerBreakoutEA872/src/model.h
 view.h
-/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/view.h
+/home/gustavo/Área de Trabalho/Unicamp/Sexto semestre/EA872/MultiplayerBreakoutEA872/src/view.h
 controller.h
-/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/controller.h
+/home/gustavo/Área de Trabalho/Unicamp/Sexto semestre/EA872/MultiplayerBreakoutEA872/src/controller.h
 tijolo.h
-/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/tijolo.h
+/home/gustavo/Área de Trabalho/Unicamp/Sexto semestre/EA872/MultiplayerBreakoutEA872/src/tijolo.h
 bolinha.h
-/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/bolinha.h
+/home/gustavo/Área de Trabalho/Unicamp/Sexto semestre/EA872/MultiplayerBreakoutEA872/src/bolinha.h
 barra.h
-/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/barra.h
+/home/gustavo/Área de Trabalho/Unicamp/Sexto semestre/EA872/MultiplayerBreakoutEA872/src/barra.h
 

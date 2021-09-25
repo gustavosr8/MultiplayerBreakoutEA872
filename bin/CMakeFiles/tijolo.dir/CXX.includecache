@@ -1,4 +1,4 @@
-#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
 
 #IncludeRegexScan: ^.*$
 
@@ -8,7 +8,7 @@
 
 ../include/tijolo.h
 
-/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/model/tijolo.cpp
+/home/gustavo/Área de Trabalho/Unicamp/Sexto semestre/EA872/MultiplayerBreakoutEA872/src/model/tijolo.cpp
 tijolo.h
-/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/model/tijolo.h
+/home/gustavo/Área de Trabalho/Unicamp/Sexto semestre/EA872/MultiplayerBreakoutEA872/src/model/tijolo.h
 

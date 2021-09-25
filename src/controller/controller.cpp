@@ -14,15 +14,18 @@ void controller::update(){
     barra->y = ba->getY();  
 
     //Movimentação das Bolinhas
-    if(bo->getY() <= 0)
-        dir = 5; 
-    if (bo->getY() >= v.getHeigth())
-        dir = -5;
 
+    if(bo->getX() <= 20 || bo->getX() >= v.getWidth())
+        dirX = -1*dirX;
+
+    if(bo->getY() <= 20 || bo->getY() >= v.getHeigth())
+        dirY = -1*dirY; 
+    
     if(encontro())
-        bo->setY(bo->getY()); 
-    else
-        bo->setY(bo->getY()+dir); 
+        dirY = -1*dirY;  
+    
+    bo->setY(bo->getY()+dirY);
+    bo->setX(bo->getX()+dirX);
 
     bolinha->x = bo->getX();
     bolinha->y = bo->getY();
@@ -48,13 +51,13 @@ bool controller::encontro()
     //for(int i  = 0; i < 100; i++){
         
         l1_x = bolinha->x;
-        l1_y = bolinha->y+dir;
+        l1_y = bolinha->y;
         r1_x = bolinha->x + bolinha->w;
-        r1_y = bolinha->y + bolinha->h;; 
+        r1_y = bolinha->y + bolinha->h; 
         l2_x = barra->x;
         l2_y = barra->y;
         r2_x = barra->x + barra->w;
-        r2_y = barra->y + barra->h;;
+        r2_y = barra->y + barra->h;
 
         /*l2_x = tijolo[i].getX();
         l2_y = tijolo[i].getY();
@@ -66,24 +69,20 @@ bool controller::encontro()
     
         if (l1_x == r1_x || l1_y == r1_y || l2_x == r2_x
             || l2_y == r2_y) {
-            std::cout << "Caso 1\n";
             // the line cannot have positive overlap
             return false;
         }
     
         // If one rectangle is on left side of other
         if (l1_x >= r2_x || l2_x >= r1_x){
-            std::cout << "Caso 2\n";
             return false;
     
         }
             
         // If one rectangle is above other
-        if (r1_y >= l2_y || r2_y >= l1_y){
-            std::cout << "Caso 3\n";
+        if (r1_y <= l2_y || r2_y <= l1_y){
             return false;
         }
     //}
-    std::cout << "Caso 4\n";
     return true;   
 }
