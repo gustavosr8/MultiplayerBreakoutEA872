@@ -21,8 +21,11 @@ void controller::update(){
     if(bo->getY() <= 20 || bo->getY() >= v.getHeigth())
         dirY = -1*dirY; 
     
-    if(encontro())
-        dirY = -1*dirY;  
+    if(colisaoBarra())
+        dirY = -1*dirY;
+
+    if(colisaoBloco())
+        dirY = -1*dirY;
     
     bo->setY(bo->getY()+dirY);
     bo->setX(bo->getX()+dirX);
@@ -41,48 +44,87 @@ void controller::update(){
     */
 }
 
-bool controller::encontro()
-{   const Uint8 *state = v.getState();
+bool controller::colisaoBarra(){
+
+
     SDL_Rect* bolinha = v.getBolinha();
     SDL_Rect* barra = v.getBarra();
+    int l1_x, l1_y, r1_x, r1_y, l2_x, l2_y, r2_x, r2_y;
+
+        
+    l1_x = bolinha->x + dirX;
+    l1_y = bolinha->y + dirY;
+    r1_x = bolinha->x + bolinha->w + dirX;
+    r1_y = bolinha->y + bolinha->h + dirY; 
+    l2_x = barra->x;
+    l2_y = barra->y;
+    r2_x = barra->x + barra->w;
+    r2_y = barra->y + barra->h;
+
+    if (l1_x == r1_x || l1_y == r1_y || l2_x == r2_x
+        || l2_y == r2_y) {
+        // the line cannot have positive overlap
+        return false;
+    }
+
+    // If one rectangle is on left side of other
+    if (l1_x >= r2_x || l2_x >= r1_x){
+        return false;
+    }
+        
+    // If one rectangle is above other
+    if (r1_y <= l2_y || r2_y <= l1_y){
+        return false;
+    }
+
+    return true;   
+}
+
+bool controller::colisaoBloco(){
+
+    SDL_Rect* bolinha = v.getBolinha();
     tijolo* tijolo = v.getTijolos();
     int l1_x, l1_y, r1_x, r1_y, l2_x, l2_y, r2_x, r2_y;
 
-    //for(int i  = 0; i < 100; i++){
+    for(int i  = 0; i < 100; i++){
         
-        l1_x = bolinha->x;
-        l1_y = bolinha->y;
-        r1_x = bolinha->x + bolinha->w;
-        r1_y = bolinha->y + bolinha->h; 
-        l2_x = barra->x;
-        l2_y = barra->y;
-        r2_x = barra->x + barra->w;
-        r2_y = barra->y + barra->h;
+        if(tijolo[i].getEstado()){
+            l1_x = bolinha->x + dirX;
+            l1_y = bolinha->y + dirY;
+            r1_x = bolinha->x + bolinha->w + dirX;
+            r1_y = bolinha->y + bolinha->h + dirY; 
+            //l2_x = barra->x;
+            //l2_y = barra->y;
+            //r2_x = barra->x + barra->w;
+            //r2_y = barra->y + barra->h;
 
-        /*l2_x = tijolo[i].getX();
-        l2_y = tijolo[i].getY();
-        r2_x = tijolo[i].getX() + tijolo[i].getW();
-        r2_y = tijolo[i].getY() + tijolo[i].getH();*/
-        // To check if either rectangle is actually a line
-        // For example :  l1 ={-1,0}  r1={1,1}  l2={0,-1}
-        // r2={0,1}
-    
-        if (l1_x == r1_x || l1_y == r1_y || l2_x == r2_x
-            || l2_y == r2_y) {
-            // the line cannot have positive overlap
-            return false;
+            l2_x = tijolo[i].getX();
+            l2_y = tijolo[i].getY();
+            r2_x = tijolo[i].getX() + tijolo[i].getW();
+            r2_y = tijolo[i].getY() + tijolo[i].getH();
+            // To check if either rectangle is actually a line
+            // For example :  l1 ={-1,0}  r1={1,1}  l2={0,-1}
+            // r2={0,1}
+
+            if (l1_x == r1_x || l1_y == r1_y || l2_x == r2_x
+                || l2_y == r2_y) {
+                // the line cannot have positive overlap
+                return false;
+            }
+
+            // If one rectangle is on left side of other
+            if (l1_x >= r2_x || l2_x >= r1_x){
+                return false;
+
+            }
+
+            // If one rectangle is above other
+            if (r1_y <= l2_y || r2_y <= l1_y){
+                return false;
+            }
+            tijolo[i].setEstado(false);
+            return true;
         }
-    
-        // If one rectangle is on left side of other
-        if (l1_x >= r2_x || l2_x >= r1_x){
-            return false;
-    
-        }
-            
-        // If one rectangle is above other
-        if (r1_y <= l2_y || r2_y <= l1_y){
-            return false;
-        }
-    //}
-    return true;   
+    }
+       
 }

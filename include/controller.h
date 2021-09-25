@@ -16,5 +16,6 @@ class controller{
     public:
         controller(view &v_, barra* ba_, bolinha* bo_): ba(ba_), v(v_), bo(bo_){}
         void update();
-        bool encontro();
+        bool colisaoBarra();
+        bool colisaoBloco();
 };

@@ -6,6 +6,7 @@ class tijolo{
         int w = 260;
         int h = 80;
         int color;
+        bool estado = true;
 
     public:
         tijolo(int x_, int y_);
@@ -15,4 +16,6 @@ class tijolo{
         int getH();
         void setX(int x_);
         void setY(int y_);
+        bool getEstado();
+        void setEstado(bool e);
 };

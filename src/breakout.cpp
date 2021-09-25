@@ -4,6 +4,7 @@
 #include "tijolo.h"
 #include "bolinha.h"
 #include "barra.h"
+#include <vector>
 
 int main(){
     //Adicionando Tijolo
@@ -15,6 +16,7 @@ int main(){
             k++;
         }
     }
+    
 
     bolinha bol = bolinha(960,540);
     barra bar = barra(960, 570);

@@ -71,13 +71,15 @@ void view::render(){
 
     //Imprimindo os tijolos
     for(int i  = 0; i < 100; i++){
-        bloco.h = t[i].getH();
-        bloco.w = t[i].getW();
-        bloco.x = t[i].getX();
-        bloco.y = t[i].getY();
-        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-        SDL_RenderDrawRect(renderer, &bloco);
-        SDL_RenderFillRect( renderer, &bloco );
+        if(t[i].getEstado()){
+            bloco.h = t[i].getH();
+            bloco.w = t[i].getW();
+            bloco.x = t[i].getX();
+            bloco.y = t[i].getY();
+            SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+            SDL_RenderDrawRect(renderer, &bloco);
+            SDL_RenderFillRect( renderer, &bloco );
+        }
     } 
     
     //Imprimindo as barras

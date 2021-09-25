@@ -174,12 +174,12 @@ clean: CMakeFiles/barra.dir/clean
 # Target rules for target CMakeFiles/Breakout.dir
 
 # All Build rule for target.
-CMakeFiles/Breakout.dir/all: CMakeFiles/controller.dir/all
 CMakeFiles/Breakout.dir/all: CMakeFiles/bolinha.dir/all
 CMakeFiles/Breakout.dir/all: CMakeFiles/tijolo.dir/all
+CMakeFiles/Breakout.dir/all: CMakeFiles/barra.dir/all
 CMakeFiles/Breakout.dir/all: CMakeFiles/model.dir/all
 CMakeFiles/Breakout.dir/all: CMakeFiles/view.dir/all
-CMakeFiles/Breakout.dir/all: CMakeFiles/barra.dir/all
+CMakeFiles/Breakout.dir/all: CMakeFiles/controller.dir/all
 	$(MAKE) -f CMakeFiles/Breakout.dir/build.make CMakeFiles/Breakout.dir/depend
 	$(MAKE) -f CMakeFiles/Breakout.dir/build.make CMakeFiles/Breakout.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/gustavo/Área de Trabalho/Unicamp/Sexto semestre/EA872/MultiplayerBreakoutEA872/bin/CMakeFiles" --progress-num=1,2 "Built target Breakout"
