@@ -109,18 +109,18 @@ bool controller::colisaoBloco(){
             if (l1_x == r1_x || l1_y == r1_y || l2_x == r2_x
                 || l2_y == r2_y) {
                 // the line cannot have positive overlap
-                return false;
+                continue;
             }
 
             // If one rectangle is on left side of other
             if (l1_x >= r2_x || l2_x >= r1_x){
-                return false;
+                continue;
 
             }
 
             // If one rectangle is above other
             if (r1_y <= l2_y || r2_y <= l1_y){
-                return false;
+                continue;
             }
             tijolo[i].setEstado(false);
             return true;
