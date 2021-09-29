@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/pontos.h
+
+/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/model/pontos.cpp
+pontos.h
+/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/model/pontos.h
+

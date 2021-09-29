@@ -6,6 +6,8 @@ CMakeFiles/controller.dir/src/controller/controller.cpp.o
  ../include/bolinha.h
  ../include/controller.h
  ../include/model.h
+ ../include/pontos.h
  ../include/tijolo.h
+ ../include/vida.h
  ../include/view.h
  /home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/controller/controller.cpp

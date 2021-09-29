@@ -4,7 +4,11 @@
 #include "tijolo.h"
 #include "bolinha.h"
 #include "barra.h"
+#include "pontos.h"
+#include "vida.h"
 #include <vector>
+#include <iostream>
+
 
 int main(){
     //Adicionando Tijolo
@@ -19,19 +23,22 @@ int main(){
     
     bolinha bol = bolinha(8, 7);
     barra bar = barra(8, 8);
+    pontos p = pontos(0);
+    vida l = vida(4);
+
 
     model m = model(0,0);
-    view v = view(m, t, &bar, &bol);
+    view v = view(m, t, &bar, &bol, &p, &l);
     v.init();
     controller c = controller(v, &bar, &bol);
 
     bool rodando = true;
     SDL_Event evento;
 
-    while(rodando){
+    while(rodando && l.getValue() > 0){
         c.start();
-        c.update();
-
+        if(l.getValue() > 0) c.update();
+        std::cout << "Pontos: " << p.getValue()<<"  Vida: "<< l.getValue() << "\n";
         while(SDL_PollEvent(&evento)){
             if(evento.type == SDL_QUIT){
                 rodando = false;

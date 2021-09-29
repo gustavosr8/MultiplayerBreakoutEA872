@@ -1,0 +1,2 @@
+/usr/bin/ar qc libpontos.a  CMakeFiles/pontos.dir/src/model/pontos.cpp.o
+/usr/bin/ranlib libpontos.a

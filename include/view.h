@@ -6,6 +6,10 @@
 #include "tijolo.h"
 #include "bolinha.h"
 #include "barra.h"
+#include "pontos.h"
+#include "vida.h"
+
+
 
 
 class view{
@@ -15,6 +19,8 @@ class view{
         tijolo *t;
         bolinha *bo;
         barra *ba;
+        pontos* po;
+        vida* v;
 
 
 
@@ -28,12 +34,14 @@ class view{
     
     public:
 
-        view(model &m_, tijolo* t_, barra* ba_, bolinha* bo_);
+        view(model &m_, tijolo* t_, barra* ba_, bolinha* bo_, pontos* po_, vida* v_);
         SDL_Rect* getTarget();
         SDL_Rect* getBloco();
         SDL_Rect* getBolinha();
         SDL_Rect* getBarra();
         tijolo* getTijolos();
+        pontos* getPonto();
+        vida* getVida();
         int getWidth();
         int getHeigth();
         const Uint8* getState();

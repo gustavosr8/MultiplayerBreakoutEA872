@@ -22,7 +22,11 @@ SDL2/SDL.h
 
 ../include/model.h
 
+../include/pontos.h
+
 ../include/tijolo.h
+
+../include/vida.h
 
 ../include/view.h
 SDL2/SDL.h
@@ -39,6 +43,10 @@ bolinha.h
 ../include/bolinha.h
 barra.h
 ../include/barra.h
+pontos.h
+../include/pontos.h
+vida.h
+../include/vida.h
 
 /home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/controller/controller.cpp
 controller.h

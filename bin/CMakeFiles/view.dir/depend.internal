@@ -5,6 +5,8 @@ CMakeFiles/view.dir/src/view/view.cpp.o
  ../include/barra.h
  ../include/bolinha.h
  ../include/model.h
+ ../include/pontos.h
  ../include/tijolo.h
+ ../include/vida.h
  ../include/view.h
  /home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/view/view.cpp

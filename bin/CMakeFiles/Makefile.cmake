@@ -116,6 +116,8 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
+  "CMakeFiles/pontos.dir/DependInfo.cmake"
+  "CMakeFiles/vida.dir/DependInfo.cmake"
   "CMakeFiles/bolinha.dir/DependInfo.cmake"
   "CMakeFiles/barra.dir/DependInfo.cmake"
   "CMakeFiles/tijolo.dir/DependInfo.cmake"

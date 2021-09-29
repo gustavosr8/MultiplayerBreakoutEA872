@@ -1,24 +1,28 @@
 #include "view.h"
 #include <iostream>
+#include <string>
 
 int SCREEN_WIDTH = 720;
 int SCREEN_HEIGHT = 480;
 
-view::view(model &m_, tijolo* t_, barra* ba_, bolinha* bo_):m(m_),t(t_),ba(ba_),bo(bo_){}
+
+
+view::view(model &m_, tijolo* t_, barra* ba_, bolinha* bo_, pontos* po_, vida* v_):m(m_),t(t_),ba(ba_),bo(bo_), po(po_), v(v_){}
 
 SDL_Rect* view::getTarget(){return &target;}
 SDL_Rect* view::getBloco(){return &bloco;}
 SDL_Rect* view::getBolinha(){return &bol;}
 SDL_Rect* view::getBarra(){return &bar;}
 tijolo* view::getTijolos(){return t;}
+pontos* view::getPonto(){return po;};
+vida* view::getVida(){return v;};
+
 
 int view::getWidth(){return SCREEN_WIDTH;};
 int view::getHeigth(){return SCREEN_HEIGHT;};
 
 
 const Uint8* view::getState(){return state;}
-
-
 
 int view::init(){
     
@@ -49,7 +53,7 @@ int view::init(){
         return 1;
     }
     SDL_GetWindowSize(window, &SCREEN_WIDTH, &SCREEN_HEIGHT);
-    
+
     
     //Inicializando os tamanhos dos elementos
     bo->setX(bo->getX()*SCREEN_WIDTH/16);
@@ -90,7 +94,7 @@ void view::render(){
     SDL_RenderClear(renderer);
     SDL_SetRenderDrawColor( renderer, 0, 0, 0, 0);
     SDL_RenderClear(renderer);
-    
+
     //Imprimindo os tijolos
     for(int i  = 0; i < 100; i++){
         if(t[i].getEstado()){
@@ -103,7 +107,6 @@ void view::render(){
             SDL_RenderFillRect( renderer, &bloco );
         }
     } 
-    
     //Imprimindo as barras
     SDL_SetRenderDrawColor(renderer, 64, 244, 208, 255);
     SDL_RenderDrawRect(renderer, &bar);
@@ -113,11 +116,11 @@ void view::render(){
     SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
     SDL_RenderDrawRect(renderer, &bol);
     SDL_RenderFillRect( renderer, &bol );
+
     SDL_RenderPresent(renderer);
     SDL_Delay(10);
 }
 void view::quit(){
-    //SDL_DestroyTexture(point);
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();

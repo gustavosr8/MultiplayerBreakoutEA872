@@ -111,6 +111,32 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named pontos
+
+# Build rule for target.
+pontos: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pontos
+.PHONY : pontos
+
+# fast build rule for target.
+pontos/fast:
+	$(MAKE) -f CMakeFiles/pontos.dir/build.make CMakeFiles/pontos.dir/build
+.PHONY : pontos/fast
+
+#=============================================================================
+# Target rules for targets named vida
+
+# Build rule for target.
+vida: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 vida
+.PHONY : vida
+
+# fast build rule for target.
+vida/fast:
+	$(MAKE) -f CMakeFiles/vida.dir/build.make CMakeFiles/vida.dir/build
+.PHONY : vida/fast
+
+#=============================================================================
 # Target rules for targets named bolinha
 
 # Build rule for target.
@@ -336,6 +362,33 @@ src/model/model.cpp.s:
 	$(MAKE) -f CMakeFiles/model.dir/build.make CMakeFiles/model.dir/src/model/model.cpp.s
 .PHONY : src/model/model.cpp.s
 
+src/model/pontos.o: src/model/pontos.cpp.o
+
+.PHONY : src/model/pontos.o
+
+# target to build an object file
+src/model/pontos.cpp.o:
+	$(MAKE) -f CMakeFiles/pontos.dir/build.make CMakeFiles/pontos.dir/src/model/pontos.cpp.o
+.PHONY : src/model/pontos.cpp.o
+
+src/model/pontos.i: src/model/pontos.cpp.i
+
+.PHONY : src/model/pontos.i
+
+# target to preprocess a source file
+src/model/pontos.cpp.i:
+	$(MAKE) -f CMakeFiles/pontos.dir/build.make CMakeFiles/pontos.dir/src/model/pontos.cpp.i
+.PHONY : src/model/pontos.cpp.i
+
+src/model/pontos.s: src/model/pontos.cpp.s
+
+.PHONY : src/model/pontos.s
+
+# target to generate assembly for a file
+src/model/pontos.cpp.s:
+	$(MAKE) -f CMakeFiles/pontos.dir/build.make CMakeFiles/pontos.dir/src/model/pontos.cpp.s
+.PHONY : src/model/pontos.cpp.s
+
 src/model/tijolo.o: src/model/tijolo.cpp.o
 
 .PHONY : src/model/tijolo.o
@@ -362,6 +415,33 @@ src/model/tijolo.s: src/model/tijolo.cpp.s
 src/model/tijolo.cpp.s:
 	$(MAKE) -f CMakeFiles/tijolo.dir/build.make CMakeFiles/tijolo.dir/src/model/tijolo.cpp.s
 .PHONY : src/model/tijolo.cpp.s
+
+src/model/vida.o: src/model/vida.cpp.o
+
+.PHONY : src/model/vida.o
+
+# target to build an object file
+src/model/vida.cpp.o:
+	$(MAKE) -f CMakeFiles/vida.dir/build.make CMakeFiles/vida.dir/src/model/vida.cpp.o
+.PHONY : src/model/vida.cpp.o
+
+src/model/vida.i: src/model/vida.cpp.i
+
+.PHONY : src/model/vida.i
+
+# target to preprocess a source file
+src/model/vida.cpp.i:
+	$(MAKE) -f CMakeFiles/vida.dir/build.make CMakeFiles/vida.dir/src/model/vida.cpp.i
+.PHONY : src/model/vida.cpp.i
+
+src/model/vida.s: src/model/vida.cpp.s
+
+.PHONY : src/model/vida.s
+
+# target to generate assembly for a file
+src/model/vida.cpp.s:
+	$(MAKE) -f CMakeFiles/vida.dir/build.make CMakeFiles/vida.dir/src/model/vida.cpp.s
+.PHONY : src/model/vida.cpp.s
 
 src/view/view.o: src/view/view.cpp.o
 
@@ -398,6 +478,8 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... pontos"
+	@echo "... vida"
 	@echo "... bolinha"
 	@echo "... barra"
 	@echo "... tijolo"
@@ -420,9 +502,15 @@ help:
 	@echo "... src/model/model.o"
 	@echo "... src/model/model.i"
 	@echo "... src/model/model.s"
+	@echo "... src/model/pontos.o"
+	@echo "... src/model/pontos.i"
+	@echo "... src/model/pontos.s"
 	@echo "... src/model/tijolo.o"
 	@echo "... src/model/tijolo.i"
 	@echo "... src/model/tijolo.s"
+	@echo "... src/model/vida.o"
+	@echo "... src/model/vida.i"
+	@echo "... src/model/vida.s"
 	@echo "... src/view/view.o"
 	@echo "... src/view/view.i"
 	@echo "... src/view/view.s"

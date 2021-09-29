@@ -41,6 +41,8 @@ void controller::update(){
             bo->setY(ba->getY()-20);
             dirY = -1*dirY;
             bo->setExit(false);
+            vida* vi = v.getVida();
+            vi->setValue(vi->getValue()-1);
         }
 
         bo->setY(bo->getY()+dirY);
@@ -154,11 +156,15 @@ bool controller::colisaoBloco(){
 
             if(l1_x < l2_x || r1_x > r2_x){
                 dirX *= -1;
+                pontos* p = v.getPonto();
+                p->setValue(p->getValue()+10);
                 tijolo[i].setEstado(false);
                 return true;
             }
             dirY *= -1;
             tijolo[i].setEstado(false);
+            pontos* p = v.getPonto();
+            p->setValue(p->getValue()+10);
             return true;             
         }
     }

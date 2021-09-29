@@ -5,7 +5,9 @@ CMakeFiles/controller.dir/src/controller/controller.cpp.o: ../include/barra.h
 CMakeFiles/controller.dir/src/controller/controller.cpp.o: ../include/bolinha.h
 CMakeFiles/controller.dir/src/controller/controller.cpp.o: ../include/controller.h
 CMakeFiles/controller.dir/src/controller/controller.cpp.o: ../include/model.h
+CMakeFiles/controller.dir/src/controller/controller.cpp.o: ../include/pontos.h
 CMakeFiles/controller.dir/src/controller/controller.cpp.o: ../include/tijolo.h
+CMakeFiles/controller.dir/src/controller/controller.cpp.o: ../include/vida.h
 CMakeFiles/controller.dir/src/controller/controller.cpp.o: ../include/view.h
 CMakeFiles/controller.dir/src/controller/controller.cpp.o: ../src/controller/controller.cpp
 

@@ -4,7 +4,9 @@
 CMakeFiles/view.dir/src/view/view.cpp.o: ../include/barra.h
 CMakeFiles/view.dir/src/view/view.cpp.o: ../include/bolinha.h
 CMakeFiles/view.dir/src/view/view.cpp.o: ../include/model.h
+CMakeFiles/view.dir/src/view/view.cpp.o: ../include/pontos.h
 CMakeFiles/view.dir/src/view/view.cpp.o: ../include/tijolo.h
+CMakeFiles/view.dir/src/view/view.cpp.o: ../include/vida.h
 CMakeFiles/view.dir/src/view/view.cpp.o: ../include/view.h
 CMakeFiles/view.dir/src/view/view.cpp.o: ../src/view/view.cpp
 
