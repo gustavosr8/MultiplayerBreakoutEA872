@@ -12,6 +12,7 @@ class controller{
         bolinha* bo;
         int dirX = 5;
         int dirY = 5;
+        int veloc = 10;
     
     public:
         controller(view &v_, barra* ba_, bolinha* bo_): ba(ba_), v(v_), bo(bo_){}

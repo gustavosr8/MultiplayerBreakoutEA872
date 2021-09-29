@@ -7,19 +7,22 @@ void controller::update(){
     SDL_Rect* bolinha = v.getBolinha();
     SDL_PumpEvents();
     int flag = 0;
-    if (state[SDL_SCANCODE_LEFT]) ba->setX(ba->getX()-10);
-    if (state[SDL_SCANCODE_RIGHT]) ba->setX(ba->getX()+10);
-    if (state[SDL_SCANCODE_UP]) ba->setY(ba->getY()-10);
-    if (state[SDL_SCANCODE_DOWN]) ba->setY(ba->getY()+10);
-    barra->x = ba->getX();
-    barra->y = ba->getY();  
+    if (state[SDL_SCANCODE_LEFT]) {
+        if(ba->getX()-veloc >= 0)
+            ba->setX(ba->getX()-veloc);
+    }
+    if (state[SDL_SCANCODE_RIGHT]){
+        if(ba->getX()+ba->getW()+veloc <= v.getWidth())
+            ba->setX(ba->getX()+veloc);
+    } 
+    barra->x = ba->getX(); 
 
     //Movimentação das Bolinhas
     if(bo->getPause() && bo->getExit()){ 
-        if(bo->getX() <= 20|| bo->getX() >= v.getWidth())
+        if(bo->getX() < bo->getW() || bo->getX() >= v.getWidth())
             dirX = -1*dirX;
 
-        if(bo->getY() <= 20 )
+        if(bo->getY() < bo->getH())
             dirY = -1*dirY; 
         
         if(colisaoBarra()){
@@ -28,10 +31,10 @@ void controller::update(){
                 bo->setX(ba->getX()+(ba->getW()/2));
                 bo->setY(ba->getY()-20);
             }
-            dirY = -1*dirY;
+            dirY *= -1;
         }
-        if(colisaoBloco())
-            dirY = -1*dirY;
+
+        colisaoBloco();
 
         if(bo->getY() >= v.getHeigth()){
             bo->setX(ba->getX()+(ba->getW()/2));
@@ -49,12 +52,14 @@ void controller::update(){
         bo->setY(ba->getY()-20);
         bolinha->x = bo->getX();
         bolinha->y = bo->getY();
+        dirY = 5;
     }else{
         bo->setX(ba->getX()+(ba->getW()/2));
         bo->setY(ba->getY()-20);
         bolinha->x = bo->getX();
         bolinha->y = bo->getY();
         if(!state[SDL_SCANCODE_SPACE]){
+            dirY = 5;
             bo->setPause(true);
         }
     }
@@ -101,8 +106,7 @@ bool controller::colisaoBarra(){
     if (r1_y <= l2_y || r2_y <= l1_y){
         return false;
     }
-
-    return true;   
+    return true;    
 }
 
 bool controller::colisaoBloco(){
@@ -147,8 +151,15 @@ bool controller::colisaoBloco(){
             if (r1_y <= l2_y || r2_y <= l1_y){
                 continue;
             }
+
+            if(l1_x < l2_x || r1_x > r2_x){
+                dirX *= -1;
+                tijolo[i].setEstado(false);
+                return true;
+            }
+            dirY *= -1;
             tijolo[i].setEstado(false);
-            return true;
+            return true;             
         }
     }
        

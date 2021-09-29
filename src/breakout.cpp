@@ -11,15 +11,14 @@ int main(){
     tijolo* t = (tijolo * ) malloc (100* sizeof(tijolo)); 
     int k = 0;
     for(int i = 0; i < 7; i++){
-        for(int j = 0; j < 5; j++){
-            t[k]= tijolo((((i)*270)+20), (((j)*90)+20));
+        for(int j = 1; j < 6; j++){
+            t[k]= tijolo((((i))), (((j))));
             k++;
         }
     }
     
-
-    bolinha bol = bolinha(1060,960);
-    barra bar = barra(960, 980);
+    bolinha bol = bolinha(8, 7);
+    barra bar = barra(8, 8);
 
     model m = model(0,0);
     view v = view(m, t, &bar, &bol);

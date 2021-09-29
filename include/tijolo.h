@@ -3,8 +3,9 @@
 class tijolo{
     private:
         int x,y;
-        int w = 260;
-        int h = 80;
+        int h, w;
+        float w_mult = 2;
+        float h_mult = 0.5;
         int color;
         bool estado = true;
 
@@ -14,8 +15,13 @@ class tijolo{
         int getY();
         int getW();
         int getH();
+        float getWmult();
+        float getHmult();
+        void setW(int w_);
+        void setH(int h_);
         void setX(int x_);
         void setY(int y_);
         bool getEstado();
         void setEstado(bool e);
 };
+

@@ -32,3 +32,5 @@ SET(CMAKE_CXX_FLAGS "-std=c++0x")
 # Bibliotecas linkadas externamente
 target_link_libraries(Breakout SDL2)
 target_link_libraries(Breakout SDL2_image)
+target_link_libraries(Breakout SDL2_ttf)
+

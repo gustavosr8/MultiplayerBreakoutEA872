@@ -1,1 +1,1 @@
-/usr/bin/c++  -std=c++0x  -rdynamic CMakeFiles/Breakout.dir/src/breakout.cpp.o  -o Breakout  libmodel.a libview.a libcontroller.a libtijolo.a libbarra.a libbolinha.a -lSDL2 -lSDL2_image 
+/usr/bin/c++  -std=c++0x  -rdynamic CMakeFiles/Breakout.dir/src/breakout.cpp.o  -o Breakout  libmodel.a libview.a libcontroller.a libtijolo.a libbarra.a libbolinha.a -lSDL2 -lSDL2_image -lSDL2_ttf 

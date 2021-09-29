@@ -1,6 +1,7 @@
 #pragma once
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 #include "model.h"
 #include "tijolo.h"
 #include "bolinha.h"
@@ -19,8 +20,6 @@ class view{
 
         SDL_Window *window;
         SDL_Renderer *renderer;
-        SDL_Texture *capivara;
-        SDL_Texture *taquaral;
         SDL_Rect bloco;
         SDL_Rect target;
         SDL_Rect bol;
