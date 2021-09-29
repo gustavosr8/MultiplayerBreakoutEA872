@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/gustavo/Área de Trabalho/Unicamp/Sexto semestre/EA872/MultiplayerBreakoutEA872/src/breakout.cpp" "/home/gustavo/Área de Trabalho/Unicamp/Sexto semestre/EA872/MultiplayerBreakoutEA872/bin/CMakeFiles/Breakout.dir/src/breakout.cpp.o"
+  "/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/breakout.cpp" "/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/bin/CMakeFiles/Breakout.dir/src/breakout.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -15,12 +15,12 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/gustavo/Área de Trabalho/Unicamp/Sexto semestre/EA872/MultiplayerBreakoutEA872/bin/CMakeFiles/model.dir/DependInfo.cmake"
-  "/home/gustavo/Área de Trabalho/Unicamp/Sexto semestre/EA872/MultiplayerBreakoutEA872/bin/CMakeFiles/view.dir/DependInfo.cmake"
-  "/home/gustavo/Área de Trabalho/Unicamp/Sexto semestre/EA872/MultiplayerBreakoutEA872/bin/CMakeFiles/controller.dir/DependInfo.cmake"
-  "/home/gustavo/Área de Trabalho/Unicamp/Sexto semestre/EA872/MultiplayerBreakoutEA872/bin/CMakeFiles/tijolo.dir/DependInfo.cmake"
-  "/home/gustavo/Área de Trabalho/Unicamp/Sexto semestre/EA872/MultiplayerBreakoutEA872/bin/CMakeFiles/barra.dir/DependInfo.cmake"
-  "/home/gustavo/Área de Trabalho/Unicamp/Sexto semestre/EA872/MultiplayerBreakoutEA872/bin/CMakeFiles/bolinha.dir/DependInfo.cmake"
+  "/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/bin/CMakeFiles/model.dir/DependInfo.cmake"
+  "/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/bin/CMakeFiles/view.dir/DependInfo.cmake"
+  "/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/bin/CMakeFiles/controller.dir/DependInfo.cmake"
+  "/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/bin/CMakeFiles/tijolo.dir/DependInfo.cmake"
+  "/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/bin/CMakeFiles/barra.dir/DependInfo.cmake"
+  "/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/bin/CMakeFiles/bolinha.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

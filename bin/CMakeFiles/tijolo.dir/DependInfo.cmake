@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/gustavo/Área de Trabalho/Unicamp/Sexto semestre/EA872/MultiplayerBreakoutEA872/src/model/tijolo.cpp" "/home/gustavo/Área de Trabalho/Unicamp/Sexto semestre/EA872/MultiplayerBreakoutEA872/bin/CMakeFiles/tijolo.dir/src/model/tijolo.cpp.o"
+  "/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/model/tijolo.cpp" "/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/bin/CMakeFiles/tijolo.dir/src/model/tijolo.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/bolinha.dir/src/model/bolinha.cpp.o"
-  "libbolinha.pdb"
   "libbolinha.a"
+  "libbolinha.pdb"
 )
 
 # Per-language clean rules from dependency scanning.

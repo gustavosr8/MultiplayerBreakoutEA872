@@ -18,8 +18,8 @@ int main(){
     }
     
 
-    bolinha bol = bolinha(960,540);
-    barra bar = barra(960, 570);
+    bolinha bol = bolinha(1060,960);
+    barra bar = barra(960, 980);
 
     model m = model(0,0);
     view v = view(m, t, &bar, &bol);
@@ -30,6 +30,7 @@ int main(){
     SDL_Event evento;
 
     while(rodando){
+        c.start();
         c.update();
 
         while(SDL_PollEvent(&evento)){

@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/controller.dir/src/controller/controller.cpp.o"
-  "libcontroller.pdb"
   "libcontroller.a"
+  "libcontroller.pdb"
 )
 
 # Per-language clean rules from dependency scanning.

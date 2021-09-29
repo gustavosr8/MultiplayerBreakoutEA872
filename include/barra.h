@@ -3,7 +3,7 @@
 class barra{
     private:
         int x,y;
-        int w = 8000;
+        int w = 200;
         int h = 20;
         int color;
 

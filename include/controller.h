@@ -18,4 +18,5 @@ class controller{
         void update();
         bool colisaoBarra();
         bool colisaoBloco();
+        void start();
 };

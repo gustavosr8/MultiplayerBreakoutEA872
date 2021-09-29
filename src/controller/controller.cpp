@@ -6,34 +6,59 @@ void controller::update(){
     SDL_Rect* barra = v.getBarra();
     SDL_Rect* bolinha = v.getBolinha();
     SDL_PumpEvents();
-    if (state[SDL_SCANCODE_LEFT]) ba->setX(ba->getX()-1);
-    if (state[SDL_SCANCODE_RIGHT]) ba->setX(ba->getX()+1);
-    if (state[SDL_SCANCODE_UP]) ba->setY(ba->getY()-1);
-    if (state[SDL_SCANCODE_DOWN]) ba->setY(ba->getY()+1);
+    int flag = 0;
+    if (state[SDL_SCANCODE_LEFT]) ba->setX(ba->getX()-10);
+    if (state[SDL_SCANCODE_RIGHT]) ba->setX(ba->getX()+10);
+    if (state[SDL_SCANCODE_UP]) ba->setY(ba->getY()-10);
+    if (state[SDL_SCANCODE_DOWN]) ba->setY(ba->getY()+10);
     barra->x = ba->getX();
     barra->y = ba->getY();  
 
     //Movimentação das Bolinhas
+    if(bo->getPause() && bo->getExit()){ 
+        if(bo->getX() <= 20|| bo->getX() >= v.getWidth())
+            dirX = -1*dirX;
 
-    if(bo->getX() <= 20 || bo->getX() >= v.getWidth())
-        dirX = -1*dirX;
+        if(bo->getY() <= 20 )
+            dirY = -1*dirY; 
+        
+        if(colisaoBarra()){
+            if(state[SDL_SCANCODE_SPACE]){
+                bo->setPause(false);
+                bo->setX(ba->getX()+(ba->getW()/2));
+                bo->setY(ba->getY()-20);
+            }
+            dirY = -1*dirY;
+        }
+        if(colisaoBloco())
+            dirY = -1*dirY;
 
-    if(bo->getY() <= 20 || bo->getY() >= v.getHeigth())
-        dirY = -1*dirY; 
+        if(bo->getY() >= v.getHeigth()){
+            bo->setX(ba->getX()+(ba->getW()/2));
+            bo->setY(ba->getY()-20);
+            dirY = -1*dirY;
+            bo->setExit(false);
+        }
+
+        bo->setY(bo->getY()+dirY);
+        bo->setX(bo->getX()+dirX);
+        bolinha->x = bo->getX();
+        bolinha->y = bo->getY();
+    }else if (!bo->getExit()){
+        bo->setX(ba->getX()+(ba->getW()/2));
+        bo->setY(ba->getY()-20);
+        bolinha->x = bo->getX();
+        bolinha->y = bo->getY();
+    }else{
+        bo->setX(ba->getX()+(ba->getW()/2));
+        bo->setY(ba->getY()-20);
+        bolinha->x = bo->getX();
+        bolinha->y = bo->getY();
+        if(!state[SDL_SCANCODE_SPACE]){
+            bo->setPause(true);
+        }
+    }
     
-    if(colisaoBarra())
-        dirY = -1*dirY;
-
-    if(colisaoBloco())
-        dirY = -1*dirY;
-    
-    bo->setY(bo->getY()+dirY);
-    bo->setX(bo->getX()+dirX);
-
-    bolinha->x = bo->getX();
-    bolinha->y = bo->getY();
-
-
    /*
     if (state[SDL_SCANCODE_A]) bo->setX(bo->getX()-1);
     if (state[SDL_SCANCODE_D]) bo->setX(bo->getX()+1); 
@@ -128,3 +153,12 @@ bool controller::colisaoBloco(){
     }
        
 }
+void controller::start(){
+    const Uint8 *state = v.getState();
+    if (state[SDL_SCANCODE_S]){
+        bo->setExit(true);
+        bo->setPause(true);
+    }    
+}
+
+

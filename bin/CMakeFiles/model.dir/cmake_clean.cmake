@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/model.dir/src/model/model.cpp.o"
-  "libmodel.pdb"
   "libmodel.a"
+  "libmodel.pdb"
 )
 
 # Per-language clean rules from dependency scanning.

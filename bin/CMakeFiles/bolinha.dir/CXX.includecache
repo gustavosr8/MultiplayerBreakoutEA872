@@ -1,4 +1,4 @@
-#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
 
 #IncludeRegexScan: ^.*$
 
@@ -8,7 +8,7 @@
 
 ../include/bolinha.h
 
-/home/gustavo/Área de Trabalho/Unicamp/Sexto semestre/EA872/MultiplayerBreakoutEA872/src/model/bolinha.cpp
+/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/model/bolinha.cpp
 bolinha.h
-/home/gustavo/Área de Trabalho/Unicamp/Sexto semestre/EA872/MultiplayerBreakoutEA872/src/model/bolinha.h
+/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/model/bolinha.h
 

@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/barra.dir/src/model/barra.cpp.o"
-  "libbarra.pdb"
   "libbarra.a"
+  "libbarra.pdb"
 )
 
 # Per-language clean rules from dependency scanning.
