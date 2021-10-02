@@ -1,4 +1,3 @@
-#include "model.h"
 #include "view.h"
 #include "controller.h"
 #include "tijolo.h"
@@ -26,9 +25,7 @@ int main(){
     pontos p = pontos(0);
     vida l = vida(4);
 
-
-    model m = model(0,0);
-    view v = view(m, t, &bar, &bol, &p, &l);
+    view v = view(t, &bar, &bol, &p, &l);
     v.init();
     controller c = controller(v, &bar, &bol);
 

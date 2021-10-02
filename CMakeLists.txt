@@ -11,8 +11,6 @@ add_executable(Breakout src/breakout.cpp)
 include_directories(include)
 
 # Bibliotecas locais (estaticas)
-add_library(model src/model/model.cpp)
-target_link_libraries(Breakout model)
 add_library(view src/view/view.cpp)
 target_link_libraries(Breakout view)
 add_library(controller src/controller/controller.cpp)
@@ -36,4 +34,15 @@ SET(CMAKE_CXX_FLAGS "-std=c++0x")
 target_link_libraries(Breakout SDL2)
 target_link_libraries(Breakout SDL2_image)
 target_link_libraries(Breakout SDL2_ttf)
+
+# Automatizacao do Doxygen
+find_package(Doxygen REQUIRED dot)
+
+set(DOXYGEN_EXTRACT_ALL YES)
+set(DOXYGEN_EXTRACT_PRIVATE YES)
+set(DOXYGEN EXTRACT_STATIC YES)
+set(DOXYGEN_TEMPLATE_RELATIONS YES)
+set(DOXYGEN_COLLABORATION_GRAPH YES)
+set(DOXYGEN_UML_LOOK YES)
+set(DOXYGEN_CLASS_GRAPH YES)
 

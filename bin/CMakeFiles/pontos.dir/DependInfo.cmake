@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/model/pontos.cpp" "/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/bin/CMakeFiles/pontos.dir/src/model/pontos.cpp.o"
+  "/home/gustavo/Área de Trabalho/Unicamp/Sexto semestre/EA872/MultiplayerBreakoutEA872/src/model/pontos.cpp" "/home/gustavo/Área de Trabalho/Unicamp/Sexto semestre/EA872/MultiplayerBreakoutEA872/bin/CMakeFiles/pontos.dir/src/model/pontos.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

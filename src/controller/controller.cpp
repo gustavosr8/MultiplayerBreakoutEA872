@@ -65,15 +65,6 @@ void controller::update(){
             bo->setPause(true);
         }
     }
-    
-   /*
-    if (state[SDL_SCANCODE_A]) bo->setX(bo->getX()-1);
-    if (state[SDL_SCANCODE_D]) bo->setX(bo->getX()+1); 
-    if (state[SDL_SCANCODE_W]) bo->setY(bo->getY()-1);
-    if (state[SDL_SCANCODE_S]) bo->setY(bo->getY()+1);
-    bolinha->x = bo->getX();
-    bolinha->y = bo->getY();
-    */
 }
 
 bool controller::colisaoBarra(){
@@ -124,18 +115,13 @@ bool controller::colisaoBloco(){
             l1_y = bolinha->y + dirY;
             r1_x = bolinha->x + bolinha->w + dirX;
             r1_y = bolinha->y + bolinha->h + dirY; 
-            //l2_x = barra->x;
-            //l2_y = barra->y;
-            //r2_x = barra->x + barra->w;
-            //r2_y = barra->y + barra->h;
+
 
             l2_x = tijolo[i].getX();
             l2_y = tijolo[i].getY();
             r2_x = tijolo[i].getX() + tijolo[i].getW();
             r2_y = tijolo[i].getY() + tijolo[i].getH();
-            // To check if either rectangle is actually a line
-            // For example :  l1 ={-1,0}  r1={1,1}  l2={0,-1}
-            // r2={0,1}
+
 
             if (l1_x == r1_x || l1_y == r1_y || l2_x == r2_x
                 || l2_y == r2_y) {

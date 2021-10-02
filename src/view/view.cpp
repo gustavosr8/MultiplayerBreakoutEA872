@@ -7,7 +7,7 @@ int SCREEN_HEIGHT = 480;
 
 
 
-view::view(model &m_, tijolo* t_, barra* ba_, bolinha* bo_, pontos* po_, vida* v_):m(m_),t(t_),ba(ba_),bo(bo_), po(po_), v(v_){}
+view::view(tijolo* t_, barra* ba_, bolinha* bo_, pontos* po_, vida* v_): t(t_),ba(ba_),bo(bo_), po(po_), v(v_){}
 
 SDL_Rect* view::getTarget(){return &target;}
 SDL_Rect* view::getBloco(){return &bloco;}
@@ -54,6 +54,41 @@ int view::init(){
     }
     SDL_GetWindowSize(window, &SCREEN_WIDTH, &SCREEN_HEIGHT);
 
+    //this opens a font style and sets a size
+    TTF_Font* Sans = TTF_OpenFont("PressStart2P-vaV7.ttf", 24);
+
+    // this is the color in rgb format,
+    // maxing out all would give you the color white,
+    // and it will be your text's color
+    SDL_Color White = {255, 255, 255};
+
+    // as TTF_RenderText_Solid could only be used on
+    // SDL_Surface then you have to create the surface first
+    surfaceMessage =
+        TTF_RenderText_Solid(Sans, "put your text here", White); 
+
+    // now you can convert it into a texture
+    Message = SDL_CreateTextureFromSurface(renderer, surfaceMessage);
+
+ //create a rect
+    Message_rect.x = 0;  //controls the rect's x coordinate 
+    Message_rect.y = 0; // controls the rect's y coordinte
+    Message_rect.w = 100; // controls the width of the rect
+    Message_rect.h = 100; // controls the height of the rect
+
+    // (0,0) is on the top left of the window/screen,
+    // think a rect as the text's box,
+    // that way it would be very simple to understand
+
+    // Now since it's a texture, you have to put RenderCopy
+    // in your game loop area, the area where the whole code executes
+
+    // you put the renderer's name first, the Message,
+    // the crop size (you can ignore this if you don't want
+    // to dabble with cropping), and the rect which is the size
+    // and coordinate of your texture
+    
+
     
     //Inicializando os tamanhos dos elementos
     bo->setX(bo->getX()*SCREEN_WIDTH/16);
@@ -95,6 +130,8 @@ void view::render(){
     SDL_SetRenderDrawColor( renderer, 0, 0, 0, 0);
     SDL_RenderClear(renderer);
 
+    SDL_RenderCopy(renderer, Message, NULL, &Message_rect);
+
     //Imprimindo os tijolos
     for(int i  = 0; i < 100; i++){
         if(t[i].getEstado()){
@@ -121,6 +158,9 @@ void view::render(){
     SDL_Delay(10);
 }
 void view::quit(){
+    SDL_FreeSurface(surfaceMessage);
+    SDL_DestroyTexture(Message);
+
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();

@@ -1,16 +1,27 @@
 #pragma once
 
+/*! \brief Classe para a bolinha
+ *
+ *  Esta é a classe para a bolinha. 
+ *  Ela possui variaveis internas para guardar suas dimensoes e posicao,
+ *  alem de ter um fator de multiplicacao para quando for ser mostrada na tela.
+ *  Tambem tem os parametros de estado exit e pause
+*/
+
 class bolinha{
     private:
-        int x,y;
-        int h, w;
-        float w_mult = 0.25;
-        float h_mult = 0.25;
-        int color;
-        bool exit = false;
-        bool pause = false;
+        int x,y;                        /*!< Variaveis de posicao*/
+        int h, w;                       /*!< Variaveis de dimensao*/
+        float h_mult=0.25, w_mult=0.25; /*!< Fator de multiplicacao para visualizacao*/
+        int color;                      /*!< Cor da bolinha*/
+        bool exit = false;              /*!< Variavel de condicao. Tem valor true caso a bolinha atinja a parte inferior da tela*/
+        bool pause = false;             /*!< Variavel de condicao. Caso seja true, a bolinha fica parada em uma posicao definida*/
 
     public:
+        /*! \brief Construtor da bolinha
+         *  
+         *  Recebe uma posicao (x,y) inicial da bolinha
+        */
         bolinha(int x_, int y_);
         int getX();
         int getY();

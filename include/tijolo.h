@@ -1,13 +1,17 @@
 #pragma once
 
+/*! \brief Classe para os pontos
+ *
+ *  Classe utilizada para os tijolos.
+*/
+
 class tijolo{
     private:
-        int x,y;
-        int h, w;
-        float w_mult = 2;
-        float h_mult = 0.5;
-        int color;
-        bool estado = true;
+        int x,y;                    /*!< Variaveis de posicao*/
+        int h, w;                   /*!< Variaveis de dimensao*/
+        float w_mult=2, h_mult=0.5; /*!< Fator de multiplicacao para visualizacao*/
+        int color;                  /*!< Cor da barra*/
+        bool estado = true;         /*!< Variavel de estado, que diz se o tijolo existe ou nao*/
 
     public:
         tijolo(int x_, int y_);

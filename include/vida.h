@@ -1,8 +1,13 @@
 #pragma once
 
+/*! \brief Classe para os pontos
+ *
+ *  Classe utilizada para armazenar os pontos do jogador.
+*/
+
 class vida{
     private:
-        int value;
+        int value;      /*!< quantidade de vidas*/
 
     public:
         vida(int value_);

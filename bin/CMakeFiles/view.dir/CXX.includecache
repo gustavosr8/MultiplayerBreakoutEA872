@@ -1,4 +1,4 @@
-#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
 
 #IncludeRegexScan: ^.*$
 
@@ -9,8 +9,6 @@
 ../include/barra.h
 
 ../include/bolinha.h
-
-../include/model.h
 
 ../include/pontos.h
 
@@ -25,8 +23,10 @@ SDL2/SDL_image.h
 -
 SDL2/SDL_ttf.h
 -
-model.h
-../include/model.h
+string
+-
+sstream
+-
 tijolo.h
 ../include/tijolo.h
 bolinha.h
@@ -38,9 +38,9 @@ pontos.h
 vida.h
 ../include/vida.h
 
-/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/view/view.cpp
+/home/gustavo/Área de Trabalho/Unicamp/Sexto semestre/EA872/MultiplayerBreakoutEA872/src/view/view.cpp
 view.h
-/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/view/view.h
+/home/gustavo/Área de Trabalho/Unicamp/Sexto semestre/EA872/MultiplayerBreakoutEA872/src/view/view.h
 iostream
 -
 string
