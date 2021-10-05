@@ -17,8 +17,15 @@ O jogo utiliza bibliotecas e programas externos para a sua instalação e para o
 
 Para instalar, certifique-se de ter um terminal aberto no diretório ```bin```, e, então, digite os comandos abaixo, em ordem:
 
--```mkdir bin```
--```cd bin```
+- ```mkdir bin```
+- ```cd bin```
 - ```cmake ../```
 - ```make```
-- ```./Breakout``` 
+- ```./Breakout```
+
+## Como jogar
+
+O objetivo do jogo é fazer a bolinha vermelha colidir com todos os tijolos enquanto não deixa ela cair. Para isso, há uma barrinha na parte inferior da tela que pode ser controlada com os direcionais esquerdo e direito.
+- Tecla ```S```: Inicia o jogo.
+- Tecla ```Esc```: Encerra o jogo a qualquer momento.
+- Tecla ```Espaço```: Caso pressionada, prende a bolinha na barra, e a solta ao soltar a tecla.

@@ -37,12 +37,16 @@ int view::getHeigth(){return SCREEN_HEIGHT;};
 
 const Uint8* view::getState(){return state;}
 
+
+//Metodo que gera todas as estruturas iniciais de vizualizacao do SDL
 int view::init(){
     
     if ( SDL_Init (SDL_INIT_VIDEO) < 0 ) {
         std::cout << SDL_GetError();
         return 1;
     }
+
+    //Cria a janela
     window = nullptr;
     window = SDL_CreateWindow("Breakout",
     SDL_WINDOWPOS_UNDEFINED,
@@ -55,6 +59,8 @@ int view::init(){
         SDL_Quit();
         return 1;
     }
+
+    //cria um renderizador
     renderer = nullptr; 
     renderer = SDL_CreateRenderer(
     window, -1,
@@ -65,6 +71,8 @@ int view::init(){
         SDL_Quit();
         return 1;
     }
+
+    //Inicia e configura o TTF (vizualizacao de texto)
     TTF_Init();
     SDL_GetWindowSize(window, &SCREEN_WIDTH, &SCREEN_HEIGHT);
     getcwd(tmp, 256);
@@ -72,59 +80,59 @@ int view::init(){
     std::string font; 
     cout << tmp << endl;
     font += tmp;
-    //Retira o 'bin' do caminho
-    font = font.substr(0, font.size()-3);
-    //Adiciona a localidade e a o nome da fonte
-    font.append("assets/PressStart2P-vaV7.ttf");
+
+    font = font.substr(0, font.size()-3);        //Retira o 'bin' do caminho
+    font.append("assets/PressStart2P-vaV7.ttf"); //Adiciona a localidade e o nome da fonte
     std::copy(font.begin(), font.end(), tmp);
 
-    //this opens a font style and sets a size
-    Font = TTF_OpenFont(tmp, 30);
-
+    Font = TTF_OpenFont(tmp, 30); //carrega a fonte e define seu tamanho
     if(!Font) {
         printf("TTF_OpenFont: %s\n", TTF_GetError());
     }   
 
-    Message_Vida_rect.x = 0;  //controls the rect's x coordinate 
-    Message_Vida_rect.y = 0; // controls the rect's y coordinte
-    Message_Vida_rect.w = 80; // controls the width of the rect
-    Message_Vida_rect.h = 50;// controls the height of the rect
-    render_text(renderer, Message_Vida_rect.x, Message_Vida_rect.y, "Vida: ",Font, &Message_Vida_rect, &White);
+    //Inicializa as posicoes e tamanhos dos textos
+
+    //Texto "Vida"
+    Message_Vida_rect.x = 0;  
+    Message_Vida_rect.y = 0; 
+    Message_Vida_rect.w = 80; 
+    Message_Vida_rect.h = 50;
     
+    //Texto "Pontos"
+    Message_Pontos_rect.x = 300;   
+    Message_Pontos_rect.y = 0; 
+    Message_Pontos_rect.w = 80; 
+    Message_Pontos_rect.h = 50;
 
-    Message_Pontos_rect.x = 300;  //controls the rect's x coordinate 
-    Message_Pontos_rect.y = 0; // controls the rect's y coordinte
-    Message_Pontos_rect.w = 80; // controls the width of the rect
-    Message_Pontos_rect.h = 50;// controls the height of the rect
-    render_text(renderer, Message_Pontos_rect.x, Message_Pontos_rect.y, "Pontos: ",Font, &Message_Pontos_rect, &White);
-
+    //Converte o valor da vida pra char
     std::sprintf(num_char, "%d", v->getValue());
-    Message_VidaValue_rect.x = 150;  //controls the rect's x coordinate 
-    Message_VidaValue_rect.y = 0; // controls the rect's y coordinte
-    Message_VidaValue_rect.w = 50; // controls the width of the rect
-    Message_VidaValue_rect.h = 50;// controls the height of the rect
-    render_text(renderer, Message_VidaValue_rect.x, Message_VidaValue_rect.y, num_char,Font, &Message_VidaValue_rect, &White);
-    
+    Message_VidaValue_rect.x = 150; 
+    Message_VidaValue_rect.y = 0; 
+    Message_VidaValue_rect.w = 50; 
+    Message_VidaValue_rect.h = 50;
+
+    //Converte o valor da pontuacao pra char
     std::sprintf(num_char, "%d", po->getValue());
-    Message_PointValue_rect.x = 500;  //controls the rect's x coordinate 
-    Message_PointValue_rect.y = 0; // controls the rect's y coordinte
-    Message_PointValue_rect.w = 50; // controls the width of the rect
-    Message_PointValue_rect.h = 50;// controls the height of the rect
-    render_text(renderer, Message_PointValue_rect.x, Message_PointValue_rect.y, num_char,Font, &Message_PointValue_rect, &White);
+    Message_PointValue_rect.x = 500;   
+    Message_PointValue_rect.y = 0; 
+    Message_PointValue_rect.w = 50; 
+    Message_PointValue_rect.h = 50;    
     
-    
-    //Inicializando os tamanhos dos elementos
+    //Inicializando os tamanhos dos objetos
+
+    //Bolinha
     bo->setX(bo->getX()*SCREEN_WIDTH/16);
     bo->setY(bo->getY()*((SCREEN_HEIGHT/9)-100));
     bo->setH(bo->getHmult()*SCREEN_HEIGHT/9);
     bo->setW(bo->getWmult()*SCREEN_WIDTH/16);
 
+    //Barrinha
     ba->setX(ba->getX()*SCREEN_WIDTH/16);
     ba->setY(ba->getY()*SCREEN_HEIGHT/9);
     ba->setH(ba->getHmult()*SCREEN_HEIGHT/9);
     ba->setW(ba->getWmult()*SCREEN_WIDTH/16);
 
-
+    //Tijolos
     for(int i  = 0; i < 100; i++){
         t[i].setH(t[i].getHmult()*SCREEN_HEIGHT/9);
         t[i].setW(t[i].getWmult()*SCREEN_WIDTH/16);
@@ -144,15 +152,18 @@ int view::init(){
     bar.x = ba->getX();
     bar.y = ba->getY();
 
-
-
+    //Inicia a variavel de estado que vai ler o teclado
     state = SDL_GetKeyboardState(nullptr);
 }
+
+//Faz as atualizacoes necessarias para cada renderizacao da tela
 void view::render(){
-    SDL_RenderClear(renderer);
+
+    //Define a cor da tela como preta
     SDL_SetRenderDrawColor( renderer, 0, 0, 0, 0);
     SDL_RenderClear(renderer);
 
+    //Renderiza os textos
     render_text(renderer, Message_Vida_rect.x, Message_Vida_rect.y, "Vida: ",Font, &Message_Vida_rect, &White);
     render_text(renderer, Message_Pontos_rect.x, Message_Pontos_rect.y, "Pontos: ",Font, &Message_Pontos_rect, &White);
     std::sprintf(num_char, "%d", v->getValue());
@@ -160,7 +171,7 @@ void view::render(){
     std::sprintf(num_char, "%d", po->getValue());
     render_text(renderer, Message_PointValue_rect.x, Message_PointValue_rect.y, num_char,Font, &Message_PointValue_rect, &White);
     
-    //Imprimindo os tijolos
+    //Renderiza os tijolos
     for(int i  = 0; i < 100; i++){
         if(t[i].getEstado()){
             bloco.h = t[i].getH();
@@ -172,57 +183,50 @@ void view::render(){
             SDL_RenderFillRect( renderer, &bloco );
         }
     } 
-    //Imprimindo as barras
+
+    //Renderiza as barras
     SDL_SetRenderDrawColor(renderer, 64, 244, 208, 255);
     SDL_RenderDrawRect(renderer, &bar);
     SDL_RenderFillRect( renderer, &bar );
     
-    //Imprimindo as bolinhas
+    //Renderiza as bolinhas
     SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
     SDL_RenderDrawRect(renderer, &bol);
     SDL_RenderFillRect( renderer, &bol );
 
+    //Encerra um ciclo de renderizacao
     SDL_RenderPresent(renderer);
     SDL_Delay(10);
 }
 
+//Mostra na tela a mensagem de derrota
 void view::perdeu(){
     render();
     render_text(renderer, Message_PointValue_rect.x, Message_PointValue_rect.y, num_char,Font, &Message_PointValue_rect, &White);
-    Message_Fim_rect.x = SCREEN_WIDTH/2-20;  //controls the rect's x coordinate 
-    Message_Fim_rect.y = SCREEN_HEIGHT/2; // controls the rect's y coordinte
-    Message_Fim_rect.w = 150; // controls the width of the rect
-    Message_Fim_rect.h = 150;// controls the height of the rect
-    TTF_Font* Font2 = TTF_OpenFont(tmp, 70);
-    render_text(renderer, Message_Fim_rect.x, Message_Fim_rect.y, "PERDEU!!!!",Font2, &Message_Fim_rect, &Red);
+    Message_Fim_rect.x = SCREEN_WIDTH/2-20;   
+    Message_Fim_rect.y = SCREEN_HEIGHT/2; 
+    Message_Fim_rect.w = 150; 
+    TTF_Font* Font2 = TTF_OpenFont(tmp,70);
+    render_text(renderer, Message_Fim_rect.x, Message_Fim_rect.y, "PERDEU!!!",Font2, &Message_Fim_rect, &Red);
     
     SDL_RenderPresent(renderer);
     SDL_Delay(100);
 }
-
-
+//Mostra na tela a mensagem de vitoria
 void view::ganhou(){
     render();
     render_text(renderer, Message_PointValue_rect.x, Message_PointValue_rect.y, num_char,Font, &Message_PointValue_rect, &White);
-    Message_Fim_rect.x = SCREEN_WIDTH/2-20;  //controls the rect's x coordinate 
-    Message_Fim_rect.y = SCREEN_HEIGHT/2; // controls the rect's y coordinte
-    Message_Fim_rect.w = 150; // controls the width of the rect
-    Message_Fim_rect.h = 150;// controls the height of the rect
-    TTF_Font* Font2 = TTF_OpenFont(tmp, 70);
+    Message_Fim_rect.x = SCREEN_WIDTH/2-20;   
+    Message_Fim_rect.y = SCREEN_HEIGHT/2; 
+    Message_Fim_rect.w = 150;
+    TTF_Font* Font2 = TTF_OpenFont(tmp,70); 
     render_text(renderer, Message_Fim_rect.x, Message_Fim_rect.y, "GANHOUU!!!!",Font2, &Message_Fim_rect, &Green);
     
     SDL_RenderPresent(renderer);
     SDL_Delay(100);
 }
 
-void view::quit(){
-    SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
-    TTF_Quit;
-    SDL_Quit();
-}
-
-//Function to render a text;
+//Funcao para renderizar um texto
 void view::render_text(
     SDL_Renderer *renderer,
     int x,
@@ -241,14 +245,13 @@ void view::render_text(
     rect->y = y;
     rect->w = surface->w;
     rect->h = surface->h;
-    /* This is wasteful for textures that stay the same.
-     * But makes things less stateful and easier to use.
-     * Not going to code an atlas solution here... are we? */
+    
     SDL_FreeSurface(surface);
     SDL_RenderCopy(renderer, texture, NULL, rect);
     SDL_DestroyTexture(texture);
 }
 
+//Retorna a quantidade de tijolos visiveis
 int view::quantidadeTijolos(){
     int k = 0;
     for(int i  = 0; i < 100; i++){
@@ -257,4 +260,12 @@ int view::quantidadeTijolos(){
         }
     } 
     return k;
+}
+
+//Encerra a janela de vizualizacao e a execucao do programa
+void view::quit(){
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
+    TTF_Quit();
+    SDL_Quit();
 }

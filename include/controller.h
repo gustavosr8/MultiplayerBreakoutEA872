@@ -70,7 +70,7 @@ class controller{
          *  
          *  checa se uma tecla previamente estabelecida foi pressionada,
          *  encerrando a execução e fechando o programa
-         * (Tecla Q)
+         * (Tecla Esc)
          * 
         */
         bool finish();
