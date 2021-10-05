@@ -17,6 +17,8 @@ O jogo utiliza bibliotecas e programas externos para a sua instalação e para o
 
 Para instalar, certifique-se de ter um terminal aberto no diretório ```bin```, e, então, digite os comandos abaixo, em ordem:
 
+-```mkdir bin```
+-```cd bin```
 - ```cmake ../```
 - ```make```
 - ```./Breakout``` 
