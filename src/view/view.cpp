@@ -1,4 +1,4 @@
-#include "view.h"
+#include "../../include/view.h"
 #include <iostream>
 #include <string>
 #include <experimental/filesystem>
@@ -20,13 +20,13 @@ char tmp[256];
 
 
 
-view::view(tijolo* t_, barra* ba_, bolinha* bo_, pontos* po_, vida* v_): t(t_),ba(ba_),bo(bo_), po(po_), v(v_){}
+view::view(std::vector<tijolo>& t_, barra* ba_, bolinha* bo_, pontos* po_, vida* v_): t(t_),ba(ba_),bo(bo_), po(po_), v(v_){}
 
 SDL_Rect* view::getTarget(){return &target;}
 SDL_Rect* view::getBloco(){return &bloco;}
 SDL_Rect* view::getBolinha(){return &bol;}
 SDL_Rect* view::getBarra(){return &bar;}
-tijolo* view::getTijolos(){return t;}
+std::vector<tijolo> view::getTijolos(){return t;}
 pontos* view::getPonto(){return po;};
 vida* view::getVida(){return v;};
 
@@ -133,7 +133,7 @@ int view::init(){
     ba->setW(ba->getWmult()*SCREEN_WIDTH/16);
 
     //Tijolos
-    for(int i  = 0; i < 100; i++){
+    for(int i=0; i<t.size(); i++){
         t[i].setH(t[i].getHmult()*SCREEN_HEIGHT/9);
         t[i].setW(t[i].getWmult()*SCREEN_WIDTH/16);
         t[i].setX(t[i].getX()*((SCREEN_WIDTH/16)+(t[i].getW()/1.5)));
@@ -172,7 +172,7 @@ void view::render(){
     render_text(renderer, Message_PointValue_rect.x, Message_PointValue_rect.y, num_char,Font, &Message_PointValue_rect, &White);
     
     //Renderiza os tijolos
-    for(int i  = 0; i < 100; i++){
+    for(int i=0; i<t.size(); i++){
         if(t[i].getEstado()){
             bloco.h = t[i].getH();
             bloco.w = t[i].getW();
@@ -249,17 +249,6 @@ void view::render_text(
     SDL_FreeSurface(surface);
     SDL_RenderCopy(renderer, texture, NULL, rect);
     SDL_DestroyTexture(texture);
-}
-
-//Retorna a quantidade de tijolos visiveis
-int view::quantidadeTijolos(){
-    int k = 0;
-    for(int i  = 0; i < 100; i++){
-        if(t[i].getEstado()){
-            k++;
-        }
-    } 
-    return k;
 }
 
 //Encerra a janela de vizualizacao e a execucao do programa

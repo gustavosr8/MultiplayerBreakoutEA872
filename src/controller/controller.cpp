@@ -1,4 +1,4 @@
-#include "controller.h"
+#include "../../include/controller.h"
 #include <iostream> 
 
 void controller::update(){
@@ -107,27 +107,26 @@ bool controller::colisaoBarra(){
 bool controller::colisaoBloco(){
 
     SDL_Rect* bolinha = v.getBolinha();
-    tijolo* tijolo = v.getTijolos();
+    std::vector<tijolo> tijolo_ = v.getTijolos();
     int l1_x, l1_y, r1_x, r1_y, l2_x, l2_y, r2_x, r2_y;
 
-    for(int i  = 0; i < 100; i++){
+    for(int i=0; i<tijolo_.size(); i++){
         
-        if(tijolo[i].getEstado()){
+        if(tijolo_[i].getEstado()){
             l1_x = bolinha->x + dirX;
             l1_y = bolinha->y + dirY;
             r1_x = bolinha->x + bolinha->w + dirX;
             r1_y = bolinha->y + bolinha->h + dirY; 
 
 
-            l2_x = tijolo[i].getX();
-            l2_y = tijolo[i].getY();
-            r2_x = tijolo[i].getX() + tijolo[i].getW();
-            r2_y = tijolo[i].getY() + tijolo[i].getH();
+            l2_x = tijolo_[i].getX();
+            l2_y = tijolo_[i].getY();
+            r2_x = tijolo_[i].getX() + tijolo_[i].getW();
+            r2_y = tijolo_[i].getY() + tijolo_[i].getH();
 
             // Se um objeto esta a esquerda do outro
             if (l1_x >= r2_x || l2_x >= r1_x){
                 continue;
-
             }
 
             // Se um objeto esta acima do outro
@@ -137,7 +136,7 @@ bool controller::colisaoBloco(){
 
             //Caso haja colisao, destroi o bloco e atualiza a pontuacao
             pontos* p = v.getPonto();
-            tijolo[i].setEstado(false);
+            tijolo_[i].setEstado(false);
             p->setValue(p->getValue()+10);
 
             //Caso a colisao seja lateral, inverte a movimentacao lateral da bolinha

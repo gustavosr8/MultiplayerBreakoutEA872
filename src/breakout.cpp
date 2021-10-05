@@ -1,11 +1,12 @@
-#include "view.h"
-#include "controller.h"
-#include "tijolo.h"
-#include "bolinha.h"
-#include "barra.h"
-#include "pontos.h"
-#include "vida.h"
+#include "../include/view.h"
+#include "../include/controller.h"
+#include "../include/tijolo.h"
+#include "../include/bolinha.h"
+#include "../include/barra.h"
+#include "../include/pontos.h"
+#include "../include/vida.h"
 #include <iostream>
+#include <vector>
 
 
 int main(){
@@ -13,12 +14,13 @@ int main(){
     //Inicializa os objetos da aplicação
     
     //Tijolos
-    tijolo* t = (tijolo * ) malloc (100* sizeof(tijolo)); 
+    std::vector<tijolo> t;
+    
     int k = 0;
     for(int i = 0; i < 7; i++){
         for(int j = 1; j < 6; j++){
-            t[k]= tijolo((((i))), (((j))));
-            k++;
+            tijolo NewTijolo(i, j);
+            t.push_back(NewTijolo);
         }
     }
     
@@ -36,10 +38,10 @@ int main(){
     //Ciclo de atualização e renderização
     while(rodando){
         c.start();
-        if(l.getValue() > 0 && v.quantidadeTijolos() > 0){ 
+        if(l.getValue() > 0 && t.size() > 0){ 
                 c.update();
                 v.render();
-        }else if(v.quantidadeTijolos() < 1){
+        }else if(t.size() < 1){
             v.ganhou();
         }else{
             v.perdeu();

@@ -5,12 +5,14 @@
 #include <SDL2/SDL_ttf.h>
 #include <string>
 #include <sstream>
+#include <vector>
 #include <experimental/filesystem>
 #include "tijolo.h"
 #include "bolinha.h"
 #include "barra.h"
 #include "pontos.h"
 #include "vida.h"
+#include <vector>
 
 /*! \brief Classe para o view
  *
@@ -22,11 +24,11 @@
 class view{
     private:
         
-        tijolo *t;      /*!< tijolo (alocado previamente)*/
-        bolinha *bo;    /*!< bolinha (alocado previamente)*/
-        barra *ba;      /*!< barra (alocado previamente)*/
-        pontos* po;     /*!< pontos (alocado previamente)*/
-        vida* v;        /*!< vida (alocado previamente)*/
+        std::vector<tijolo> t;      /*!< tijolo (alocado previamente)*/
+        bolinha *bo;                /*!< bolinha (alocado previamente)*/
+        barra *ba;                  /*!< barra (alocado previamente)*/
+        pontos* po;                 /*!< pontos (alocado previamente)*/
+        vida* v;                    /*!< vida (alocado previamente)*/
 
         SDL_Window *window;
         SDL_Renderer *renderer;
@@ -58,7 +60,7 @@ class view{
          * \param po_ objeto pontos
          * \param v_ objeto vida
         */
-        view(tijolo* t_, barra* ba_, bolinha* bo_, pontos* po_, vida* v_);
+        view(std::vector<tijolo>& t_, barra* ba_, bolinha* bo_, pontos* po_, vida* v_);
 
         /*! \brief Renderiza um texto
         *   
@@ -105,19 +107,11 @@ class view{
         */
         void ganhou();
 
-        /*! \brief Tijolos na tela
-        *
-        *   Diz quantos tijolos podem ser vizualidados na tela
-        * 
-        * \return inteiro com a quantidade de tijolos
-        */
-        int quantidadeTijolos();
-
         SDL_Rect* getTarget();
         SDL_Rect* getBloco();
         SDL_Rect* getBolinha();
         SDL_Rect* getBarra();
-        tijolo* getTijolos();
+        std::vector<tijolo> getTijolos();
         pontos* getPonto();
         vida* getVida();
         int getWidth();
