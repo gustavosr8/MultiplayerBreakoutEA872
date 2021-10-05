@@ -74,10 +74,10 @@ int view::init(){
     std::string font; 
     cout << tmp << endl;
     font += tmp;
+    //Retira o 'bin' do caminho
     font = font.substr(0, font.size()-3);
-    cout << "Fonte1:" << font << endl;
+    //Adiciona a localidade e a o nome da fonte
     font.append("src/Sans.ttf");
-    cout << "Fonte2:" << font << endl;
     std::copy(font.begin(), font.end(), tmp);
 
     //this opens a font style and sets a size
