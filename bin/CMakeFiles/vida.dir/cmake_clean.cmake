@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/vida.dir/src/model/vida.cpp.o"
-  "libvida.a"
   "libvida.pdb"
+  "libvida.a"
 )
 
 # Per-language clean rules from dependency scanning.

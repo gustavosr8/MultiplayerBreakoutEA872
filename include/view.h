@@ -1,11 +1,11 @@
 #pragma once
+
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 #include <string>
 #include <sstream>
-#include <filesystem>
-#include <charconv>
+#include <experimental/filesystem>
 #include "tijolo.h"
 #include "bolinha.h"
 #include "barra.h"
@@ -35,7 +35,7 @@ class view{
         SDL_Rect bol;
         SDL_Rect bar;
         const Uint8 *state;
-        TTF_Font* Sans;
+        TTF_Font* Font;
 
         SDL_Rect Message_Vida_rect;
         SDL_Rect Message_Fim_rect;
@@ -52,7 +52,7 @@ class view{
          *  
          *  Recebe um tudo o que for ser mostrado em tela
          * 
-         * \param t_ pbjeto tijolp
+         * \param t_ objeto tijolp
          * \param ba_ objeto barra
          * \param bo_ objeto bolinha
          * \param po_ objeto pontos

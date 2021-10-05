@@ -1,10 +1,8 @@
 #include "view.h"
 #include <iostream>
 #include <string>
-#include <filesystem>
+#include <experimental/filesystem>
 #include <unistd.h>
-#include <charconv>
-
 
 
 using std::cout; using std::cin;
@@ -77,13 +75,13 @@ int view::init(){
     //Retira o 'bin' do caminho
     font = font.substr(0, font.size()-3);
     //Adiciona a localidade e a o nome da fonte
-    font.append("src/Sans.ttf");
+    font.append("assets/PressStart2P-vaV7.ttf");
     std::copy(font.begin(), font.end(), tmp);
 
     //this opens a font style and sets a size
-    Sans = TTF_OpenFont(tmp, 30);
+    Font = TTF_OpenFont(tmp, 30);
 
-    if(!Sans) {
+    if(!Font) {
         printf("TTF_OpenFont: %s\n", TTF_GetError());
     }   
 
@@ -91,28 +89,28 @@ int view::init(){
     Message_Vida_rect.y = 0; // controls the rect's y coordinte
     Message_Vida_rect.w = 80; // controls the width of the rect
     Message_Vida_rect.h = 50;// controls the height of the rect
-    render_text(renderer, Message_Vida_rect.x, Message_Vida_rect.y, "Vida: ",Sans, &Message_Vida_rect, &White);
+    render_text(renderer, Message_Vida_rect.x, Message_Vida_rect.y, "Vida: ",Font, &Message_Vida_rect, &White);
     
 
-    Message_Pontos_rect.x = 200;  //controls the rect's x coordinate 
+    Message_Pontos_rect.x = 300;  //controls the rect's x coordinate 
     Message_Pontos_rect.y = 0; // controls the rect's y coordinte
     Message_Pontos_rect.w = 80; // controls the width of the rect
     Message_Pontos_rect.h = 50;// controls the height of the rect
-    render_text(renderer, Message_Pontos_rect.x, Message_Pontos_rect.y, "Pontos: ",Sans, &Message_Pontos_rect, &White);
+    render_text(renderer, Message_Pontos_rect.x, Message_Pontos_rect.y, "Pontos: ",Font, &Message_Pontos_rect, &White);
 
     std::sprintf(num_char, "%d", v->getValue());
-    Message_VidaValue_rect.x = 80;  //controls the rect's x coordinate 
+    Message_VidaValue_rect.x = 150;  //controls the rect's x coordinate 
     Message_VidaValue_rect.y = 0; // controls the rect's y coordinte
     Message_VidaValue_rect.w = 50; // controls the width of the rect
     Message_VidaValue_rect.h = 50;// controls the height of the rect
-    render_text(renderer, Message_VidaValue_rect.x, Message_VidaValue_rect.y, num_char,Sans, &Message_VidaValue_rect, &White);
+    render_text(renderer, Message_VidaValue_rect.x, Message_VidaValue_rect.y, num_char,Font, &Message_VidaValue_rect, &White);
     
     std::sprintf(num_char, "%d", po->getValue());
-    Message_PointValue_rect.x = 320;  //controls the rect's x coordinate 
+    Message_PointValue_rect.x = 500;  //controls the rect's x coordinate 
     Message_PointValue_rect.y = 0; // controls the rect's y coordinte
     Message_PointValue_rect.w = 50; // controls the width of the rect
     Message_PointValue_rect.h = 50;// controls the height of the rect
-    render_text(renderer, Message_PointValue_rect.x, Message_PointValue_rect.y, num_char,Sans, &Message_PointValue_rect, &White);
+    render_text(renderer, Message_PointValue_rect.x, Message_PointValue_rect.y, num_char,Font, &Message_PointValue_rect, &White);
     
     
     //Inicializando os tamanhos dos elementos
@@ -155,12 +153,12 @@ void view::render(){
     SDL_SetRenderDrawColor( renderer, 0, 0, 0, 0);
     SDL_RenderClear(renderer);
 
-    render_text(renderer, Message_Vida_rect.x, Message_Vida_rect.y, "Vida: ",Sans, &Message_Vida_rect, &White);
-    render_text(renderer, Message_Pontos_rect.x, Message_Pontos_rect.y, "Pontos: ",Sans, &Message_Pontos_rect, &White);
+    render_text(renderer, Message_Vida_rect.x, Message_Vida_rect.y, "Vida: ",Font, &Message_Vida_rect, &White);
+    render_text(renderer, Message_Pontos_rect.x, Message_Pontos_rect.y, "Pontos: ",Font, &Message_Pontos_rect, &White);
     std::sprintf(num_char, "%d", v->getValue());
-    render_text(renderer, Message_VidaValue_rect.x, Message_VidaValue_rect.y, num_char,Sans, &Message_VidaValue_rect, &White);
+    render_text(renderer, Message_VidaValue_rect.x, Message_VidaValue_rect.y, num_char,Font, &Message_VidaValue_rect, &White);
     std::sprintf(num_char, "%d", po->getValue());
-    render_text(renderer, Message_PointValue_rect.x, Message_PointValue_rect.y, num_char,Sans, &Message_PointValue_rect, &White);
+    render_text(renderer, Message_PointValue_rect.x, Message_PointValue_rect.y, num_char,Font, &Message_PointValue_rect, &White);
     
     //Imprimindo os tijolos
     for(int i  = 0; i < 100; i++){
@@ -190,7 +188,7 @@ void view::render(){
 
 void view::perdeu(){
     render();
-    render_text(renderer, Message_PointValue_rect.x, Message_PointValue_rect.y, num_char,Sans, &Message_PointValue_rect, &White);
+    render_text(renderer, Message_PointValue_rect.x, Message_PointValue_rect.y, num_char,Font, &Message_PointValue_rect, &White);
     Message_Fim_rect.x = SCREEN_WIDTH/2-20;  //controls the rect's x coordinate 
     Message_Fim_rect.y = SCREEN_HEIGHT/2; // controls the rect's y coordinte
     Message_Fim_rect.w = 150; // controls the width of the rect
@@ -205,7 +203,7 @@ void view::perdeu(){
 
 void view::ganhou(){
     render();
-    render_text(renderer, Message_PointValue_rect.x, Message_PointValue_rect.y, num_char,Sans, &Message_PointValue_rect, &White);
+    render_text(renderer, Message_PointValue_rect.x, Message_PointValue_rect.y, num_char,Font, &Message_PointValue_rect, &White);
     Message_Fim_rect.x = SCREEN_WIDTH/2-20;  //controls the rect's x coordinate 
     Message_Fim_rect.y = SCREEN_HEIGHT/2; // controls the rect's y coordinte
     Message_Fim_rect.w = 150; // controls the width of the rect
