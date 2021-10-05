@@ -4,6 +4,8 @@
 #include <SDL2/SDL_ttf.h>
 #include <string>
 #include <sstream>
+#include <filesystem>
+#include <charconv>
 #include "tijolo.h"
 #include "bolinha.h"
 #include "barra.h"
@@ -33,10 +35,17 @@ class view{
         SDL_Rect bol;
         SDL_Rect bar;
         const Uint8 *state;
+        TTF_Font* Sans;
 
-        SDL_Texture* Message;
-        SDL_Surface* surfaceMessage;
-        SDL_Rect Message_rect;
+        SDL_Rect Message_Vida_rect;
+        SDL_Rect Message_Fim_rect;
+        SDL_Rect Message_Pontos_rect;
+        SDL_Rect Message_VidaValue_rect;
+        SDL_Rect Message_PointValue_rect;
+
+
+
+
 
     public:
         /*! \brief Construtor do view
@@ -49,6 +58,7 @@ class view{
          * \param po_ objeto pontos
          * \param v_ objeto vida
         */
+        void render_text(SDL_Renderer *renderer,int x, int y,const char *text,TTF_Font *font,SDL_Rect *rect,SDL_Color *color);
         view(tijolo* t_, barra* ba_, bolinha* bo_, pontos* po_, vida* v_);
         SDL_Rect* getTarget();
         SDL_Rect* getBloco();
@@ -78,4 +88,8 @@ class view{
          *  Metodo que encerra os objetos de visualizacao e fecha o programa
         */
         void quit();
+        void perdeu();
+        void ganhou();
+        int quantidadeTijolos();
+
 };

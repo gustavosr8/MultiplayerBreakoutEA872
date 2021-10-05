@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/tijolo.dir/src/model/tijolo.cpp.o"
-  "libtijolo.pdb"
   "libtijolo.a"
+  "libtijolo.pdb"
 )
 
 # Per-language clean rules from dependency scanning.

@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/view.dir/src/view/view.cpp.o"
-  "libview.pdb"
   "libview.a"
+  "libview.pdb"
 )
 
 # Per-language clean rules from dependency scanning.

@@ -1,4 +1,4 @@
-#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
 
 #IncludeRegexScan: ^.*$
 
@@ -8,7 +8,7 @@
 
 ../include/pontos.h
 
-/home/gustavo/Área de Trabalho/Unicamp/Sexto semestre/EA872/MultiplayerBreakoutEA872/src/model/pontos.cpp
+/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/model/pontos.cpp
 pontos.h
-/home/gustavo/Área de Trabalho/Unicamp/Sexto semestre/EA872/MultiplayerBreakoutEA872/src/model/pontos.h
+/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/model/pontos.h
 

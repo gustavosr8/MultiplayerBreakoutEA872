@@ -64,4 +64,6 @@ class controller{
          * 
         */
         void start();
+
+        bool finish();
 };

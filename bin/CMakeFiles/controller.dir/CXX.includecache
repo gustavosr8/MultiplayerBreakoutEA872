@@ -1,4 +1,4 @@
-#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
 
 #IncludeRegexScan: ^.*$
 
@@ -37,6 +37,10 @@ string
 -
 sstream
 -
+filesystem
+-
+charconv
+-
 tijolo.h
 ../include/tijolo.h
 bolinha.h
@@ -48,9 +52,9 @@ pontos.h
 vida.h
 ../include/vida.h
 
-/home/gustavo/Área de Trabalho/Unicamp/Sexto semestre/EA872/MultiplayerBreakoutEA872/src/controller/controller.cpp
+/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/controller/controller.cpp
 controller.h
-/home/gustavo/Área de Trabalho/Unicamp/Sexto semestre/EA872/MultiplayerBreakoutEA872/src/controller/controller.h
+/home/igor/Documents/EA872/Projeto/MultiplayerBreakoutEA872/src/controller/controller.h
 iostream
 -
 

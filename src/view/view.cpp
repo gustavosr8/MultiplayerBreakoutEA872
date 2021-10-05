@@ -1,9 +1,24 @@
 #include "view.h"
 #include <iostream>
 #include <string>
+#include <filesystem>
+#include <unistd.h>
+#include <charconv>
+
+
+
+using std::cout; using std::cin;
+using std::endl; using std::string;
+
 
 int SCREEN_WIDTH = 720;
 int SCREEN_HEIGHT = 480;
+
+SDL_Color White = {255, 255, 255};
+SDL_Color Red = {255, 0, 0};
+SDL_Color Green = {0, 255, 0};
+char num_char[10 + sizeof(char)];
+char tmp[256];
 
 
 
@@ -52,43 +67,53 @@ int view::init(){
         SDL_Quit();
         return 1;
     }
+    TTF_Init();
     SDL_GetWindowSize(window, &SCREEN_WIDTH, &SCREEN_HEIGHT);
+    getcwd(tmp, 256);
+
+    std::string font; 
+    cout << tmp << endl;
+    font += tmp;
+    font = font.substr(0, font.size()-3);
+    cout << "Fonte1:" << font << endl;
+    font.append("src/Sans.ttf");
+    cout << "Fonte2:" << font << endl;
+    std::copy(font.begin(), font.end(), tmp);
 
     //this opens a font style and sets a size
-    TTF_Font* Sans = TTF_OpenFont("PressStart2P-vaV7.ttf", 24);
+    Sans = TTF_OpenFont(tmp, 30);
 
-    // this is the color in rgb format,
-    // maxing out all would give you the color white,
-    // and it will be your text's color
-    SDL_Color White = {255, 255, 255};
+    if(!Sans) {
+        printf("TTF_OpenFont: %s\n", TTF_GetError());
+    }   
 
-    // as TTF_RenderText_Solid could only be used on
-    // SDL_Surface then you have to create the surface first
-    surfaceMessage =
-        TTF_RenderText_Solid(Sans, "put your text here", White); 
-
-    // now you can convert it into a texture
-    Message = SDL_CreateTextureFromSurface(renderer, surfaceMessage);
-
- //create a rect
-    Message_rect.x = 0;  //controls the rect's x coordinate 
-    Message_rect.y = 0; // controls the rect's y coordinte
-    Message_rect.w = 100; // controls the width of the rect
-    Message_rect.h = 100; // controls the height of the rect
-
-    // (0,0) is on the top left of the window/screen,
-    // think a rect as the text's box,
-    // that way it would be very simple to understand
-
-    // Now since it's a texture, you have to put RenderCopy
-    // in your game loop area, the area where the whole code executes
-
-    // you put the renderer's name first, the Message,
-    // the crop size (you can ignore this if you don't want
-    // to dabble with cropping), and the rect which is the size
-    // and coordinate of your texture
+    Message_Vida_rect.x = 0;  //controls the rect's x coordinate 
+    Message_Vida_rect.y = 0; // controls the rect's y coordinte
+    Message_Vida_rect.w = 80; // controls the width of the rect
+    Message_Vida_rect.h = 50;// controls the height of the rect
+    render_text(renderer, Message_Vida_rect.x, Message_Vida_rect.y, "Vida: ",Sans, &Message_Vida_rect, &White);
     
 
+    Message_Pontos_rect.x = 200;  //controls the rect's x coordinate 
+    Message_Pontos_rect.y = 0; // controls the rect's y coordinte
+    Message_Pontos_rect.w = 80; // controls the width of the rect
+    Message_Pontos_rect.h = 50;// controls the height of the rect
+    render_text(renderer, Message_Pontos_rect.x, Message_Pontos_rect.y, "Pontos: ",Sans, &Message_Pontos_rect, &White);
+
+    std::sprintf(num_char, "%d", v->getValue());
+    Message_VidaValue_rect.x = 80;  //controls the rect's x coordinate 
+    Message_VidaValue_rect.y = 0; // controls the rect's y coordinte
+    Message_VidaValue_rect.w = 50; // controls the width of the rect
+    Message_VidaValue_rect.h = 50;// controls the height of the rect
+    render_text(renderer, Message_VidaValue_rect.x, Message_VidaValue_rect.y, num_char,Sans, &Message_VidaValue_rect, &White);
+    
+    std::sprintf(num_char, "%d", po->getValue());
+    Message_PointValue_rect.x = 320;  //controls the rect's x coordinate 
+    Message_PointValue_rect.y = 0; // controls the rect's y coordinte
+    Message_PointValue_rect.w = 50; // controls the width of the rect
+    Message_PointValue_rect.h = 50;// controls the height of the rect
+    render_text(renderer, Message_PointValue_rect.x, Message_PointValue_rect.y, num_char,Sans, &Message_PointValue_rect, &White);
+    
     
     //Inicializando os tamanhos dos elementos
     bo->setX(bo->getX()*SCREEN_WIDTH/16);
@@ -130,8 +155,13 @@ void view::render(){
     SDL_SetRenderDrawColor( renderer, 0, 0, 0, 0);
     SDL_RenderClear(renderer);
 
-    SDL_RenderCopy(renderer, Message, NULL, &Message_rect);
-
+    render_text(renderer, Message_Vida_rect.x, Message_Vida_rect.y, "Vida: ",Sans, &Message_Vida_rect, &White);
+    render_text(renderer, Message_Pontos_rect.x, Message_Pontos_rect.y, "Pontos: ",Sans, &Message_Pontos_rect, &White);
+    std::sprintf(num_char, "%d", v->getValue());
+    render_text(renderer, Message_VidaValue_rect.x, Message_VidaValue_rect.y, num_char,Sans, &Message_VidaValue_rect, &White);
+    std::sprintf(num_char, "%d", po->getValue());
+    render_text(renderer, Message_PointValue_rect.x, Message_PointValue_rect.y, num_char,Sans, &Message_PointValue_rect, &White);
+    
     //Imprimindo os tijolos
     for(int i  = 0; i < 100; i++){
         if(t[i].getEstado()){
@@ -157,11 +187,76 @@ void view::render(){
     SDL_RenderPresent(renderer);
     SDL_Delay(10);
 }
-void view::quit(){
-    SDL_FreeSurface(surfaceMessage);
-    SDL_DestroyTexture(Message);
 
+void view::perdeu(){
+    render();
+    render_text(renderer, Message_PointValue_rect.x, Message_PointValue_rect.y, num_char,Sans, &Message_PointValue_rect, &White);
+    Message_Fim_rect.x = SCREEN_WIDTH/2-20;  //controls the rect's x coordinate 
+    Message_Fim_rect.y = SCREEN_HEIGHT/2; // controls the rect's y coordinte
+    Message_Fim_rect.w = 150; // controls the width of the rect
+    Message_Fim_rect.h = 150;// controls the height of the rect
+    TTF_Font* Sans2 = TTF_OpenFont(tmp, 70);
+    render_text(renderer, Message_Fim_rect.x, Message_Fim_rect.y, "PERDEU!!!!",Sans2, &Message_Fim_rect, &Red);
+    
+    SDL_RenderPresent(renderer);
+    SDL_Delay(100);
+}
+
+
+void view::ganhou(){
+    render();
+    render_text(renderer, Message_PointValue_rect.x, Message_PointValue_rect.y, num_char,Sans, &Message_PointValue_rect, &White);
+    Message_Fim_rect.x = SCREEN_WIDTH/2-20;  //controls the rect's x coordinate 
+    Message_Fim_rect.y = SCREEN_HEIGHT/2; // controls the rect's y coordinte
+    Message_Fim_rect.w = 150; // controls the width of the rect
+    Message_Fim_rect.h = 150;// controls the height of the rect
+    TTF_Font* Sans2 = TTF_OpenFont(tmp, 70);
+    render_text(renderer, Message_Fim_rect.x, Message_Fim_rect.y, "GANHOUU!!!!",Sans2, &Message_Fim_rect, &Green);
+    
+    SDL_RenderPresent(renderer);
+    SDL_Delay(100);
+}
+
+void view::quit(){
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
+    TTF_Quit;
     SDL_Quit();
+}
+
+//Function to render a text;
+void view::render_text(
+    SDL_Renderer *renderer,
+    int x,
+    int y,
+    const char *text,
+    TTF_Font *font,
+    SDL_Rect *rect,
+    SDL_Color *color
+) {
+    SDL_Surface *surface;
+    SDL_Texture *texture;
+
+    surface = TTF_RenderText_Solid(font, text, *color);
+    texture = SDL_CreateTextureFromSurface(renderer, surface);
+    rect->x = x;
+    rect->y = y;
+    rect->w = surface->w;
+    rect->h = surface->h;
+    /* This is wasteful for textures that stay the same.
+     * But makes things less stateful and easier to use.
+     * Not going to code an atlas solution here... are we? */
+    SDL_FreeSurface(surface);
+    SDL_RenderCopy(renderer, texture, NULL, rect);
+    SDL_DestroyTexture(texture);
+}
+
+int view::quantidadeTijolos(){
+    int k = 0;
+    for(int i  = 0; i < 100; i++){
+        if(t[i].getEstado()){
+            k++;
+        }
+    } 
+    return k;
 }

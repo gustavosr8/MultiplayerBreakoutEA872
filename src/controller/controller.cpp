@@ -163,5 +163,11 @@ void controller::start(){
         bo->setPause(true);
     }    
 }
-
+bool controller::finish(){
+    const Uint8 *state = v.getState();
+    if (state[SDL_SCANCODE_Q]){
+        return true;
+    } 
+    return false;   
+}
 
