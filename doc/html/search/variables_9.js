@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['t',['t',['../classview.html#a952fdfafefca2c0bfc8b17647a5706be',1,'view']]],
-  ['target',['target',['../classview.html#a49a628eedba666db008f8c07b96e3a51',1,'view']]]
+  ['pause',['pause',['../classbolinha.html#a85326b85a811e46b6d98c900e141b0ef',1,'bolinha']]],
+  ['po',['po',['../classview.html#a8dc345a9799a79220ecca66c4cd3e8ff',1,'view']]]
 ];

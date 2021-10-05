@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['render',['render',['../classview.html#a91e9b24e39a9846a7093949c9a19a118',1,'view']]]
+  ['quantidadetijolos',['quantidadeTijolos',['../classview.html#a257d50065961954053fbf5402b2e2968',1,'view']]],
+  ['quit',['quit',['../classview.html#ad8c046a243e52ee4f902abec6fbec9bb',1,'view']]]
 ];

@@ -61,9 +61,17 @@ class controller{
          *  
          *  checa se uma tecla previamente estabelecida foi pressionada,
          *  iniciando o movimento da bolinha
+         * (Tecla S)
          * 
         */
         void start();
 
+        /*! \brief Finaliza o jogo
+         *  
+         *  checa se uma tecla previamente estabelecida foi pressionada,
+         *  encerrando a execução e fechando o programa
+         * (Tecla Q)
+         * 
+        */
         bool finish();
 };

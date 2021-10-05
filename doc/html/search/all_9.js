@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['quit',['quit',['../classview.html#ad8c046a243e52ee4f902abec6fbec9bb',1,'view']]]
+  ['num_5fchar',['num_char',['../view_8cpp.html#aba7b55804629711727b7b1176c7583aa',1,'view.cpp']]]
 ];

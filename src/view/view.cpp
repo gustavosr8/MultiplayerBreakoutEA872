@@ -193,8 +193,8 @@ void view::perdeu(){
     Message_Fim_rect.y = SCREEN_HEIGHT/2; // controls the rect's y coordinte
     Message_Fim_rect.w = 150; // controls the width of the rect
     Message_Fim_rect.h = 150;// controls the height of the rect
-    TTF_Font* Sans2 = TTF_OpenFont(tmp, 70);
-    render_text(renderer, Message_Fim_rect.x, Message_Fim_rect.y, "PERDEU!!!!",Sans2, &Message_Fim_rect, &Red);
+    TTF_Font* Font2 = TTF_OpenFont(tmp, 70);
+    render_text(renderer, Message_Fim_rect.x, Message_Fim_rect.y, "PERDEU!!!!",Font2, &Message_Fim_rect, &Red);
     
     SDL_RenderPresent(renderer);
     SDL_Delay(100);
@@ -208,8 +208,8 @@ void view::ganhou(){
     Message_Fim_rect.y = SCREEN_HEIGHT/2; // controls the rect's y coordinte
     Message_Fim_rect.w = 150; // controls the width of the rect
     Message_Fim_rect.h = 150;// controls the height of the rect
-    TTF_Font* Sans2 = TTF_OpenFont(tmp, 70);
-    render_text(renderer, Message_Fim_rect.x, Message_Fim_rect.y, "GANHOUU!!!!",Sans2, &Message_Fim_rect, &Green);
+    TTF_Font* Font2 = TTF_OpenFont(tmp, 70);
+    render_text(renderer, Message_Fim_rect.x, Message_Fim_rect.y, "GANHOUU!!!!",Font2, &Message_Fim_rect, &Green);
     
     SDL_RenderPresent(renderer);
     SDL_Delay(100);

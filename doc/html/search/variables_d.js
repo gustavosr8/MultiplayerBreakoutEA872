@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['y',['y',['../classbarra.html#a93b604008af3593ac1b80366c387f2e9',1,'barra::y()'],['../classbolinha.html#a1ef5bc9948639dc0065e17a8e6b88846',1,'bolinha::y()'],['../classtijolo.html#a3089987dab8db697303f88bd59c0989f',1,'tijolo::y()']]]
+  ['v',['v',['../classcontroller.html#a6ff845413a797ed4beff34d3cb6b7774',1,'controller::v()'],['../classview.html#ae0f8e281f5f7937d84f435437ce03546',1,'view::v()']]],
+  ['value',['value',['../classpontos.html#a776f5643630f9aec273380a31d0e6e47',1,'pontos::value()'],['../classvida.html#ae9dec2f5055b4b7b7a67be0d3c344ba4',1,'vida::value()']]],
+  ['veloc',['veloc',['../classcontroller.html#ae1229353be5404b8decda1e8775292c4',1,'controller']]]
 ];

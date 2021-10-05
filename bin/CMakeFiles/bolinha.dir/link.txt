@@ -1,2 +1,0 @@
-/usr/bin/ar qc libbolinha.a  CMakeFiles/bolinha.dir/src/model/bolinha.cpp.o
-/usr/bin/ranlib libbolinha.a

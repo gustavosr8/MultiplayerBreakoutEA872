@@ -1,2 +1,0 @@
-/usr/bin/ar qc libbarra.a  CMakeFiles/barra.dir/src/model/barra.cpp.o
-/usr/bin/ranlib libbarra.a

@@ -1,2 +1,0 @@
-/usr/bin/ar qc libvida.a  CMakeFiles/vida.dir/src/model/vida.cpp.o
-/usr/bin/ranlib libvida.a

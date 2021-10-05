@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['t',['t',['../classview.html#a952fdfafefca2c0bfc8b17647a5706be',1,'view']]],
-  ['target',['target',['../classview.html#a49a628eedba666db008f8c07b96e3a51',1,'view']]],
-  ['tijolo',['tijolo',['../classtijolo.html',1,'tijolo'],['../classtijolo.html#a1575297d58f55111b16bfde06d7fcf14',1,'tijolo::tijolo()']]],
-  ['tijolo_2ecpp',['tijolo.cpp',['../tijolo_8cpp.html',1,'']]],
-  ['tijolo_2eh',['tijolo.h',['../tijolo_8h.html',1,'']]]
+  ['red',['Red',['../view_8cpp.html#abe117c50d0fa5c3cecfdc127234f5093',1,'view.cpp']]],
+  ['render',['render',['../classview.html#a91e9b24e39a9846a7093949c9a19a118',1,'view']]],
+  ['render_5ftext',['render_text',['../classview.html#afa73cff596b36c7009ee17383d039750',1,'view']]],
+  ['renderer',['renderer',['../classview.html#a8d7b3ec0a0641d24cdc3b04949f5df45',1,'view']]]
 ];

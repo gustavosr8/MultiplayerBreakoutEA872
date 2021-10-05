@@ -52,24 +52,28 @@ class view{
          *  
          *  Recebe um tudo o que for ser mostrado em tela
          * 
-         * \param t_ objeto tijolp
+         * \param t_ objeto tijolo
          * \param ba_ objeto barra
          * \param bo_ objeto bolinha
          * \param po_ objeto pontos
          * \param v_ objeto vida
         */
-        void render_text(SDL_Renderer *renderer,int x, int y,const char *text,TTF_Font *font,SDL_Rect *rect,SDL_Color *color);
         view(tijolo* t_, barra* ba_, bolinha* bo_, pontos* po_, vida* v_);
-        SDL_Rect* getTarget();
-        SDL_Rect* getBloco();
-        SDL_Rect* getBolinha();
-        SDL_Rect* getBarra();
-        tijolo* getTijolos();
-        pontos* getPonto();
-        vida* getVida();
-        int getWidth();
-        int getHeigth();
-        const Uint8* getState();
+
+        /*! \brief Renderiza um texto
+        *   
+        *   Renderiza um texto em uma dada posicao, fonte e cor.
+        *   Todos esses parametros sao passados na funcao
+        *
+        * \param renderer objeto SDL_Renderer alocado previamente
+        * \param x        posicao x do texto
+        * \param y        posicao y do texto
+        * \param text     vetor de chars que sera renderizado
+        * \param font     objeto TTF_Font com a fonte do texto a ser renderizado
+        * \param rect     objeto SDL_Rect alocado previamente
+        * \param color    objeto SDL_Color com a cor do texto a ser renderizado
+        */
+        void render_text(SDL_Renderer *renderer,int x, int y,const char *text,TTF_Font *font,SDL_Rect *rect,SDL_Color *color);
 
         /*! \brief Rotina de inicializacao
          *  
@@ -88,8 +92,36 @@ class view{
          *  Metodo que encerra os objetos de visualizacao e fecha o programa
         */
         void quit();
+
+        /*! \brief Derrota
+        *   
+        *   Sequencia de acoes para quando um jogador perde
+        */
         void perdeu();
+
+        /*! \brief Vitoria
+        *   
+        *   Sequencia de acoes para quando um jogador ganha
+        */
         void ganhou();
+
+        /*! \brief Tijolos na tela
+        *
+        *   Diz quantos tijolos podem ser vizualidados na tela
+        * 
+        * \return inteiro com a quantidade de tijolos
+        */
         int quantidadeTijolos();
+
+        SDL_Rect* getTarget();
+        SDL_Rect* getBloco();
+        SDL_Rect* getBolinha();
+        SDL_Rect* getBarra();
+        tijolo* getTijolos();
+        pontos* getPonto();
+        vida* getVida();
+        int getWidth();
+        int getHeigth();
+        const Uint8* getState();
 
 };

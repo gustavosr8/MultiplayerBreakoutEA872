@@ -31,7 +31,9 @@ bool \hyperlink{classcontroller_aaaef2bd34f643183bcd6fad64bea1005}{colisao\+Barr
 bool \hyperlink{classcontroller_ac227dd1b72111d1c6da3362d60aa25d6}{colisao\+Bloco} ()
 \begin{DoxyCompactList}\small\item\em Colisao blocos/bolinha. \end{DoxyCompactList}\item 
 void \hyperlink{classcontroller_a03872ff488ab704038e14226a8e031ea}{start} ()
-\begin{DoxyCompactList}\small\item\em Inicia o jogo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Inicia o jogo. \end{DoxyCompactList}\item 
+bool \hyperlink{classcontroller_a993c5fe7272f0435b4018f4b5d1fc1cb}{finish} ()
+\begin{DoxyCompactList}\small\item\em Finaliza o jogo. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -114,7 +116,18 @@ checa a colisao entre a todos os blocos e a bolinha caso haja colisao, tira o bl
 \begin{DoxyReturn}{Returns}
 retorna true caso haja colisao 
 \end{DoxyReturn}
-\index{controller@{controller}!start@{start}}
+\index{controller@{controller}!finish@{finish}}
+\index{finish@{finish}!controller@{controller}}
+\subsubsection[{\texorpdfstring{finish()}{finish()}}]{\setlength{\rightskip}{0pt plus 5cm}bool controller\+::finish (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classcontroller_a993c5fe7272f0435b4018f4b5d1fc1cb}{}\label{classcontroller_a993c5fe7272f0435b4018f4b5d1fc1cb}
+
+
+Finaliza o jogo. 
+
+checa se uma tecla previamente estabelecida foi pressionada, encerrando a execução e fechando o programa (Tecla Q) \index{controller@{controller}!start@{start}}
 \index{start@{start}!controller@{controller}}
 \subsubsection[{\texorpdfstring{start()}{start()}}]{\setlength{\rightskip}{0pt plus 5cm}void controller\+::start (
 \begin{DoxyParamCaption}
@@ -125,7 +138,7 @@ retorna true caso haja colisao
 
 Inicia o jogo. 
 
-checa se uma tecla previamente estabelecida foi pressionada, iniciando o movimento da bolinha \index{controller@{controller}!update@{update}}
+checa se uma tecla previamente estabelecida foi pressionada, iniciando o movimento da bolinha (Tecla S) \index{controller@{controller}!update@{update}}
 \index{update@{update}!controller@{controller}}
 \subsubsection[{\texorpdfstring{update()}{update()}}]{\setlength{\rightskip}{0pt plus 5cm}void controller\+::update (
 \begin{DoxyParamCaption}

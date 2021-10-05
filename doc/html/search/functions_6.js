@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['quit',['quit',['../classview.html#ad8c046a243e52ee4f902abec6fbec9bb',1,'view']]]
+  ['perdeu',['perdeu',['../classview.html#a1839c52cc61779be195b51e4fddcb659',1,'view']]],
+  ['pontos',['pontos',['../classpontos.html#ac2c939539723b5f20054239c0c78ef59',1,'pontos']]]
 ];

@@ -1,2 +1,0 @@
-/usr/bin/ar qc libtijolo.a  CMakeFiles/tijolo.dir/src/model/tijolo.cpp.o
-/usr/bin/ranlib libtijolo.a
