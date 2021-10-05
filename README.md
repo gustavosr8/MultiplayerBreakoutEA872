@@ -29,3 +29,7 @@ O objetivo do jogo é fazer a bolinha vermelha colidir com todos os tijolos enqu
 - Tecla ```S```: Inicia o jogo.
 - Tecla ```Esc```: Encerra o jogo a qualquer momento.
 - Tecla ```Espaço```: Caso pressionada, prende a bolinha na barra, e a solta ao soltar a tecla.
+
+## Documentação
+
+A documentação com explicação do código pode ser acessada [aqui](doc/html/index.html).
