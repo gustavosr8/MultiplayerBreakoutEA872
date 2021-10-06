@@ -35,14 +35,5 @@ target_link_libraries(Breakout SDL2)
 target_link_libraries(Breakout SDL2_image)
 target_link_libraries(Breakout SDL2_ttf)
 
-# Automatizacao do Doxygen
-find_package(Doxygen REQUIRED dot)
 
-set(DOXYGEN_EXTRACT_ALL YES)
-set(DOXYGEN_EXTRACT_PRIVATE YES)
-set(DOXYGEN EXTRACT_STATIC YES)
-set(DOXYGEN_TEMPLATE_RELATIONS YES)
-set(DOXYGEN_COLLABORATION_GRAPH YES)
-set(DOXYGEN_UML_LOOK YES)
-set(DOXYGEN_CLASS_GRAPH YES)
 
