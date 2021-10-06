@@ -38,10 +38,10 @@ int main(){
     //Ciclo de atualização e renderização
     while(rodando){
         c.start();
-        if(l.getValue() > 0 && t.size() > 0){ 
+        if(l.getValue() > 0 && v.quantidadeTijolos() > 0){ 
                 c.update();
                 v.render();
-        }else if(t.size() < 1){
+        }else if(v.quantidadeTijolos() < 1){
             v.ganhou();
         }else{
             v.perdeu();
