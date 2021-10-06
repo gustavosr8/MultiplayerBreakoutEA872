@@ -111,7 +111,7 @@ class view{
         SDL_Rect* getBloco();
         SDL_Rect* getBolinha();
         SDL_Rect* getBarra();
-        std::vector<tijolo> getTijolos();
+        std::vector<tijolo>& getTijolos();
         pontos* getPonto();
         vida* getVida();
         int getWidth();

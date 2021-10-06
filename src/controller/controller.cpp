@@ -107,7 +107,7 @@ bool controller::colisaoBarra(){
 bool controller::colisaoBloco(){
 
     SDL_Rect* bolinha = v.getBolinha();
-    std::vector<tijolo> tijolo_ = v.getTijolos();
+    std::vector<tijolo> &tijolo_ = v.getTijolos();
     int l1_x, l1_y, r1_x, r1_y, l2_x, l2_y, r2_x, r2_y;
 
     for(int i=0; i<tijolo_.size(); i++){

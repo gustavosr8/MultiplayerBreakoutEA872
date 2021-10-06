@@ -26,7 +26,7 @@ SDL_Rect* view::getTarget(){return &target;}
 SDL_Rect* view::getBloco(){return &bloco;}
 SDL_Rect* view::getBolinha(){return &bol;}
 SDL_Rect* view::getBarra(){return &bar;}
-std::vector<tijolo> view::getTijolos(){return t;}
+std::vector<tijolo>& view::getTijolos(){return t;}
 pontos* view::getPonto(){return po;};
 vida* view::getVida(){return v;};
 
