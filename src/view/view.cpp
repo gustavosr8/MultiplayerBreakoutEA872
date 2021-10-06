@@ -94,27 +94,27 @@ int view::init(){
 
     //Texto "Vida"
     Message_Vida_rect.x = 0;  
-    Message_Vida_rect.y = 0; 
+    Message_Vida_rect.y = 20; 
     Message_Vida_rect.w = 80; 
     Message_Vida_rect.h = 50;
     
     //Texto "Pontos"
     Message_Pontos_rect.x = 300;   
-    Message_Pontos_rect.y = 0; 
+    Message_Pontos_rect.y = 20; 
     Message_Pontos_rect.w = 80; 
     Message_Pontos_rect.h = 50;
 
     //Converte o valor da vida pra char
     std::sprintf(num_char, "%d", v->getValue());
     Message_VidaValue_rect.x = 150; 
-    Message_VidaValue_rect.y = 0; 
+    Message_VidaValue_rect.y = 20; 
     Message_VidaValue_rect.w = 50; 
     Message_VidaValue_rect.h = 50;
 
     //Converte o valor da pontuacao pra char
     std::sprintf(num_char, "%d", po->getValue());
     Message_PointValue_rect.x = 500;   
-    Message_PointValue_rect.y = 0; 
+    Message_PointValue_rect.y = 20; 
     Message_PointValue_rect.w = 50; 
     Message_PointValue_rect.h = 50;    
     
