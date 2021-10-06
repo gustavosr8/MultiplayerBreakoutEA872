@@ -173,15 +173,15 @@ void view::render(){
     
     //Renderiza os tijolos
     for(int i=0; i<t.size(); i++){
-        if(t[i].getEstado()){
-            bloco.h = t[i].getH();
-            bloco.w = t[i].getW();
-            bloco.x = t[i].getX();
-            bloco.y = t[i].getY();
-            SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-            SDL_RenderDrawRect(renderer, &bloco);
-            SDL_RenderFillRect( renderer, &bloco );
-        }
+        
+        bloco.h = t[i].getH();
+        bloco.w = t[i].getW();
+        bloco.x = t[i].getX();
+        bloco.y = t[i].getY();
+        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+        SDL_RenderDrawRect(renderer, &bloco);
+        SDL_RenderFillRect( renderer, &bloco );
+    
     } 
 
     //Renderiza as barras
@@ -249,17 +249,6 @@ void view::render_text(
     SDL_FreeSurface(surface);
     SDL_RenderCopy(renderer, texture, NULL, rect);
     SDL_DestroyTexture(texture);
-}
-
-//Diz quantos tijolos ainda estão visiveis
-int view::quantidadeTijolos(){
-    int k = 0;
-    for(int i  = 0; i < t.size(); i++){
-        if(t[i].getEstado()){
-            k++;
-        }
-    } 
-    return k;
 }
 
 //Encerra a janela de vizualizacao e a execucao do programa

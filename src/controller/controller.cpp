@@ -112,41 +112,35 @@ bool controller::colisaoBloco(){
 
     for(int i=0; i<tijolo_.size(); i++){
         
-        if(tijolo_[i].getEstado()){
-            l1_x = bolinha->x + dirX;
-            l1_y = bolinha->y + dirY;
-            r1_x = bolinha->x + bolinha->w + dirX;
-            r1_y = bolinha->y + bolinha->h + dirY; 
-
-
-            l2_x = tijolo_[i].getX();
-            l2_y = tijolo_[i].getY();
-            r2_x = tijolo_[i].getX() + tijolo_[i].getW();
-            r2_y = tijolo_[i].getY() + tijolo_[i].getH();
-
-            // Se um objeto esta a esquerda do outro
-            if (l1_x >= r2_x || l2_x >= r1_x){
-                continue;
-            }
-
-            // Se um objeto esta acima do outro
-            if (r1_y <= l2_y || r2_y <= l1_y){
-                continue;
-            }
-
-            //Caso haja colisao, destroi o bloco e atualiza a pontuacao
-            pontos* p = v.getPonto();
-            tijolo_[i].setEstado(false);
-            p->setValue(p->getValue()+10);
-
-            //Caso a colisao seja lateral, inverte a movimentacao lateral da bolinha
-            if(l1_x < l2_x || r1_x > r2_x){
-                dirX *= -1;
-                return true;
-            }
-            dirY *= -1;
-            return true;             
+        l1_x = bolinha->x + dirX;
+        l1_y = bolinha->y + dirY;
+        r1_x = bolinha->x + bolinha->w + dirX;
+        r1_y = bolinha->y + bolinha->h + dirY; 
+        l2_x = tijolo_[i].getX();
+        l2_y = tijolo_[i].getY();
+        r2_x = tijolo_[i].getX() + tijolo_[i].getW();
+        r2_y = tijolo_[i].getY() + tijolo_[i].getH();
+        // Se um objeto esta a esquerda do outro
+        if (l1_x >= r2_x || l2_x >= r1_x){
+            continue;
         }
+        // Se um objeto esta acima do outro
+        if (r1_y <= l2_y || r2_y <= l1_y){
+            continue;
+        }
+        //Caso haja colisao, destroi o bloco e atualiza a pontuacao
+        pontos* p = v.getPonto();
+        tijolo_.erase(tijolo_.begin()+i);
+        
+        p->setValue(p->getValue()+10);
+        //Caso a colisao seja lateral, inverte a movimentacao lateral da bolinha
+        if(l1_x < l2_x || r1_x > r2_x){
+            dirX *= -1;
+            return true;
+        }
+        dirY *= -1;
+        return true;             
+    
     }
        
 }

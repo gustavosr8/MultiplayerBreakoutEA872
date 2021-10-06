@@ -24,7 +24,7 @@
 class view{
     private:
         
-        std::vector<tijolo> t;      /*!< tijolo (alocado previamente)*/
+        std::vector<tijolo>& t;      /*!< tijolo (alocado previamente)*/
         bolinha *bo;                /*!< bolinha (alocado previamente)*/
         barra *ba;                  /*!< barra (alocado previamente)*/
         pontos* po;                 /*!< pontos (alocado previamente)*/
