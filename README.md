@@ -32,4 +32,4 @@ O objetivo do jogo é fazer a bolinha vermelha colidir com todos os tijolos enqu
 
 ## Documentação
 
-A documentação com explicação do código pode ser acessada [aqui](doc/html/index.html).
+A documentação com explicação do código pode ser acessada [aqui](https://gustavosr8.github.io/DocBreakout/index.html).
