@@ -10,8 +10,10 @@ O objetivo é desenvolver uma versão de multiplayer massivo inspirado no jogo [
 
 O jogo utiliza bibliotecas e programas externos para a sua instalação e para o seu funcionamento. Certifique-se de tê-los instalado para que o programa possa ser montado corretamente.
 
-- [SDL2](https://www.libsdl.org/download-2.0.php)
 - [CMake](https://cmake.org/)
+- [SDL2](https://www.libsdl.org/download-2.0.php)
+- [SDL2_image](https://www.libsdl.org/projects/SDL_image/)
+- [SDL2_ttf](https://www.libsdl.org/projects/SDL_ttf/)
 
 ### Instalação
 

@@ -220,7 +220,7 @@ void view::ganhou(){
     Message_Fim_rect.y = SCREEN_HEIGHT/2; 
     Message_Fim_rect.w = 150;
     TTF_Font* Font2 = TTF_OpenFont(tmp,70); 
-    render_text(renderer, Message_Fim_rect.x, Message_Fim_rect.y, "GANHOUU!!!!",Font2, &Message_Fim_rect, &Green);
+    render_text(renderer, Message_Fim_rect.x, Message_Fim_rect.y, "GANHOU!!!",Font2, &Message_Fim_rect, &Green);
     
     SDL_RenderPresent(renderer);
     SDL_Delay(100);
