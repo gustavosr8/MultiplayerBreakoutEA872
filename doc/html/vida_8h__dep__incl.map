@@ -1,8 +1,0 @@
-<map id="include/vida.h" name="include/vida.h">
-<area shape="rect" id="node2" href="$breakout_8cpp.html" title="src/breakout.cpp" alt="" coords="25,229,144,256"/>
-<area shape="rect" id="node3" href="$vida_8cpp.html" title="src/model/vida.cpp" alt="" coords="25,80,157,107"/>
-<area shape="rect" id="node4" href="$view_8h.html" title="include/view.h" alt="" coords="181,80,287,107"/>
-<area shape="rect" id="node5" href="$view_8cpp.html" title="src/view/view.cpp" alt="" coords="123,155,249,181"/>
-<area shape="rect" id="node6" href="$controller_8h.html" title="include/controller.h" alt="" coords="274,155,405,181"/>
-<area shape="rect" id="node7" href="$controller_8cpp.html" title="src/controller/controller.cpp" alt="" coords="250,229,429,256"/>
-</map>

@@ -1,8 +1,0 @@
-<map id="include/tijolo.h" name="include/tijolo.h">
-<area shape="rect" id="node2" href="$breakout_8cpp.html" title="src/breakout.cpp" alt="" coords="27,229,145,256"/>
-<area shape="rect" id="node3" href="$tijolo_8cpp.html" title="src/model/tijolo.cpp" alt="" coords="25,80,160,107"/>
-<area shape="rect" id="node4" href="$view_8h.html" title="include/view.h" alt="" coords="184,80,289,107"/>
-<area shape="rect" id="node5" href="$view_8cpp.html" title="src/view/view.cpp" alt="" coords="124,155,251,181"/>
-<area shape="rect" id="node6" href="$controller_8h.html" title="include/controller.h" alt="" coords="275,155,406,181"/>
-<area shape="rect" id="node7" href="$controller_8cpp.html" title="src/controller/controller.cpp" alt="" coords="251,229,430,256"/>
-</map>
