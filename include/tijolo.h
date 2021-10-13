@@ -1,4 +1,5 @@
 #pragma once
+#include "json.hpp"
 
 /*! \brief Classe para os pontos
  *
@@ -13,7 +14,9 @@ class tijolo{
         int color;                  /*!< Cor da barra*/
 
     public:
+        NLOHMANN_DEFINE_TYPE_INTRUSIVE(tijolo, x,y);
         tijolo(int x_, int y_);
+        tijolo();
         int getX();
         int getY();
         int getW();

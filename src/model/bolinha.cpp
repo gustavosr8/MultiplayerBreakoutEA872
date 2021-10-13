@@ -5,6 +5,11 @@ bolinha::bolinha(int x_, int y_){
     y=y_;
 }
 
+bolinha::bolinha(){
+    x=0;
+    y=0;
+}
+
 int bolinha::getX(){return x;}
 int bolinha::getY(){return y;}
 int bolinha::getW(){return w;}

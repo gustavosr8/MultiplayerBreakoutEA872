@@ -1,4 +1,6 @@
 #pragma once
+#include "json.hpp"
+
 
 /*! \brief Classe para a barra
  *
@@ -21,6 +23,8 @@ class barra{
          *  Recebe uma posicao (x,y) inicial da barra
         */
         barra(int x_, int y_);
+        barra();
+        NLOHMANN_DEFINE_TYPE_INTRUSIVE(barra, x,y);
         int getX();
         int getY();
         int getW();

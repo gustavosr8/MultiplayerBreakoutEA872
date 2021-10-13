@@ -5,6 +5,7 @@
 #include "../include/barra.h"
 #include "../include/pontos.h"
 #include "../include/vida.h"
+#include "../include/container.h"
 #include "../include/json.hpp"
 #include <iostream>
 #include <fstream>
@@ -39,8 +40,15 @@ int main(){
     bool rodando = true;
     SDL_Event evento;
 
+    container cntr;
+    cntr.v = l;
+    cntr.ba = bar;
+    cntr.bo = bol;
+    cntr.p = p;
+    cntr.t = t;
+
     json j;
-    j["vida"] = l;
+    j["Container"] = cntr;
     std::ofstream f;
     f.open("teste.json");
     f << j;
@@ -50,7 +58,12 @@ int main(){
     while(rodando){
         c.start();
         if(c.save()){
-            j["vida"] = l;
+            cntr.v = l;
+            cntr.ba = bar;
+            cntr.bo = bol;
+            cntr.p = p;
+            cntr.t = t;
+            j["Container"] = cntr;
             std::ofstream f;
             f.open("teste.json");
             f << j;
@@ -61,7 +74,12 @@ int main(){
             f.open("teste.json");
             f >> j;
             f.close();
-            l = j["vida"];
+            cntr = j["Container"];
+            l = cntr.v;
+            bar = cntr.ba;
+            bol = cntr.bo;
+            p = cntr.p;
+            t = cntr.t;
         }
         if(l.getValue() > 0 && t.size() > 0){ 
                 c.update();

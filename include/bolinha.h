@@ -1,4 +1,6 @@
 #pragma once
+#include "json.hpp"
+
 
 /*! \brief Classe para a bolinha
  *
@@ -23,6 +25,8 @@ class bolinha{
          *  Recebe uma posicao (x,y) inicial da bolinha
         */
         bolinha(int x_, int y_);
+        bolinha();
+        NLOHMANN_DEFINE_TYPE_INTRUSIVE(bolinha, x,y);
         int getX();
         int getY();
         int getW();

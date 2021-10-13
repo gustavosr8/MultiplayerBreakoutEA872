@@ -5,6 +5,11 @@ barra::barra(int x_, int y_){
     y=y_;
 }
 
+barra::barra(){
+    x=0;
+    y=0;
+}
+
 int barra::getX(){return x;}
 int barra::getY(){return y;}
 int barra::getW(){return w;}
