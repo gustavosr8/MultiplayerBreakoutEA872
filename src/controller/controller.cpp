@@ -23,10 +23,10 @@ void controller::update(){
     //Movimentação das Bolinhas
     if(bo->getPause() && bo->getExit()){ 
         if(bo->getX() < bo->getW() || bo->getX() >= v.getWidth()) //Colisão com asa bordas da tela
-            dirX = -1*dirX;
+            bo->setDirX(-1*bo->getDirX());
 
         if(bo->getY() < bo->getH())
-            dirY = -1*dirY; 
+            bo->setDirY(-1*bo->getDirY());
         
         if(colisaoBarra()){
             if(state[SDL_SCANCODE_SPACE]){ //Se a tecla espaco for pressionada, a bolinha pausa no meio da barra
@@ -34,7 +34,7 @@ void controller::update(){
                 bo->setX(ba->getX()+(ba->getW()/2));
                 bo->setY(ba->getY()-20);
             }
-            dirY *= -1;
+            bo->setDirY(-1*bo->getDirY());
         }
 
         colisaoBloco(); //Checa a colisao com os blocos e toma as devidas decisoes sobre a movimentacao internamente
@@ -42,29 +42,30 @@ void controller::update(){
         if(bo->getY() >= v.getHeigth()){ //caso a bolinha saia por baixo da tela, reinicia o movimento e diminui uma vida
             bo->setX(ba->getX()+(ba->getW()/2));
             bo->setY(ba->getY()-20);
-            dirY = -1*dirY;
+            bo->setDirY(-1*bo->getDirY());
             bo->setExit(false);
             vida* vi = v.getVida();
             vi->setValue(vi->getValue()-1);
         }
 
-        bo->setY(bo->getY()+dirY);
-        bo->setX(bo->getX()+dirX);
+        bo->setY(bo->getY()+bo->getDirY());
+        bo->setX(bo->getX()+bo->getDirX());
         bolinha->x = bo->getX();
         bolinha->y = bo->getY();
     }else if (!bo->getExit()){
         bo->setX(ba->getX()+(ba->getW()/2));
-        bo->setY(ba->getY()-20);
+        bo->setY(ba->getY()-bo->getH());
+        bo->setDirY(5);
         bolinha->x = bo->getX();
         bolinha->y = bo->getY();
-        dirY = 5;
+        bo->setDirY(5);
     }else{
         bo->setX(ba->getX()+(ba->getW()/2));
-        bo->setY(ba->getY()-20);
+        bo->setY(ba->getY()-bo->getH());
         bolinha->x = bo->getX();
         bolinha->y = bo->getY();
         if(!state[SDL_SCANCODE_SPACE]){
-            dirY = 5;
+            bo->setDirY(5);
             bo->setPause(true);
         }
     }
@@ -83,10 +84,10 @@ bool controller::colisaoBarra(){
     int l1_x, l1_y, r1_x, r1_y, l2_x, l2_y, r2_x, r2_y;
 
         
-    l1_x = bolinha->x + dirX;
-    l1_y = bolinha->y + dirY;
-    r1_x = bolinha->x + bolinha->w + dirX;
-    r1_y = bolinha->y + bolinha->h + dirY; 
+    l1_x = bolinha->x + bo->getDirX();
+    l1_y = bolinha->y + bo->getDirY();
+    r1_x = bolinha->x + bolinha->w + bo->getDirX();
+    r1_y = bolinha->y + bolinha->h + bo->getDirY(); 
     l2_x = barra->x;
     l2_y = barra->y;
     r2_x = barra->x + barra->w;
@@ -112,10 +113,10 @@ bool controller::colisaoBloco(){
 
     for(int i=0; i<tijolo_.size(); i++){
         
-        l1_x = bolinha->x + dirX;
-        l1_y = bolinha->y + dirY;
-        r1_x = bolinha->x + bolinha->w + dirX;
-        r1_y = bolinha->y + bolinha->h + dirY; 
+        l1_x = bolinha->x + bo->getDirX();
+        l1_y = bolinha->y + bo->getDirY();
+        r1_x = bolinha->x + bolinha->w + bo->getDirX();
+        r1_y = bolinha->y + bolinha->h + bo->getDirY(); 
         l2_x = tijolo_[i].getX();
         l2_y = tijolo_[i].getY();
         r2_x = tijolo_[i].getX() + tijolo_[i].getW();
@@ -135,14 +136,13 @@ bool controller::colisaoBloco(){
         p->setValue(p->getValue()+10);
         //Caso a colisao seja lateral, inverte a movimentacao lateral da bolinha
         if(l1_x < l2_x || r1_x > r2_x){
-            dirX *= -1;
+            bo->setDirX(-1*bo->getDirX());
             return true;
         }
-        dirY *= -1;
+        bo->setDirY(-1*bo->getDirY());
         return true;             
-    
     }
-       
+    return false;
 }
 
 //Se o botao S for pressionado, inicia o jogo
@@ -167,6 +167,8 @@ bool controller::save(){
 bool controller::load(){
     const Uint8 *state = v.getState();
     if (state[SDL_SCANCODE_L]){
+        bo->setExit(false);
+        bo->setPause(false);
         return true;
     } 
     return false;   

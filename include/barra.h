@@ -24,7 +24,7 @@ class barra{
         */
         barra(int x_, int y_);
         barra();
-        NLOHMANN_DEFINE_TYPE_INTRUSIVE(barra, x,y);
+        NLOHMANN_DEFINE_TYPE_INTRUSIVE(barra, x,y,w,h);
         int getX();
         int getY();
         int getW();

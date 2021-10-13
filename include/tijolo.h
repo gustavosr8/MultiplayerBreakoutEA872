@@ -14,7 +14,7 @@ class tijolo{
         int color;                  /*!< Cor da barra*/
 
     public:
-        NLOHMANN_DEFINE_TYPE_INTRUSIVE(tijolo, x,y);
+        NLOHMANN_DEFINE_TYPE_INTRUSIVE(tijolo, x,y,w,h);
         tijolo(int x_, int y_);
         tijolo();
         int getX();

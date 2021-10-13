@@ -20,7 +20,6 @@ int main(){
     //Tijolos
     std::vector<tijolo> t;
     
-    int k = 0;
     for(int i = 0; i < 7; i++){
         for(int j = 1; j < 6; j++){
             tijolo NewTijolo(i, j);
@@ -77,7 +76,8 @@ int main(){
             cntr = j["Container"];
             l = cntr.v;
             bar = cntr.ba;
-            bol = cntr.bo;
+            bol.setX(cntr.ba.getX()+cntr.ba.getW()/2);
+            bol.setY(cntr.ba.getY()-cntr.bo.getH());
             p = cntr.p;
             t = cntr.t;
         }
