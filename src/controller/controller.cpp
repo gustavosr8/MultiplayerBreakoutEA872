@@ -155,6 +155,24 @@ void controller::start(){
 }
 
 //Se o botao Esc for pressionado, finaliza o jogo
+bool controller::save(){
+    const Uint8 *state = v.getState();
+    if (state[SDL_SCANCODE_W]){
+        return true;
+    } 
+    return false;   
+}
+
+//Se o botao Esc for pressionado, finaliza o jogo
+bool controller::load(){
+    const Uint8 *state = v.getState();
+    if (state[SDL_SCANCODE_L]){
+        return true;
+    } 
+    return false;   
+}
+
+//Se o botao Esc for pressionado, finaliza o jogo
 bool controller::finish(){
     const Uint8 *state = v.getState();
     if (state[SDL_SCANCODE_ESCAPE]){
@@ -162,4 +180,6 @@ bool controller::finish(){
     } 
     return false;   
 }
+
+
 

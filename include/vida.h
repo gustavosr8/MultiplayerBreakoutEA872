@@ -1,4 +1,5 @@
 #pragma once
+#include "json.hpp"
 
 /*! \brief Classe para os pontos
  *
@@ -11,6 +12,8 @@ class vida{
 
     public:
         vida(int value_);
+        vida();        
+        NLOHMANN_DEFINE_TYPE_INTRUSIVE(vida, value);
         int getValue();
         void setValue(int value_);
 };

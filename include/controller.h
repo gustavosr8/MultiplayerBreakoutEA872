@@ -74,4 +74,6 @@ class controller{
          * 
         */
         bool finish();
+        bool save();
+        bool load();
 };
