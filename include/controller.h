@@ -19,8 +19,6 @@ class controller{
         view &v;        /*!< view (alocado previamente)*/
         barra* ba;      /*!< barra (alocada previamente*/
         bolinha* bo;    /*!< bolinha (alocada previamente)*/
-        int dirX = 5;   /*!< direcao de movimentacao da bolinha em X*/
-        int dirY = 5;   /*!< direcao de movimentacao da bolinha em Y*/
         int veloc = 10; /*!< velocidade de movimentacao da bolinha*/
     
     public:

@@ -5,6 +5,11 @@ tijolo::tijolo(int x_, int y_){
     y=y_;
 }
 
+tijolo::tijolo(){
+    x=0;
+    y=0;
+}
+
 int  tijolo::getX(){return x;}
 int  tijolo::getY(){return y;}
 int  tijolo::getW(){return w;}

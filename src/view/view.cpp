@@ -154,6 +154,7 @@ int view::init(){
 
     //Inicia a variavel de estado que vai ler o teclado
     state = SDL_GetKeyboardState(nullptr);
+    return 0;
 }
 
 //Faz as atualizacoes necessarias para cada renderizacao da tela

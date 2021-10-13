@@ -5,6 +5,7 @@
 #include "../include/barra.h"
 #include "../include/pontos.h"
 #include "../include/vida.h"
+#include "../include/container.h"
 #include "../include/json.hpp"
 #include <iostream>
 #include <fstream>
@@ -19,7 +20,6 @@ int main(){
     //Tijolos
     std::vector<tijolo> t;
     
-    int k = 0;
     for(int i = 0; i < 7; i++){
         for(int j = 1; j < 6; j++){
             tijolo NewTijolo(i, j);
@@ -39,8 +39,15 @@ int main(){
     bool rodando = true;
     SDL_Event evento;
 
+    container cntr;
+    cntr.v = l;
+    cntr.ba = bar;
+    cntr.bo = bol;
+    cntr.p = p;
+    cntr.t = t;
+
     json j;
-    j["vida"] = l;
+    j["Container"] = cntr;
     std::ofstream f;
     f.open("teste.json");
     f << j;
@@ -50,7 +57,12 @@ int main(){
     while(rodando){
         c.start();
         if(c.save()){
-            j["vida"] = l;
+            cntr.v = l;
+            cntr.ba = bar;
+            cntr.bo = bol;
+            cntr.p = p;
+            cntr.t = t;
+            j["Container"] = cntr;
             std::ofstream f;
             f.open("teste.json");
             f << j;
@@ -61,7 +73,14 @@ int main(){
             f.open("teste.json");
             f >> j;
             f.close();
-            l = j["vida"];
+            cntr = j["Container"];
+            l = cntr.v;
+            bar = cntr.ba;
+            //Ele instancia a bolinha no último local em que a barra foi salva
+            bol.setX(cntr.ba.getX()+cntr.ba.getW()/2);
+            bol.setY(cntr.ba.getY()-cntr.bo.getH());
+            p = cntr.p;
+            t = cntr.t;
         }
         if(l.getValue() > 0 && t.size() > 0){ 
                 c.update();
