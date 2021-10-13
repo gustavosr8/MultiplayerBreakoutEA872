@@ -76,6 +76,7 @@ int main(){
             cntr = j["Container"];
             l = cntr.v;
             bar = cntr.ba;
+            //Ele instancia a bolinha no último local em que a barra foi salva
             bol.setX(cntr.ba.getX()+cntr.ba.getW()/2);
             bol.setY(cntr.ba.getY()-cntr.bo.getH());
             p = cntr.p;
