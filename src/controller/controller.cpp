@@ -3,18 +3,17 @@
 
 void controller::update(){
     
-    const Uint8 *state = v.getState();
     SDL_Rect* barra = v.getBarra();
     SDL_Rect* bolinha = v.getBolinha();
     SDL_PumpEvents();
     int flag = 0;
 
     //Movimentacao da barra
-    if (state[SDL_SCANCODE_LEFT]) {     //Se pressiona o direcional esquerdo, decrementa X
+    if (keyb->Left()) {     //Se pressiona o direcional esquerdo, decrementa X
         if(ba->getX()-veloc >= 0)
             ba->setX(ba->getX()-veloc);
     }
-    if (state[SDL_SCANCODE_RIGHT]){     //Se pressiona o direcional direito, incrementa X
+    if (keyb->Rigth()){     //Se pressiona o direcional direito, incrementa X
         if(ba->getX()+ba->getW()+veloc <= v.getWidth())
             ba->setX(ba->getX()+veloc);
     } 
@@ -29,7 +28,7 @@ void controller::update(){
             bo->setDirY(-1*bo->getDirY());
         
         if(colisaoBarra()){
-            if(state[SDL_SCANCODE_SPACE]){ //Se a tecla espaco for pressionada, a bolinha pausa no meio da barra
+            if(keyb->Space()){ //Se a tecla espaco for pressionada, a bolinha pausa no meio da barra
                 bo->setPause(false);
                 bo->setX(ba->getX()+(ba->getW()/2));
                 bo->setY(ba->getY()-20);
@@ -64,7 +63,7 @@ void controller::update(){
         bo->setY(ba->getY()-bo->getH());
         bolinha->x = bo->getX();
         bolinha->y = bo->getY();
-        if(!state[SDL_SCANCODE_SPACE]){
+        if(!keyb->Space()){
             bo->setDirY(5);
             bo->setPause(true);
         }
@@ -147,8 +146,7 @@ bool controller::colisaoBloco(){
 
 //Se o botao S for pressionado, inicia o jogo
 void controller::start(){
-    const Uint8 *state = v.getState();
-    if (state[SDL_SCANCODE_S]){
+    if (keyb->Start()){
         bo->setExit(true);
         bo->setPause(true);
     }    
@@ -156,8 +154,7 @@ void controller::start(){
 
 //Se o botao Esc for pressionado, finaliza o jogo
 bool controller::save(){
-    const Uint8 *state = v.getState();
-    if (state[SDL_SCANCODE_W]){
+    if (keyb->Save()){
         return true;
     } 
     return false;   
@@ -165,8 +162,7 @@ bool controller::save(){
 
 //Se o botao Esc for pressionado, finaliza o jogo
 bool controller::load(){
-    const Uint8 *state = v.getState();
-    if (state[SDL_SCANCODE_L]){
+    if (keyb->Load()){
         bo->setExit(false);
         bo->setPause(false);
         return true;
@@ -176,8 +172,7 @@ bool controller::load(){
 
 //Se o botao Esc for pressionado, finaliza o jogo
 bool controller::finish(){
-    const Uint8 *state = v.getState();
-    if (state[SDL_SCANCODE_ESCAPE]){
+    if (keyb->Exit()){
         return true;
     } 
     return false;   
