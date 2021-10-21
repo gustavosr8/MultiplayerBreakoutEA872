@@ -32,8 +32,12 @@ int main()
 
     udp::endpoint remote_endpoint; // vai conter informacoes de quem conectar
 
+    std::cout << "Esperando mensagem!" << std::endl;
     my_socket.receive_from(boost::asio::buffer(local, 120), // Local do buffer
                            remote_endpoint);                // Confs. do Cliente
+    std::cout << "Fim de mensagem!" << std::endl;
+
+
 
     //Inicializa os objetos da aplicação
 
@@ -69,24 +73,38 @@ int main()
     cntr.p = p;
     cntr.t = t;
 
-    json j;
-    j["Container"] = cntr;
+    json js, jc;
+    js["Container"] = cntr;
     std::ofstream f;
     f.open("server.json");
-    f << j;
+    f << js;
     f.close();
-
-    my_socket.send_to(j, remote_endpoint);
-
+    key = getTeclado(v);
+    std::stringstream output1;
+    output1 << js;
+    std::string output = output1.str();
+    //std::string output = js["Container"];
+    my_socket.send_to(boost::asio::buffer(output, output.size()), remote_endpoint);
+    std::cout << "Mensagem de retorno enviada" << std::endl;
+    while(!key.Exit()){
+        key = getTeclado(v);
+        if(key.Exit()){
+            break;
+        }
+        v.render();
+    }
+    /*
     //Ciclo de atualização e renderização
     while (rodando)
     {
 
-        my_socket.receive_from(j, remote_endpoint);
-        std::ifstream f;
-        f.open("client.json");
-        f >> j;
-        f.close();
+        my_socket.receive_from(boost::asio::buffer(output, 3500), remote_endpoint);
+        jc["Teclado"] = output;
+        key = jc["Teclado"];
+        std::ifstream f2;
+        f2.open("client.json");
+        f2 >> jc;
+        f2.close();
 
         c.start();
         if (c.save())
@@ -96,19 +114,19 @@ int main()
             cntr.bo = bol;
             cntr.p = p;
             cntr.t = t;
-            j["Container"] = cntr;
+            js["Container"] = cntr;
             std::ofstream f;
             f.open("server.json");
-            f << j;
+            f << js;
             f.close();
         }
         if (c.load())
         {
             std::ifstream f;
             f.open("server.json");
-            f >> j;
+            f >> js;
             f.close();
-            cntr = j["Container"];
+            cntr = js["Container"];
             l = cntr.v;
             bar = cntr.ba;
             //Ele instancia a bolinha no último local em que a barra foi salva
@@ -149,17 +167,16 @@ int main()
         cntr.p = p;
         cntr.t = t;
 
-        json j;
-        j["Container"] = cntr;
+        js["Container"] = cntr;
         std::ofstream f3;
         f3.open("server.json");
-        f3 << j;
+        f3 << js;
         f3.close();
-
-        my_socket.send_to(j, remote_endpoint);
+        output = js["Container"];
+        my_socket.send_to(boost::asio::buffer(output, 3500), remote_endpoint);
     }
     v.quit();
-
+    */
     return 0;
 }
 
