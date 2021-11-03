@@ -20,7 +20,8 @@ teclado getTeclado(view &v);
 
 int main()
 {
-    std::string v1("Ola, mundo, mundo, vasto mundo!");
+
+    std::string v1("{\"Teste\": 15}");
     boost::asio::io_service io_service;
     udp::endpoint local_endpoint(udp::v4(), 0);
     udp::socket meu_socket(io_service, local_endpoint);
@@ -30,23 +31,32 @@ int main()
     udp::endpoint remote_endpoint(ip_remoto, 9001);
     
     json js, jc;
-    std::string output;
+    char output[3500];
+
+    for(int i = 0; i < 3500; i++){
+        output[i] = 0;
+    }
 
     
     meu_socket.send_to(boost::asio::buffer(v1), remote_endpoint);
 
     std::cout << v1 << std::endl;
     std::cout << "Fim" << std::endl;
-
     meu_socket.receive_from(boost::asio::buffer(output, 3500), remote_endpoint);
 
-    std::cout << "Recebeu retorno: " << std::endl;
+    //std::cout << "Recebeu retorno: " << output << std::endl;
 
+
+    
     std::stringstream output1;
     output1 << output;
 
-    js.push_back(output);
     
+
+    js = json::parse(output1);
+    //std::cout << "Json retorno: " << js << std::endl;
+
+   
     container cntr;
     std::vector<tijolo> t;
     bolinha bol;
@@ -55,11 +65,10 @@ int main()
     vida l;
     teclado key;
 
-    std::ifstream f;
-    f.open("server2.json");
-    f >> js;
-    f.close();
+    //std::cout << "Json Abrindo: " << js << std::endl;
+    
     cntr = js["Container"];
+
     l = cntr.v;
     bar = cntr.ba;
     bol = cntr.bo;
@@ -69,15 +78,15 @@ int main()
 
     view v = view(t, &bar, &bol, &p, &l);
     v.init();
-    controller c = controller(v, &bar, &bol, &key);
 
     bool rodando = true;
     SDL_Event evento;
 
+    std::cout << "Aqui linha 86" << std::endl;
     //Ciclo de atualização e renderização
+    
     while (rodando)
-    {
-        cntr = js["Container"];
+    {   
         l = cntr.v;
         p = cntr.p;
         bar.setX(cntr.ba.getX());
@@ -90,6 +99,7 @@ int main()
         w = t[0].getW();
         h = t[0].getH();
         t = cntr.t;
+        std::cout << "Aqui linha 102" << std::endl;
         for(int i = 0; i < t.size(); i++){
             t[i].setH(w);
             t[i].setH(h);
@@ -117,31 +127,31 @@ int main()
         }
 
         key = getTeclado(v);
-        
+        std::cout << "Aqui linha 130" << std::endl;
         if (key.Exit())
         {
             rodando = false;
         }
-
+        std::string output2;
         jc["Teclado"] = key;
-        std::ofstream f2;
-        f2.open("client2.json");
-        f2 << jc;
-        f2.close();
-        output = jc["Teclado"];
-        meu_socket.send_to(boost::asio::buffer(output, 3500), remote_endpoint);
+        std::stringstream output3;
+        output3 << jc;
+        output2 = output3.str();
+        //output2 = jc["Teclado"];
+        std::cout << "Aqui linha 141"<< output2 << std::endl;
+        meu_socket.send_to(boost::asio::buffer(output2, 3500), remote_endpoint);
 
+        std::cout << "Aqui linha 144" << std::endl;
         meu_socket.receive_from(boost::asio::buffer(output, 3500), remote_endpoint);
-
-        js["Container"] = output;
-        std::ofstream f3;
-        f3.open("server2.json");
-        f3 << js;
-        f3.close();
+        
+        output1 << output;
+        js = json::parse(output1);
+        cntr = js["Container"];
+        std::cout << "Aqui linha 150" << std::endl;
 
     }
     v.quit();
-
+    
     return 0;
 }
 

@@ -7,7 +7,7 @@ project(Breakout)
 
 #
 add_executable(BreakoutServer src/breakoutServer.cpp)
-add_executable(Breakout src/breakout2.cpp)
+add_executable(Breakout src/breakout.cpp)
 
 # Especificar onde estao os header files
 include_directories(include)
