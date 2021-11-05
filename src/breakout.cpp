@@ -142,12 +142,18 @@ int main()
         meu_socket.send_to(boost::asio::buffer(output2, 3500), remote_endpoint);
 
         std::cout << "Aqui linha 144" << std::endl;
+        for(int i = 0; i < 3500; i++){
+            output[i] = 0;
+        }
+
         meu_socket.receive_from(boost::asio::buffer(output, 3500), remote_endpoint);
-        
-        output1 << output;
-        js = json::parse(output1);
+        std::cout << "Aqui linha 150" << output << std::endl;
+        std::stringstream output4;
+        output4 << output;
+        std::cout << "Aqui linha 153" << output4.str() << std::endl;
+        js = json::parse(output4);
         cntr = js["Container"];
-        std::cout << "Aqui linha 150" << std::endl;
+        std::cout << "Aqui linha 154" << std::endl;
 
     }
     v.quit();

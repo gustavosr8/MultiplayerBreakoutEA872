@@ -98,18 +98,23 @@ int main()
     //Ciclo de atualização e renderização
     while (rodando)
     {
+        char output_client[3500];
 
-        my_socket.receive_from(boost::asio::buffer(output, 3500), remote_endpoint);
+        for(int i = 0; i < 3500; i++){
+             output_client[i] = 0;
+        }
+        my_socket.receive_from(boost::asio::buffer(output_client, 3500), remote_endpoint);
         std::cout << "Aqui linha 103" << std::endl;
         std::stringstream output1;
-        output1 << output;
-
+    
         std::cout << "Aqui linha 107" << output << std::endl;
-        //jc = json::parse(output1);
+        output1 << output_client;
+        std::cout << "Aqui linha 108" << output1.str() << std::endl;
+        jc = json::parse(output1);
         std::cout << "Aqui linha 107" << jc << std::endl;
-        //key = jc["Teclado"];
+        key = jc["Teclado"];
         std::cout << "Aqui linha 110" << std::endl;
-        /*
+        
         c.start();
         if (c.save())
         {
@@ -170,15 +175,21 @@ int main()
         cntr.bo = bol;
         cntr.p = p;
         cntr.t = t;
-
+        std::cout << "Aqui linha 178" << std::endl;
         js["Container"] = cntr;
-        std::ofstream f3;
-        f3.open("server.json");
-        f3 << js;
-        f3.close();
-        output = js["Container"];
-        my_socket.send_to(boost::asio::buffer(output, 3500), remote_endpoint);
-        */
+        /*
+        for(int i = 0; i < 3500; i++){
+             output_client[i] = 0;
+        }*/
+        std::stringstream output4;
+        output4 << js;
+        std::string output_send;
+        output_send = output4.str();
+        std::cout << "Aqui linha 188"<< output_send << std::endl;
+        //strcpy(output_client, output.c_str());
+        my_socket.send_to(boost::asio::buffer(output_send, output_send.size()), remote_endpoint);
+        std::cout << "Aqui linha 190" << std::endl;
+        
     }
     v.quit();
     
