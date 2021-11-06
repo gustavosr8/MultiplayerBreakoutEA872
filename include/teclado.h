@@ -13,7 +13,7 @@ class teclado{
     public:
         teclado(bool up_, bool down_, bool left_, bool rigth_, bool start_, bool load_, bool save_, bool exit_, bool space_);
         teclado();
-        NLOHMANN_DEFINE_TYPE_INTRUSIVE(teclado, up, down, left, rigth, start, load, save, exit);
+        NLOHMANN_DEFINE_TYPE_INTRUSIVE(teclado, up, down, left, rigth, start, load, save, exit, space);
         bool Up();
         void setUp(bool up_);
         bool Down();
