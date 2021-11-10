@@ -100,8 +100,8 @@ int main()
             t[i].setH(w);
             t[i].setH(h);
         }
-
-        std::cout << "Barra: " << bar.print() << "   Bolinha: " << bol.print() << std::endl;
+    
+        //std::cout << "Barra: " << temp_barra << "   Bolinha: " << bol.print() << std::endl;
         if (l.getValue() > 0 && t.size() > 0)
         {
             v.render();
@@ -143,11 +143,11 @@ int main()
         output4 << output;
         js = json::parse(output4);
         cntr = js["Container"];
-        std::cout << js << std::endl;
-        if (l.getValue() > 0 && t.size() > 0)
+        //std::cout << js << std::endl;
+        /*if (l.getValue() > 0 && t.size() > 0)
         {
             v.render();
-        }
+        }*/
     }
     v.quit();
     

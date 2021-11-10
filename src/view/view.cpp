@@ -9,8 +9,8 @@ using std::cout; using std::cin;
 using std::endl; using std::string;
 
 
-int SCREEN_WIDTH = 1920;
-int SCREEN_HEIGHT = 1080;
+int SCREEN_WIDTH = 720 ;
+int SCREEN_HEIGHT = 480;
 
 SDL_Color White = {255, 255, 255};
 SDL_Color Red = {255, 0, 0};
@@ -209,6 +209,18 @@ void view::render(){
         SDL_RenderFillRect( renderer, &bloco );
     
     } 
+
+    //Inicializando a Bolinha
+    bol.h = bo->getH();
+    bol.w = bo->getW();
+    bol.x = bo->getX();
+    bol.y = bo->getY();
+   
+    //Inicializando a Barra
+    bar.h = ba->getH();
+    bar.w = ba->getW();
+    bar.x = ba->getX();
+    bar.y = ba->getY();
 
     //Renderiza as barras
     SDL_SetRenderDrawColor(renderer, 64, 244, 208, 255);
