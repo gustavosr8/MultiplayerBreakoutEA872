@@ -28,3 +28,15 @@ void bolinha::setDirX(int dirX_){dirX=dirX_;}
 void bolinha::setDirY(int dirY_){dirY=dirY_;}
 void bolinha::setExit(bool exit_){exit=exit_;}
 void bolinha::setPause(bool pause_){pause=pause_;}
+std::string bolinha::print(){
+    std::string temp;
+    temp.append("x: ");
+    temp += std::to_string(x);
+    temp.append(", y: ");
+    temp += std::to_string(y);
+    temp.append(", w: ");
+    temp += std::to_string(w);
+    temp.append(", h: ");
+    temp += std::to_string(h);
+    return temp;
+};

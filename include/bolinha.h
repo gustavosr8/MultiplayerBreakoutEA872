@@ -47,4 +47,5 @@ class bolinha{
         void setH(int h_);
         void setExit(bool exit_);
         void setPause(bool pause_);
+        std::string print();
 };

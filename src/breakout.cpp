@@ -78,14 +78,20 @@ int main()
     
     while (rodando)
     {   
+        int l_temp = l.getValue();
         l = cntr.v;
         p = cntr.p;
         bar.setX(cntr.ba.getX());
         bar.setY(cntr.ba.getY());
 
         //Ele instancia a bolinha no último local em que a barra foi salva
-        bol.setX(bar.getX() + bar.getW() / 2);
-        bol.setY(bar.getY() - bol.getH());
+        if(l_temp < l.getValue() || key.Space()){
+            bol.setX(bar.getX() + bar.getW() / 2);
+            bol.setY(bar.getY() - bol.getH());
+        }else{
+            bol.setX(cntr.bo.getX());
+            bol.setY(cntr.bo.getY());
+        }    
         int w, h;
         w = t[0].getW();
         h = t[0].getH();
@@ -95,7 +101,7 @@ int main()
             t[i].setH(h);
         }
 
-
+        std::cout << "Barra: " << bar.print() << "   Bolinha: " << bol.print() << std::endl;
         if (l.getValue() > 0 && t.size() > 0)
         {
             v.render();
@@ -137,11 +143,11 @@ int main()
         output4 << output;
         js = json::parse(output4);
         cntr = js["Container"];
+        std::cout << js << std::endl;
         if (l.getValue() > 0 && t.size() > 0)
         {
             v.render();
         }
-
     }
     v.quit();
     

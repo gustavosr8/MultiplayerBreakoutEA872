@@ -35,4 +35,5 @@ class barra{
         void setH(int h_);
         void setX(int x_);
         void setY(int y_);
+        std::string print();
 };
