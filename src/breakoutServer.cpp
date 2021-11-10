@@ -79,7 +79,7 @@ int main()
         t_param[i].setXparam((float)t[i].getX()/(float)width);
         t_param[i].setYparam((float)t[i].getY()/(float)heigth);
     }
-    std::cout << "Barra: " << bar.print() << "   Bolinha: " << bol.print() << std::endl;
+    //std::cout << "Barra: " << bar.print() << "   Bolinha: " << bol.print() << std::endl;
     bar_param = bar;
     bar_param.setXparam((float)bar_param.getX()/(float)width);
     bar_param.setYparam((float)bar_param.getY()/(float)heigth);

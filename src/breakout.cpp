@@ -60,7 +60,7 @@ int main()
     teclado key;
     
     cntr = js["Container"];
-    std::cout << js << std::endl;
+    //std::cout << js << std::endl;
     l = cntr.v;
     bar_param = cntr.ba;
     bol_param = cntr.bo;
@@ -85,12 +85,13 @@ int main()
     t = t_param;
     bol = bol_param;
     bar = bar_param;
-    std::cout << "Barra: " << bar.print() << "   Bolinha: " << bol.print() << std::endl;
+    //std::cout << "Barra: " << bar.print() << "   Bolinha: " << bol.print() << std::endl;
     v.initClient();
+    /*
     for(int i = 0; i < t_param.size(); i++){
         std::cout << "Tijolos  X: " << t[i].getX() << "   Y: " << t[i].getY();
         std::cout << " H: " << t[i].getH() << "   W: " << t[i].getW() << std::endl;
-    }
+    }*/
     //std::cout << "Tijolos  H: " << t[0].getH() << "   W: " << t[0].getW() << std::endl;
     bool rodando = true;
     SDL_Event evento;
