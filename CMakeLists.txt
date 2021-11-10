@@ -39,7 +39,7 @@ target_link_libraries(Breakout teclado)
 target_link_libraries(BreakoutServer teclado)
 
 # Garantir que usaremos C++11 (ou superior, se preciso)
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 SET(CMAKE_CXX_FLAGS "-std=c++14")
 

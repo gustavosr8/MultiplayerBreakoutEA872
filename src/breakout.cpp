@@ -43,10 +43,6 @@ int main()
     std::cout << v1 << std::endl;
     std::cout << "Fim" << std::endl;
     meu_socket.receive_from(boost::asio::buffer(output, 3500), remote_endpoint);
-
-    //std::cout << "Recebeu retorno: " << output << std::endl;
-
-
     
     std::stringstream output1;
     output1 << output;
@@ -54,8 +50,6 @@ int main()
     
 
     js = json::parse(output1);
-    //std::cout << "Json retorno: " << js << std::endl;
-
    
     container cntr;
     std::vector<tijolo> t;
@@ -64,8 +58,6 @@ int main()
     pontos p;
     vida l;
     teclado key;
-
-    //std::cout << "Json Abrindo: " << js << std::endl;
     
     cntr = js["Container"];
 
@@ -82,30 +74,34 @@ int main()
     bool rodando = true;
     SDL_Event evento;
 
-    std::cout << "Aqui linha 86" << std::endl;
     //Ciclo de atualização e renderização
     
     while (rodando)
     {   
+        int l_temp = l.getValue();
         l = cntr.v;
         p = cntr.p;
         bar.setX(cntr.ba.getX());
         bar.setY(cntr.ba.getY());
 
         //Ele instancia a bolinha no último local em que a barra foi salva
-        bol.setX(bar.getX() + bar.getW() / 2);
-        bol.setY(bar.getY() - bol.getH());
+        if(l_temp < l.getValue() || key.Space()){
+            bol.setX(bar.getX() + bar.getW() / 2);
+            bol.setY(bar.getY() - bol.getH());
+        }else{
+            bol.setX(cntr.bo.getX());
+            bol.setY(cntr.bo.getY());
+        }    
         int w, h;
         w = t[0].getW();
         h = t[0].getH();
         t = cntr.t;
-        std::cout << "Aqui linha 102" << std::endl;
         for(int i = 0; i < t.size(); i++){
             t[i].setH(w);
             t[i].setH(h);
         }
-
-
+    
+        //std::cout << "Barra: " << temp_barra << "   Bolinha: " << bol.print() << std::endl;
         if (l.getValue() > 0 && t.size() > 0)
         {
             v.render();
@@ -127,7 +123,6 @@ int main()
         }
 
         key = getTeclado(v);
-        std::cout << "Aqui linha 130" << std::endl;
         if (key.Exit())
         {
             rodando = false;
@@ -137,24 +132,22 @@ int main()
         std::stringstream output3;
         output3 << jc;
         output2 = output3.str();
-        //output2 = jc["Teclado"];
-        std::cout << "Aqui linha 141"<< output2 << std::endl;
         meu_socket.send_to(boost::asio::buffer(output2, 3500), remote_endpoint);
 
-        std::cout << "Aqui linha 144" << std::endl;
         for(int i = 0; i < 3500; i++){
             output[i] = 0;
         }
 
         meu_socket.receive_from(boost::asio::buffer(output, 3500), remote_endpoint);
-        std::cout << "Aqui linha 150" << output << std::endl;
         std::stringstream output4;
         output4 << output;
-        std::cout << "Aqui linha 153" << output4.str() << std::endl;
         js = json::parse(output4);
         cntr = js["Container"];
-        std::cout << "Aqui linha 154" << std::endl;
-
+        //std::cout << js << std::endl;
+        /*if (l.getValue() > 0 && t.size() > 0)
+        {
+            v.render();
+        }*/
     }
     v.quit();
     
@@ -204,5 +197,6 @@ teclado getTeclado(view &v)
     {
         keyb.setSpace(true);
     }
+
     return keyb;
 }

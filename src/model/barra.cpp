@@ -20,3 +20,15 @@ void barra::setW(int w_){w=w_;}
 void barra::setH(int h_){h=h_;}
 void barra::setX(int x_){x=x_;}
 void barra::setY(int y_){y=y_;}
+std::string barra::print(){
+    std::string temp;
+    temp.append("x: ");
+    temp += std::to_string(x);
+    temp.append(", y: ");
+    temp += std::to_string(y);
+    temp.append(", w: ");
+    temp += std::to_string(w);
+    temp.append(", h: ");
+    temp += std::to_string(h);
+    return temp;
+};

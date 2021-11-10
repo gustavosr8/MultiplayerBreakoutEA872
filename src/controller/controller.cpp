@@ -31,7 +31,7 @@ void controller::update(){
             if(keyb->Space()){ //Se a tecla espaco for pressionada, a bolinha pausa no meio da barra
                 bo->setPause(false);
                 bo->setX(ba->getX()+(ba->getW()/2));
-                bo->setY(ba->getY()-20);
+                bo->setY(ba->getY()-ba->getH());
             }
             bo->setDirY(-1*bo->getDirY());
         }
