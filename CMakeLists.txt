@@ -42,7 +42,6 @@ target_link_libraries(BreakoutServer teclado)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 SET(CMAKE_CXX_FLAGS "-std=c++14")
-SET(CMAKE_CXX_FLAGS "-pthread")
 
 set(Boost_USE_STATIC_LIBS OFF) 
 set(Boost_USE_MULTITHREADED ON)  
@@ -58,7 +57,8 @@ target_link_libraries(Breakout SDL2)
 target_link_libraries(Breakout SDL2_image)
 target_link_libraries(Breakout SDL2_ttf)
 target_link_libraries(Breakout Boost::filesystem Boost::regex)
-
+target_link_libraries(Breakout pthread)
+target_link_libraries(BreakoutServer pthread)
 
 
 
