@@ -255,6 +255,7 @@ int view::initClient(){
     for(int i=0; i<t.size(); i++){
         t[i].setW(t[i].getWmult()*SCREEN_WIDTH/16);
         t[i].setH(t[i].getHmult()*SCREEN_HEIGHT/9);
+        std::cout << "Tijolo " << i << ":  W: "<< t[i].getW() << " H: "<< t[i].getH() << std::endl;
     } 
 
     //Inicializando a Bolinha
@@ -290,12 +291,14 @@ void view::render(){
     render_text(renderer, Message_PointValue_rect.x, Message_PointValue_rect.y, num_char,Font, &Message_PointValue_rect, &White);
     
     //Renderiza os tijolos
+    std::cout << "Tijolo " << 0 << ":  W: "<< t[0].getW() << " H: "<< t[0].getH() << std::endl;
     for(int i=0; i<t.size(); i++){
         
         bloco.h = t[i].getH();
         bloco.w = t[i].getW();
         bloco.x = t[i].getX();
         bloco.y = t[i].getY();
+        //std::cout << "Bloco " << i << ":  W: "<< bloco.w << " H: "<< bloco.h << std::endl;
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
         SDL_RenderDrawRect(renderer, &bloco);
         SDL_RenderFillRect( renderer, &bloco );

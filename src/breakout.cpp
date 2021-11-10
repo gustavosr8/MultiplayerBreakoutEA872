@@ -164,7 +164,7 @@ int main()
         for(int i = 0; i < t.size(); i++){
             t[i].setX(t[i].getXparam()*width);
             t[i].setY(t[i].getYparam()*heigth);
-            t[i].setH(w);
+            t[i].setW(w);
             t[i].setH(h);
         }
         
