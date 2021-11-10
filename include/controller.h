@@ -2,6 +2,7 @@
 #include "barra.h"
 #include "view.h"
 #include "bolinha.h"
+#include "teclado.h"
 #include <SDL2/SDL.h>
 
 /*! \brief Classe para o controller
@@ -19,6 +20,7 @@ class controller{
         view &v;        /*!< view (alocado previamente)*/
         barra* ba;      /*!< barra (alocada previamente*/
         bolinha* bo;    /*!< bolinha (alocada previamente)*/
+        teclado* keyb;
         int veloc = 10; /*!< velocidade de movimentacao da bolinha*/
     
     public:
@@ -30,7 +32,7 @@ class controller{
          * \param ba_ objeto barra
          * \param bo_ objeto bolinha
         */
-        controller(view &v_, barra* ba_, bolinha* bo_): ba(ba_), v(v_), bo(bo_){}
+        controller(view &v_, barra* ba_, bolinha* bo_, teclado* keyb_): ba(ba_), v(v_), bo(bo_), keyb(keyb_){}
 
         /*! \brief Metodo de acao
          *  

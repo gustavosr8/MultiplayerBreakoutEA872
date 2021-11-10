@@ -82,6 +82,7 @@ class view{
          *  Sequencia de acoes que inicializam a janela de visualizacao
         */
         int init();
+        int initClient();
 
         /*! \brief Renderizacao
          *  
@@ -106,6 +107,7 @@ class view{
         *   Sequencia de acoes para quando um jogador ganha
         */
         void ganhou();
+        int window_create(int size);
         int quantidadeTijolos();
         SDL_Rect* getTarget();
         SDL_Rect* getBloco();
