@@ -9,8 +9,8 @@ using std::cout; using std::cin;
 using std::endl; using std::string;
 
 
-int SCREEN_WIDTH = 1920;
-int SCREEN_HEIGHT = 1080;
+int SCREEN_WIDTH = 720;
+int SCREEN_HEIGHT = 480;
 
 SDL_Color White = {255, 255, 255};
 SDL_Color Red = {255, 0, 0};
@@ -146,17 +146,19 @@ int view::init(){
     
     //Inicializando os tamanhos dos objetos
 
-    //Bolinha
-    bo->setX(bo->getX()*SCREEN_WIDTH/16);
-    bo->setY(bo->getY()*((SCREEN_HEIGHT/9)-100));
-    bo->setH(bo->getHmult()*SCREEN_HEIGHT/9);
-    bo->setW(bo->getWmult()*SCREEN_WIDTH/16);
+    
 
     //Barrinha
     ba->setX(ba->getX()*SCREEN_WIDTH/16);
     ba->setY(ba->getY()*SCREEN_HEIGHT/9);
     ba->setH(ba->getHmult()*SCREEN_HEIGHT/9);
     ba->setW(ba->getWmult()*SCREEN_WIDTH/16);
+
+    //Bolinha
+    bo->setH(bo->getHmult()*SCREEN_HEIGHT/9);
+    bo->setW(bo->getWmult()*SCREEN_WIDTH/16);
+    bo->setX(ba->getX()+ba->getW()/2);
+    bo->setY(ba->getY()-bo->getH());
 
     //Tijolos
     for(int i=0; i<t.size(); i++){
@@ -251,8 +253,8 @@ int view::initClient(){
 
     //Tijolos
     for(int i=0; i<t.size(); i++){
-        t[i].setH(t[i].getHmult()*SCREEN_HEIGHT/9);
         t[i].setW(t[i].getWmult()*SCREEN_WIDTH/16);
+        t[i].setH(t[i].getHmult()*SCREEN_HEIGHT/9);
     } 
 
     //Inicializando a Bolinha
@@ -299,6 +301,18 @@ void view::render(){
         SDL_RenderFillRect( renderer, &bloco );
     
     } 
+
+    //Inicializando a Bolinha
+    bol.h = bo->getH();
+    bol.w = bo->getW();
+    bol.x = bo->getX();
+    bol.y = bo->getY();
+   
+    //Inicializando a Barra
+    bar.h = ba->getH();
+    bar.w = ba->getW();
+    bar.x = ba->getX();
+    bar.y = ba->getY();
 
     //Renderiza as barras
     SDL_SetRenderDrawColor(renderer, 64, 244, 208, 255);
