@@ -52,25 +52,42 @@ int main()
     js = json::parse(output1);
    
     container cntr;
-    std::vector<tijolo> t;
-    bolinha bol;
-    barra bar;
+    std::vector<tijolo> t, t_param;
+    bolinha bol, bol_param;
+    barra bar, bar_param;
     pontos p;
     vida l;
     teclado key;
     
     cntr = js["Container"];
-
+    //std::cout << js << std::endl;
     l = cntr.v;
-    bar = cntr.ba;
-    bol = cntr.bo;
+    bar_param = cntr.ba;
+    bol_param = cntr.bo;
     p = cntr.p;
-    t = cntr.t;
+    t_param = cntr.t;
     key = cntr.keyb;
+    
 
     view v = view(t, &bar, &bol, &p, &l);
-    v.init();
-
+    v.window_create(1);
+    //Objects Size Parameterization
+    int width = v.getWidth();
+    int heigth = v.getHeigth();
+    for(int i = 0; i < t_param.size(); i++){
+        t_param[i].setX(t_param[i].getXparam()*width);
+        t_param[i].setY(t_param[i].getYparam()*heigth);
+    }
+    bar_param.setX(bar_param.getXparam()*width);
+    bar_param.setY(bar_param.getYparam()*heigth);
+    bol_param.setX(bol_param.getXparam()*width);
+    bol_param.setY(bol_param.getYparam()*heigth);
+    t = t_param;
+    bol = bol_param;
+    bar = bar_param;
+    //std::cout << "Barra: " << bar.print() << "   Bolinha: " << bol.print() << std::endl;
+    v.initClient();
+    std::cout << "Tijolos  H: " << t[0].getH() << "   W: " << t[0].getW() << std::endl;
     bool rodando = true;
     SDL_Event evento;
 
@@ -78,30 +95,7 @@ int main()
     
     while (rodando)
     {   
-        int l_temp = l.getValue();
-        l = cntr.v;
-        p = cntr.p;
-        bar.setX(cntr.ba.getX());
-        bar.setY(cntr.ba.getY());
-
-        //Ele instancia a bolinha no último local em que a barra foi salva
-        if(l_temp < l.getValue() || key.Space()){
-            bol.setX(bar.getX() + bar.getW() / 2);
-            bol.setY(bar.getY() - bol.getH());
-        }else{
-            bol.setX(cntr.bo.getX());
-            bol.setY(cntr.bo.getY());
-        }    
-        int w, h;
-        w = t[0].getW();
-        h = t[0].getH();
-        t = cntr.t;
-        for(int i = 0; i < t.size(); i++){
-            t[i].setH(w);
-            t[i].setH(h);
-        }
-
-        std::cout << "Barra: " << bar.print() << "   Bolinha: " << bol.print() << std::endl;
+        //std::cout << "Barra: " << bar.print() << "   Bolinha: " << bol.print() << std::endl;
         if (l.getValue() > 0 && t.size() > 0)
         {
             v.render();
@@ -143,10 +137,35 @@ int main()
         output4 << output;
         js = json::parse(output4);
         cntr = js["Container"];
-        std::cout << js << std::endl;
+        //std::cout << js << std::endl;
         if (l.getValue() > 0 && t.size() > 0)
         {
             v.render();
+        }
+        
+        int l_temp = l.getValue();
+        l = cntr.v;
+        p = cntr.p;
+        bar.setX(cntr.ba.getXparam()*width);
+        bar.setY(cntr.ba.getYparam()*heigth);
+
+        //Ele instancia a bolinha no último local em que a barra foi salva
+        if(l_temp < l.getValue() || key.Space()){
+            bol.setX((bar.getXparam()*width) + bar.getW() / 2);
+            bol.setY((bar.getYparam()*heigth) - bol.getH());
+        }else{
+            bol.setX(cntr.bo.getXparam()*width);
+            bol.setY(cntr.bo.getYparam()*heigth);
+        }    
+        int w, h;
+        w = t[0].getW();
+        h = t[0].getH();
+        t = cntr.t;
+        for(int i = 0; i < t.size(); i++){
+            t[i].setX(t[i].getXparam()*width);
+            t[i].setY(t[i].getYparam()*heigth);
+            t[i].setH(w);
+            t[i].setH(h);
         }
     }
     v.quit();

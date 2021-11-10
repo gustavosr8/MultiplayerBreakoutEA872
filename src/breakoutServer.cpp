@@ -42,7 +42,7 @@ int main()
     //Inicializa os objetos da aplicação
 
     //Tijolos
-    std::vector<tijolo> t;
+    std::vector<tijolo> t, t_param;
 
     for (int i = 0; i < 7; i++)
     {
@@ -54,12 +54,15 @@ int main()
     }
 
     bolinha bol = bolinha(8, 7);
+    bolinha bol_param;
     barra bar = barra(8, 8);
+    barra bar_param;
     pontos p = pontos(0);
     vida l = vida();
     teclado key = teclado();
     l.setValue(4);
     view v = view(t, &bar, &bol, &p, &l);
+    v.window_create(0);
     v.init();
     controller c = controller(v, &bar, &bol, &key);
 
@@ -67,11 +70,28 @@ int main()
     SDL_Event evento;
 
     container cntr;
+    //Objects Size Parameterization
+    int width = v.getWidth();
+    int heigth = v.getHeigth();
+    float temp;
+    t_param = t;
+    for(int i = 0; i < t.size(); i++){
+        t_param[i].setXparam((float)t[i].getX()/(float)width);
+        t_param[i].setYparam((float)t[i].getY()/(float)heigth);
+    }
+    bar_param = bar;
+    bar_param.setXparam((float)bar_param.getX()/(float)width);
+    bar_param.setYparam((float)bar_param.getY()/(float)heigth);
+    bol_param = bol;
+    bol_param.setXparam((float)bol_param.getX()/(float)width);
+    bol_param.setYparam((float)bol_param.getY()/(float)heigth);
+
+    cntr.t = t_param;
+    cntr.ba = bar_param;
+    cntr.bo = bol_param;
     cntr.v = l;
-    cntr.ba = bar;
-    cntr.bo = bol;
     cntr.p = p;
-    cntr.t = t;
+     
 
     json js, jc;
     js["Container"] = cntr;
@@ -155,12 +175,24 @@ int main()
         {
             rodando = false;
         }
+        //Objects Size Parameterization
+        t_param = t;
+        for(int i = 0; i < t.size(); i++){
+            t_param[i].setXparam((float)t[i].getX()/(float)width);
+            t_param[i].setYparam((float)t[i].getY()/(float)heigth);
+        }
+        bar_param = bar;
+        bar_param.setXparam((float)bar_param.getX()/(float)width);
+        bar_param.setYparam((float)bar_param.getY()/(float)heigth);
+        bol_param = bol;
+        bol_param.setXparam((float)bol_param.getX()/(float)width);
+        bol_param.setYparam((float)bol_param.getY()/(float)heigth);
 
+        cntr.t = t_param;
+        cntr.ba = bar_param;
+        cntr.bo = bol_param;
         cntr.v = l;
-        cntr.ba = bar;
-        cntr.bo = bol;
         cntr.p = p;
-        cntr.t = t;
         js["Container"] = cntr;
         std::stringstream output4;
         output4 << js;

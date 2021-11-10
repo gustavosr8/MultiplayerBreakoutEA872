@@ -16,6 +16,10 @@ int barra::getW(){return w;}
 int barra::getH(){return h;}
 float barra::getHmult(){return h_mult;}
 float barra::getWmult(){return w_mult;}
+float barra::getXparam(){return x_param;}
+float barra::getYparam(){return y_param;}
+void barra::setXparam(float x_param_){x_param=x_param_;}
+void barra::setYparam(float y_param_){y_param=y_param_;}
 void barra::setW(int w_){w=w_;}
 void barra::setH(int h_){h=h_;}
 void barra::setX(int x_){x=x_;}
