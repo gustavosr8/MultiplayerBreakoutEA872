@@ -20,7 +20,7 @@ class controller{
         view &v;        /*!< view (alocado previamente)*/
         bolinha* bo;    /*!< bolinha (alocada previamente)*/
         std::vector<teclado>& keyb;
-        int veloc = 10; /*!< velocidade de movimentacao da bolinha*/
+        int veloc = 20; /*!< velocidade de movimentacao da barrinha*/
     
     public:
         /*! \brief Construtor do controller
