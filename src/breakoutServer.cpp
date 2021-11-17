@@ -29,20 +29,21 @@ teclado getTeclado(view &v);
 std::vector<teclado> keyboard;
 
 void receive(){
+    while(1){
+        char output_client[3500];
+        udp::endpoint remote_endpoint;
 
-    char output_client[3500];
-    udp::endpoint remote_endpoint;
-
-    for(int i = 0; i < 3500; i++){
-         output_client[i] = 0;
-    }
-    my_socket.receive_from(boost::asio::buffer(output_client, 3500), remote_endpoint);
-    std::stringstream output1;
-    output1 << output_client;
-    jc = json::parse(output1);
-    int user_id = int(jc["user_id"]);
-    std::cout << "Player " << user_id << std::endl;
-    keyboard[user_id] = jc["Teclado"];
+        for(int i = 0; i < 3500; i++){
+            output_client[i] = 0;
+        }
+        my_socket.receive_from(boost::asio::buffer(output_client, 3500), remote_endpoint);
+        std::stringstream output1;
+        output1 << output_client;
+        jc = json::parse(output1);
+        //std::string s = jc["user_id"];
+        int user_id =  jc["user_id"];
+        keyboard[user_id] = jc["Teclado"];
+    }    
 }
 
 int main()
@@ -140,7 +141,7 @@ int main()
     output1 << js;
     std::string output = output1.str();
 
-    for(int i=0; i<players; i++){
+    for(int i=0; i < players; i++){
         my_socket.send_to(boost::asio::buffer(output, output.size()), remote_endpoints[i]);
     }
     
@@ -235,7 +236,7 @@ int main()
         output_send = output4.str();
         
         for(int i=0; i<players; i++){
-            my_socket.send_to(boost::asio::buffer(output, output.size()), remote_endpoints[i]);
+            my_socket.send_to(boost::asio::buffer(output_send, output_send.size()), remote_endpoints[i]);
         }        
     }
     t1.join();

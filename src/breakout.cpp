@@ -43,17 +43,15 @@ int main()
     std::cout << v1 << std::endl;
     std::cout << "Fim" << std::endl;
     meu_socket.receive_from(boost::asio::buffer(output, 3500), remote_endpoint);
-    js["user_id"] = output;
-    std::cout << "user_id" <<output<< std::endl;
+    std::string s = output;
+    int user_id =  stoi(s);
     meu_socket.receive_from(boost::asio::buffer(output, 3500), remote_endpoint);
     
     std::stringstream output1;
     output1 << output;
 
     
-
     js = json::parse(output1);
-   
     container cntr;
     std::vector<tijolo> t, t_param;
     bolinha bol, bol_param;
@@ -132,8 +130,10 @@ int main()
             rodando = false;
         }
         std::string output2;
-        jc["user_id"] = js["user_id"];
+        jc["user_id"] = user_id;
+        //std::cout << jc << std::endl;
         jc["Teclado"] = key;
+        //std::cout << jc << std::endl;
         std::stringstream output3;
         output3 << jc;
         output2 = output3.str();
@@ -148,7 +148,6 @@ int main()
         output4 << output;
         js = json::parse(output4);
         cntr = js["Container"];
-        //std::cout << js << std::endl;
                
         int l_temp = l.getValue();
         l = cntr.v;
@@ -163,7 +162,7 @@ int main()
             bar[i].setW(w);
             bar[i].setH(h);
         }
-
+         
         //Ele instancia a bolinha no último local em que a barra foi salva
         if(l_temp < l.getValue() || key.Space()){
             bol.setX((bar[0].getXparam()*width) + bar[0].getW() / 2);
