@@ -18,9 +18,8 @@ class controller{
     
     private:
         view &v;        /*!< view (alocado previamente)*/
-        barra* ba;      /*!< barra (alocada previamente*/
         bolinha* bo;    /*!< bolinha (alocada previamente)*/
-        teclado* keyb;
+        std::vector<teclado>& keyb;
         int veloc = 10; /*!< velocidade de movimentacao da bolinha*/
     
     public:
@@ -32,7 +31,7 @@ class controller{
          * \param ba_ objeto barra
          * \param bo_ objeto bolinha
         */
-        controller(view &v_, barra* ba_, bolinha* bo_, teclado* keyb_): ba(ba_), v(v_), bo(bo_), keyb(keyb_){}
+        controller(view &v_, bolinha* bo_, std::vector<teclado>& keyb_): v(v_), bo(bo_), keyb(keyb_){}
 
         /*! \brief Metodo de acao
          *  
@@ -46,7 +45,10 @@ class controller{
          * 
          *  \return retorna true caso haja colisao
         */
-        bool colisaoBarra();
+
+        void updateMovimento(barra* ba, teclado keyb);
+
+        bool colisaoBarra(barra* barra);
 
         /*! \brief Colisao blocos/bolinha
          *  

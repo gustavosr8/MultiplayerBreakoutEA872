@@ -48,23 +48,34 @@ int main()
     {
         for (int j = 1; j < 6; j++)
         {
-            tijolo NewTijolo(i, j);
+            tijolo NewTijolo(i, j+3);
             t.push_back(NewTijolo);
         }
     }
 
     bolinha bol = bolinha(8, 7);
     bolinha bol_param;
+    std::vector<barra> bar, bar_param;
+    int num_players = 2;
+    bar.push_back(barra(8,1));
+    bar.push_back(barra(8,8));
+    /*
     barra bar = barra(8, 8);
     barra bar_param;
+    */
+
     pontos p = pontos(0);
     vida l = vida();
-    teclado key = teclado();
+
+    std::vector<teclado> key;
+    for(int i = 0; i < num_players; i++){
+        key.push_back(teclado());
+    }
     l.setValue(4);
-    view v = view(t, &bar, &bol, &p, &l);
-    v.window_create(0);
+    view v = view(t, bar, &bol, &p, &l);
+    v.window_create(1);
     v.init();
-    controller c = controller(v, &bar, &bol, &key);
+    controller c = controller(v, &bol, key);
 
     bool rodando = true;
     SDL_Event evento;
@@ -81,12 +92,13 @@ int main()
     }
     //std::cout << "Barra: " << bar.print() << "   Bolinha: " << bol.print() << std::endl;
     bar_param = bar;
-    bar_param.setXparam((float)bar_param.getX()/(float)width);
-    bar_param.setYparam((float)bar_param.getY()/(float)heigth);
+    for(int i = 0; i < bar.size(); i++){
+        bar_param[i].setXparam((float)bar_param[i].getX()/(float)width);
+        bar_param[i].setYparam((float)bar_param[i].getY()/(float)heigth);
+    }
     bol_param = bol;
     bol_param.setXparam((float)bol_param.getX()/(float)width);
     bol_param.setYparam((float)bol_param.getY()/(float)heigth);
-
     cntr.t = t_param;
     cntr.ba = bar_param;
     cntr.bo = bol_param;
@@ -100,7 +112,7 @@ int main()
     f.open("server.json");
     f << js;
     f.close();
-    key = getTeclado(v);
+    //key = getTeclado(v);
     std::stringstream output1;
     output1 << js;
     std::string output = output1.str();
@@ -119,9 +131,11 @@ int main()
         std::stringstream output1;
         output1 << output_client;
         jc = json::parse(output1);
-        key = jc["Teclado"];
+        key[0] = jc["Teclado"];
+        key[1] = getTeclado(v);
         
         c.start();
+        //Fazer alteração para funcionar só com single player
         if (c.save())
         {
             cntr.v = l;
@@ -145,8 +159,8 @@ int main()
             l = cntr.v;
             bar = cntr.ba;
             //Ele instancia a bolinha no último local em que a barra foi salva
-            bol.setX(cntr.ba.getX() + cntr.ba.getW() / 2);
-            bol.setY(cntr.ba.getY() - cntr.bo.getH());
+            bol.setX(cntr.ba[0].getX() + cntr.ba[0].getW() / 2);
+            bol.setY(cntr.ba[0].getY() - cntr.bo.getH());
             p = cntr.p;
             t = cntr.t;
         }
@@ -183,8 +197,10 @@ int main()
             t_param[i].setYparam((float)t[i].getY()/(float)heigth);
         }
         bar_param = bar;
-        bar_param.setXparam((float)bar_param.getX()/(float)width);
-        bar_param.setYparam((float)bar_param.getY()/(float)heigth);
+        for(int i = 0; i < bar.size(); i++){
+            bar_param[i].setXparam((float)bar_param[i].getX()/(float)width);
+            bar_param[i].setYparam((float)bar_param[i].getY()/(float)heigth);
+        }
         bol_param = bol;
         bol_param.setXparam((float)bol_param.getX()/(float)width);
         bol_param.setYparam((float)bol_param.getY()/(float)heigth);
@@ -211,19 +227,19 @@ teclado getTeclado(view &v)
 {
     const Uint8 *state = v.getState();
     teclado keyb = teclado();
-    if (state[SDL_SCANCODE_LEFT])
+    if (state[SDL_SCANCODE_G])
     {
         keyb.setLeft(true);
     }
-    if (state[SDL_SCANCODE_RIGHT])
+    if (state[SDL_SCANCODE_J])
     {
         keyb.setRight(true);
     }
-    if (state[SDL_SCANCODE_UP])
+    if (state[SDL_SCANCODE_Y])
     {
         keyb.setUp(true);
     }
-    if (state[SDL_SCANCODE_DOWN])
+    if (state[SDL_SCANCODE_H])
     {
         keyb.setDown(true);
     }
