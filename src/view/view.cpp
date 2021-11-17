@@ -329,10 +329,19 @@ void view::render(){
 void view::perdeu(){
     render();
     render_text(renderer, Message_PointValue_rect.x, Message_PointValue_rect.y, num_char,Font, &Message_PointValue_rect, &White);
-    Message_Fim_rect.x = SCREEN_WIDTH/2-20;   
+     
+    int font_size;
+    if(SCREEN_HEIGHT > 2160){  
+        font_size = 80;
+    }else if(SCREEN_HEIGHT <= 720){
+        font_size = 40;
+    }else{
+        font_size = 70;
+    }
+    TTF_Font* Font2 = TTF_OpenFont(tmp,font_size);
+    Message_Fim_rect.x = (SCREEN_WIDTH/2)-(4*font_size);   
     Message_Fim_rect.y = SCREEN_HEIGHT/2; 
-    Message_Fim_rect.w = 150; 
-    TTF_Font* Font2 = TTF_OpenFont(tmp,70);
+    Message_Fim_rect.w = 150;
     render_text(renderer, Message_Fim_rect.x, Message_Fim_rect.y, "PERDEU!!!",Font2, &Message_Fim_rect, &Red);
     
     SDL_RenderPresent(renderer);
@@ -342,10 +351,19 @@ void view::perdeu(){
 void view::ganhou(){
     render();
     render_text(renderer, Message_PointValue_rect.x, Message_PointValue_rect.y, num_char,Font, &Message_PointValue_rect, &White);
-    Message_Fim_rect.x = SCREEN_WIDTH/2-20;   
+    
+    int font_size;
+    if(SCREEN_HEIGHT > 2160){  
+        font_size = 80;
+    }else if(SCREEN_HEIGHT <= 720){
+        font_size = 40;
+    }else{
+        font_size = 70;
+    }
+    Message_Fim_rect.x = (SCREEN_WIDTH/2)-(4*font_size);   
     Message_Fim_rect.y = SCREEN_HEIGHT/2; 
     Message_Fim_rect.w = 150;
-    TTF_Font* Font2 = TTF_OpenFont(tmp,70); 
+    TTF_Font* Font2 = TTF_OpenFont(tmp,font_size);
     render_text(renderer, Message_Fim_rect.x, Message_Fim_rect.y, "GANHOU!!!",Font2, &Message_Fim_rect, &Green);
     
     SDL_RenderPresent(renderer);

@@ -43,6 +43,9 @@ int main()
     std::cout << v1 << std::endl;
     std::cout << "Fim" << std::endl;
     meu_socket.receive_from(boost::asio::buffer(output, 3500), remote_endpoint);
+    js["user_id"] = output;
+    std::cout << "user_id" <<output<< std::endl;
+    meu_socket.receive_from(boost::asio::buffer(output, 3500), remote_endpoint);
     
     std::stringstream output1;
     output1 << output;
@@ -129,6 +132,7 @@ int main()
             rodando = false;
         }
         std::string output2;
+        jc["user_id"] = js["user_id"];
         jc["Teclado"] = key;
         std::stringstream output3;
         output3 << jc;
@@ -176,7 +180,8 @@ int main()
             t[i].setY(t[i].getYparam()*heigth);
             t[i].setW(w);
             t[i].setH(h);
-            std::cout << "Tijolo " << i << ":  X: "<< t[i].getX() << " Y: "<< t[i].getY() << std::endl;        }
+            //std::cout << "Tijolo " << i << ":  X: "<< t[i].getX() << " Y: "<< t[i].getY() << std::endl;
+        }
         
         if (l.getValue() > 0 && t.size() > 0)
         {

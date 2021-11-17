@@ -40,11 +40,9 @@ void receive(){
     std::stringstream output1;
     output1 << output_client;
     jc = json::parse(output1);
-    for(int i=0; i<players; i++){
-        if(remote_endpoint == remote_endpoints[i]){
-            keyboard[i] = jc["Teclado"];
-        }
-    }
+    int user_id = int(jc["user_id"]);
+    std::cout << "Player " << user_id << std::endl;
+    keyboard[user_id] = jc["Teclado"];
 }
 
 int main()
@@ -52,14 +50,17 @@ int main()
     char local[120];
     //udp::endpoint remote_endpoint; // vai conter informacoes de quem conectar
     int start=0;
-    std::cout << "Quando todos se conectarem, digite 1" << std::endl;
-    do{
+    do{ 
+        std::cout << "Quando todos se conectarem, digite 1, caso contrario digite 0" << std::endl;
         std::cin >> start;
         if(start==1) break;
         std::cout << "Esperando mensagem!" << std::endl;
+        remote_endpoints.push_back(udp::endpoint());
         my_socket.receive_from(boost::asio::buffer(local, 120), // Local do buffer
                            remote_endpoints[players]);                // Confs. do Cliente
-    std::cout << "Fim de mensagem!" << std::endl;
+        std::string user_id = std::to_string(players);
+        my_socket.send_to(boost::asio::buffer(user_id, user_id.size()), remote_endpoints[players]);
+        std::cout << "Fim de mensagem!" << std::endl;
         players++;
     }while(players<5);
 
