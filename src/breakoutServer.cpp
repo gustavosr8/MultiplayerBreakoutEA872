@@ -82,8 +82,15 @@ int main()
     bolinha bol = bolinha(8, 7);
     bolinha bol_param;
     std::vector<barra> bar, bar_param;
-    bar.push_back(barra(8,1));
-    bar.push_back(barra(8,8));
+    switch(players){
+        case 1: 
+            bar.push_back(barra(8,8));
+            break;
+        default:
+            bar.push_back(barra(8,8));
+            bar.push_back(barra(8,1));
+    }
+    
     /*
     barra bar = barra(8, 8);
     barra bar_param;
@@ -151,8 +158,7 @@ int main()
     //Ciclo de atualização e renderização
     while (rodando)
     {
-        
-        
+           
         c.start();
         //Fazer alteração para funcionar só com single player
         if (c.save())
@@ -204,8 +210,8 @@ int main()
                 rodando = false;
             }
         }
-
-        if (c.finish())
+        teclado keyb = getTeclado(v);
+        if (keyb.Exit())
         {
             rodando = false;
         }

@@ -125,10 +125,6 @@ int main()
         }
 
         key = getTeclado(v);
-        if (key.Exit())
-        {
-            rodando = false;
-        }
         std::string output2;
         jc["user_id"] = user_id;
         //std::cout << jc << std::endl;
@@ -138,7 +134,10 @@ int main()
         output3 << jc;
         output2 = output3.str();
         meu_socket.send_to(boost::asio::buffer(output2, 3500), remote_endpoint);
-
+        if (key.Exit())
+        {   
+            rodando = false;
+        }
         for(int i = 0; i < 3500; i++){
             output[i] = 0;
         }
