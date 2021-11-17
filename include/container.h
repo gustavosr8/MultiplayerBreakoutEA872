@@ -10,7 +10,7 @@
 class container {
     public:
         vida v;
-        barra ba;
+        std::vector<barra> ba;
         bolinha bo;
         pontos p;
         std::vector<tijolo> t;

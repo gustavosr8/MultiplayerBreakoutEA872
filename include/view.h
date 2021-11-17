@@ -26,7 +26,7 @@ class view{
         
         std::vector<tijolo>& t;      /*!< tijolo (alocado previamente)*/
         bolinha *bo;                /*!< bolinha (alocado previamente)*/
-        barra *ba;                  /*!< barra (alocado previamente)*/
+        std::vector<barra>& ba;                  /*!< barra (alocado previamente)*/
         pontos* po;                 /*!< pontos (alocado previamente)*/
         vida* v;                    /*!< vida (alocado previamente)*/
 
@@ -60,7 +60,7 @@ class view{
          * \param po_ objeto pontos
          * \param v_ objeto vida
         */
-        view(std::vector<tijolo>& t_, barra* ba_, bolinha* bo_, pontos* po_, vida* v_);
+        view(std::vector<tijolo>& t_, std::vector<barra>& ba_, bolinha* bo_, pontos* po_, vida* v_);
 
         /*! \brief Renderiza um texto
         *   
@@ -113,6 +113,7 @@ class view{
         SDL_Rect* getBloco();
         SDL_Rect* getBolinha();
         SDL_Rect* getBarra();
+        std::vector<barra>& getBarras();
         std::vector<tijolo>& getTijolos();
         pontos* getPonto();
         vida* getVida();

@@ -20,12 +20,13 @@ char tmp[256];
 
 
 
-view::view(std::vector<tijolo>& t_, barra* ba_, bolinha* bo_, pontos* po_, vida* v_): t(t_),ba(ba_),bo(bo_), po(po_), v(v_){}
+view::view(std::vector<tijolo>& t_, std::vector<barra>& ba_, bolinha* bo_, pontos* po_, vida* v_): t(t_),ba(ba_),bo(bo_), po(po_), v(v_){}
 
 SDL_Rect* view::getTarget(){return &target;}
 SDL_Rect* view::getBloco(){return &bloco;}
 SDL_Rect* view::getBolinha(){return &bol;}
 SDL_Rect* view::getBarra(){return &bar;}
+std::vector<barra>& view::getBarras(){return ba;}
 std::vector<tijolo>& view::getTijolos(){return t;}
 pontos* view::getPonto(){return po;};
 vida* view::getVida(){return v;};
@@ -146,19 +147,6 @@ int view::init(){
     
     //Inicializando os tamanhos dos objetos
 
-    
-
-    //Barrinha
-    ba->setX(ba->getX()*SCREEN_WIDTH/16);
-    ba->setY(ba->getY()*SCREEN_HEIGHT/9);
-    ba->setH(ba->getHmult()*SCREEN_HEIGHT/9);
-    ba->setW(ba->getWmult()*SCREEN_WIDTH/16);
-
-    //Bolinha
-    bo->setH(bo->getHmult()*SCREEN_HEIGHT/9);
-    bo->setW(bo->getWmult()*SCREEN_WIDTH/16);
-    bo->setX(ba->getX()+ba->getW()/2);
-    bo->setY(ba->getY()-bo->getH());
 
     //Tijolos
     for(int i=0; i<t.size(); i++){
@@ -167,18 +155,26 @@ int view::init(){
         t[i].setX(t[i].getX()*((SCREEN_WIDTH/16)+(t[i].getW()/1.5)));
         t[i].setY(t[i].getY()*((SCREEN_HEIGHT/9)-(t[i].getH()*0.8)));  
     } 
+    //Inicializando a Barras
+    for(int i=0; i<ba.size(); i++){
+        ba[i].setX(ba[i].getX()*SCREEN_WIDTH/16);
+        ba[i].setY(ba[i].getY()*SCREEN_HEIGHT/9);
+        ba[i].setH(ba[i].getHmult()*SCREEN_HEIGHT/9);
+        ba[i].setW(ba[i].getWmult()*SCREEN_WIDTH/16);
+    }    
+
+    //Bolinha
+    bo->setH(bo->getHmult()*SCREEN_HEIGHT/9);
+    bo->setW(bo->getWmult()*SCREEN_WIDTH/16);
+    bo->setX(ba[0].getX()+ba[0].getW()/2);
+    bo->setY(ba[0].getY()-bo->getH());
 
     //Inicializando a Bolinha
     bol.h = bo->getH();
     bol.w = bo->getW();
     bol.x = bo->getX();
-    bol.y = bo->getY();
-   
-    //Inicializando a Barra
-    bar.h = ba->getH();
-    bar.w = ba->getW();
-    bar.x = ba->getX();
-    bar.y = ba->getY();
+    bol.y = bo->getY();    
+    
 
     //Inicia a variavel de estado que vai ler o teclado
     state = SDL_GetKeyboardState(nullptr);
@@ -248,14 +244,15 @@ int view::initClient(){
     bo->setW(bo->getWmult()*SCREEN_WIDTH/16);
 
     //Barrinha
-    ba->setH(ba->getHmult()*SCREEN_HEIGHT/9);
-    ba->setW(ba->getWmult()*SCREEN_WIDTH/16);
-
+    for(int i=0; i<ba.size(); i++){
+        ba[i].setH(ba[i].getHmult()*SCREEN_HEIGHT/9);
+        ba[i].setW(ba[i].getWmult()*SCREEN_WIDTH/16);
+    }
     //Tijolos
     for(int i=0; i<t.size(); i++){
         t[i].setW(t[i].getWmult()*SCREEN_WIDTH/16);
         t[i].setH(t[i].getHmult()*SCREEN_HEIGHT/9);
-        std::cout << "Tijolo " << i << ":  W: "<< t[i].getW() << " H: "<< t[i].getH() << std::endl;
+        //std::cout << "Tijolo " << i << ":  W: "<< t[i].getW() << " H: "<< t[i].getH() << std::endl;
     } 
 
     //Inicializando a Bolinha
@@ -264,11 +261,6 @@ int view::initClient(){
     bol.x = bo->getX();
     bol.y = bo->getY();
    
-    //Inicializando a Barra
-    bar.h = ba->getH();
-    bar.w = ba->getW();
-    bar.x = ba->getX();
-    bar.y = ba->getY();
 
     //Inicia a variavel de estado que vai ler o teclado
     state = SDL_GetKeyboardState(nullptr);
@@ -291,7 +283,7 @@ void view::render(){
     render_text(renderer, Message_PointValue_rect.x, Message_PointValue_rect.y, num_char,Font, &Message_PointValue_rect, &White);
     
     //Renderiza os tijolos
-    std::cout << "Tijolo " << 0 << ":  W: "<< t[0].getW() << " H: "<< t[0].getH() << std::endl;
+    //std::cout << "Tijolo " << 0 << ":  W: "<< t[0].getW() << " H: "<< t[0].getH() << std::endl;
     for(int i=0; i<t.size(); i++){
         
         bloco.h = t[i].getH();
@@ -310,18 +302,19 @@ void view::render(){
     bol.w = bo->getW();
     bol.x = bo->getX();
     bol.y = bo->getY();
-   
-    //Inicializando a Barra
-    bar.h = ba->getH();
-    bar.w = ba->getW();
-    bar.x = ba->getX();
-    bar.y = ba->getY();
-
-    //Renderiza as barras
-    SDL_SetRenderDrawColor(renderer, 64, 244, 208, 255);
-    SDL_RenderDrawRect(renderer, &bar);
-    SDL_RenderFillRect( renderer, &bar );
     
+    for(int i=0; i<ba.size(); i++){
+        //Inicializando a Barra
+        bar.h = ba[i].getH();
+        bar.w = ba[i].getW();
+        bar.x = ba[i].getX();
+        bar.y = ba[i].getY();
+
+        //Renderiza as barras
+        SDL_SetRenderDrawColor(renderer, 64, 244, 208, 255);
+        SDL_RenderDrawRect(renderer, &bar);
+        SDL_RenderFillRect( renderer, &bar );
+    }
     //Renderiza as bolinhas
     SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
     SDL_RenderDrawRect(renderer, &bol);

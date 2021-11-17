@@ -54,7 +54,7 @@ int main()
     container cntr;
     std::vector<tijolo> t, t_param;
     bolinha bol, bol_param;
-    barra bar, bar_param;
+    std::vector<barra> bar, bar_param;
     pontos p;
     vida l;
     teclado key;
@@ -69,7 +69,7 @@ int main()
     key = cntr.keyb;
     
 
-    view v = view(t, &bar, &bol, &p, &l);
+    view v = view(t, bar, &bol, &p, &l);
     v.window_create(1);
     //Objects Size Parameterization
     int width = v.getWidth();
@@ -78,8 +78,10 @@ int main()
         t_param[i].setX(t_param[i].getXparam()*width);
         t_param[i].setY(t_param[i].getYparam()*heigth);
     }
-    bar_param.setX(bar_param.getXparam()*width);
-    bar_param.setY(bar_param.getYparam()*heigth);
+    for(int i = 0; i < bar_param.size(); i++){
+        bar_param[i].setX(bar_param[i].getXparam()*width);
+        bar_param[i].setY(bar_param[i].getYparam()*heigth);
+    }    
     bol_param.setX(bol_param.getXparam()*width);
     bol_param.setY(bol_param.getYparam()*heigth);
     t = t_param;
@@ -147,18 +149,25 @@ int main()
         int l_temp = l.getValue();
         l = cntr.v;
         p = cntr.p;
-        bar.setX(cntr.ba.getXparam()*width);
-        bar.setY(cntr.ba.getYparam()*heigth);
+        int w, h;
+        w = bar[0].getW();
+        h = bar[0].getH();
+        bar = cntr.ba;
+        for(int i = 0; i < bar.size(); i++){
+            bar[i].setX(bar[i].getXparam()*width);
+            bar[i].setY(bar[i].getYparam()*heigth);
+            bar[i].setW(w);
+            bar[i].setH(h);
+        }
 
         //Ele instancia a bolinha no último local em que a barra foi salva
         if(l_temp < l.getValue() || key.Space()){
-            bol.setX((bar.getXparam()*width) + bar.getW() / 2);
-            bol.setY((bar.getYparam()*heigth) - bol.getH());
+            bol.setX((bar[0].getXparam()*width) + bar[0].getW() / 2);
+            bol.setY((bar[0].getYparam()*heigth) - bol.getH());
         }else{
             bol.setX(cntr.bo.getXparam()*width);
             bol.setY(cntr.bo.getYparam()*heigth);
         }    
-        int w, h;
         w = t[0].getW();
         h = t[0].getH();
         t = cntr.t;
@@ -167,7 +176,7 @@ int main()
             t[i].setY(t[i].getYparam()*heigth);
             t[i].setW(w);
             t[i].setH(h);
-        }
+            std::cout << "Tijolo " << i << ":  X: "<< t[i].getX() << " Y: "<< t[i].getY() << std::endl;        }
         
         if (l.getValue() > 0 && t.size() > 0)
         {
