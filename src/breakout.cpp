@@ -21,7 +21,7 @@ teclado getTeclado(view &v);
 int main()
 {
 
-    std::string v1("{\"Teste\": 15}");
+    std::string v1("Conexao iniciada...");
     boost::asio::io_service io_service;
     udp::endpoint local_endpoint(udp::v4(), 0);
     udp::socket meu_socket(io_service, local_endpoint);

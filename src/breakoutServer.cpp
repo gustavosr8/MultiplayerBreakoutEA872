@@ -12,32 +12,56 @@
 #include <vector>
 #include <boost/asio.hpp>
 #include <boost/bind.hpp>
+#include <thread>
 
 using boost::asio::ip::udp;
 
 using nlohmann::json;
-
+int players=0;
+boost::asio::io_service my_io_service; // Conecta com o SO
+udp::endpoint local_endpoint(udp::v4(), 9001); // endpoint: contem
+                                                   // conf. da conexao (ip/port)
+std::vector<udp::endpoint> remote_endpoints;
+udp::socket my_socket(my_io_service,   // io service
+                          local_endpoint); // endpoint
+json jc;
 teclado getTeclado(view &v);
+std::vector<teclado> keyboard;
+
+void receive(){
+
+    char output_client[3500];
+    udp::endpoint remote_endpoint;
+
+    for(int i = 0; i < 3500; i++){
+         output_client[i] = 0;
+    }
+    my_socket.receive_from(boost::asio::buffer(output_client, 3500), remote_endpoint);
+    std::stringstream output1;
+    output1 << output_client;
+    jc = json::parse(output1);
+    for(int i=0; i<players; i++){
+        if(remote_endpoint == remote_endpoints[i]){
+            keyboard[i] = jc["Teclado"];
+        }
+    }
+}
 
 int main()
 {
     char local[120];
-    boost::asio::io_service my_io_service; // Conecta com o SO
-
-    udp::endpoint local_endpoint(udp::v4(), 9001); // endpoint: contem
-                                                   // conf. da conexao (ip/port)
-
-    udp::socket my_socket(my_io_service,   // io service
-                          local_endpoint); // endpoint
-
-    udp::endpoint remote_endpoint; // vai conter informacoes de quem conectar
-
-    std::cout << "Esperando mensagem!" << std::endl;
-    my_socket.receive_from(boost::asio::buffer(local, 120), // Local do buffer
-                           remote_endpoint);                // Confs. do Cliente
+    //udp::endpoint remote_endpoint; // vai conter informacoes de quem conectar
+    int start=0;
+    std::cout << "Quando todos se conectarem, digite 1" << std::endl;
+    do{
+        std::cin >> start;
+        if(start==1) break;
+        std::cout << "Esperando mensagem!" << std::endl;
+        my_socket.receive_from(boost::asio::buffer(local, 120), // Local do buffer
+                           remote_endpoints[players]);                // Confs. do Cliente
     std::cout << "Fim de mensagem!" << std::endl;
-
-
+        players++;
+    }while(players<5);
 
     //Inicializa os objetos da aplicação
 
@@ -56,7 +80,6 @@ int main()
     bolinha bol = bolinha(8, 7);
     bolinha bol_param;
     std::vector<barra> bar, bar_param;
-    int num_players = 2;
     bar.push_back(barra(8,1));
     bar.push_back(barra(8,8));
     /*
@@ -67,15 +90,14 @@ int main()
     pontos p = pontos(0);
     vida l = vida();
 
-    std::vector<teclado> key;
-    for(int i = 0; i < num_players; i++){
-        key.push_back(teclado());
+    for(int i = 0; i < players; i++){
+        keyboard.push_back(teclado());
     }
     l.setValue(4);
     view v = view(t, bar, &bol, &p, &l);
     v.window_create(1);
     v.init();
-    controller c = controller(v, &bol, key);
+    controller c = controller(v, &bol, keyboard);
 
     bool rodando = true;
     SDL_Event evento;
@@ -106,7 +128,7 @@ int main()
     cntr.p = p;
      
 
-    json js, jc;
+    json js;
     js["Container"] = cntr;
     std::ofstream f;
     f.open("server.json");
@@ -116,23 +138,18 @@ int main()
     std::stringstream output1;
     output1 << js;
     std::string output = output1.str();
-    my_socket.send_to(boost::asio::buffer(output, output.size()), remote_endpoint);
+
+    for(int i=0; i<players; i++){
+        my_socket.send_to(boost::asio::buffer(output, output.size()), remote_endpoints[i]);
+    }
+    
+    std::thread t1(receive);
 
 
     //Ciclo de atualização e renderização
     while (rodando)
     {
-        char output_client[3500];
-
-        for(int i = 0; i < 3500; i++){
-             output_client[i] = 0;
-        }
-        my_socket.receive_from(boost::asio::buffer(output_client, 3500), remote_endpoint);
-        std::stringstream output1;
-        output1 << output_client;
-        jc = json::parse(output1);
-        key[0] = jc["Teclado"];
-        key[1] = getTeclado(v);
+        
         
         c.start();
         //Fazer alteração para funcionar só com single player
@@ -215,9 +232,12 @@ int main()
         output4 << js;
         std::string output_send;
         output_send = output4.str();
-        my_socket.send_to(boost::asio::buffer(output_send, output_send.size()), remote_endpoint);
         
+        for(int i=0; i<players; i++){
+            my_socket.send_to(boost::asio::buffer(output, output.size()), remote_endpoints[i]);
+        }        
     }
+    t1.join();
     v.quit();
     
     return 0;
