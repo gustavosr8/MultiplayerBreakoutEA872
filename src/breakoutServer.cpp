@@ -85,7 +85,7 @@ int main()
 
     //Tijolos e barras
     std::vector<barra> bar, bar_param;
-    std::vector<std::vector<tijolo>> t, t_param;
+    std::vector<std::vector<tijolo> > t, t_param;
     std::vector<tijolo> t_aux;
 
 

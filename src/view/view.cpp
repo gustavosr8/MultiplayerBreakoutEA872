@@ -20,14 +20,14 @@ char tmp[256];
 
 
 
-view::view(std::vector<tijolo>& t_, std::vector<barra>& ba_, bolinha* bo_, pontos* po_, vida* v_): t(t_),ba(ba_),bo(bo_), po(po_), v(v_){}
+view::view(std::vector<std::vector<tijolo> >& t_, std::vector<barra>& ba_, bolinha* bo_, pontos* po_, vida* v_): t(t_),ba(ba_),bo(bo_), po(po_), v(v_){}
 
 SDL_Rect* view::getTarget(){return &target;}
 SDL_Rect* view::getBloco(){return &bloco;}
 SDL_Rect* view::getBolinha(){return &bol;}
 SDL_Rect* view::getBarra(){return &bar;}
 std::vector<barra>& view::getBarras(){return ba;}
-std::vector<tijolo>& view::getTijolos(){return t;}
+std::vector<std::vector<tijolo> >& view::getTijolos(){return t;}
 pontos* view::getPonto(){return po;};
 vida* view::getVida(){return v;};
 
@@ -41,41 +41,6 @@ const Uint8* view::getState(){return state;}
 
 //Metodo que gera todas as estruturas iniciais de vizualizacao do SDL
 int view::init(){
-    
-    /*
-    if ( SDL_Init (SDL_INIT_VIDEO) < 0 ) {
-        std::cout << SDL_GetError();
-        return 1;
-    }
-    
-    //Cria a janela
-    window = nullptr;
-    window = SDL_CreateWindow("Breakout",
-    SDL_WINDOWPOS_UNDEFINED,
-    SDL_WINDOWPOS_UNDEFINED,
-    SCREEN_WIDTH,
-    SCREEN_HEIGHT,
-    SDL_WINDOW_SHOWN/*SDL_WINDOW_FULLSCREEN_DESKTOP);
-    if (window==nullptr) { // Em caso de erro...
-        std::cout << SDL_GetError();
-        SDL_Quit();
-        return 1;
-    }
-
-    //cria um renderizador
-    renderer = nullptr; 
-    renderer = SDL_CreateRenderer(
-    window, -1,
-    SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-    if (renderer==nullptr) { // Em caso de erro...
-        SDL_DestroyWindow(window);
-        std::cout << SDL_GetError();
-        SDL_Quit();
-        return 1;
-    }
-
-    */
-
 
     //Inicia e configura o TTF (vizualizacao de texto)
     TTF_Init();
@@ -150,10 +115,12 @@ int view::init(){
 
     //Tijolos
     for(int i=0; i<t.size(); i++){
-        t[i].setH(t[i].getHmult()*SCREEN_HEIGHT/9);
-        t[i].setW(t[i].getWmult()*SCREEN_WIDTH/16);
-        t[i].setX(t[i].getX()*((SCREEN_WIDTH/16)+(t[i].getW()/1.5)));
-        t[i].setY(t[i].getY()*((SCREEN_HEIGHT/9)-(t[i].getH()*0.8)));  
+        for(int j=0; j<t[i].size();j++){
+            t[i][j].setH(t[i][j].getHmult()*SCREEN_HEIGHT/9);
+            t[i][j].setW(t[i][j].getWmult()*SCREEN_WIDTH/16);
+            t[i][j].setX(t[i][j].getX()*((SCREEN_WIDTH/16)+(t[i][j].getW()/1.5)));
+            t[i][j].setY(t[i][j].getY()*((SCREEN_HEIGHT/9)-(t[i][j].getH()*0.8)));
+        }
     } 
     //Inicializando a Barras
     for(int i=0; i<ba.size(); i++){
@@ -252,7 +219,6 @@ int view::initClient(){
     for(int i=0; i<t.size(); i++){
         t[i].setW(t[i].getWmult()*SCREEN_WIDTH/16);
         t[i].setH(t[i].getHmult()*SCREEN_HEIGHT/9);
-        //std::cout << "Tijolo " << i << ":  W: "<< t[i].getW() << " H: "<< t[i].getH() << std::endl;
     } 
 
     //Inicializando a Bolinha
@@ -283,18 +249,17 @@ void view::render(){
     render_text(renderer, Message_PointValue_rect.x, Message_PointValue_rect.y, num_char,Font, &Message_PointValue_rect, &White);
     
     //Renderiza os tijolos
-    //std::cout << "Tijolo " << 0 << ":  W: "<< t[0].getW() << " H: "<< t[0].getH() << std::endl;
     for(int i=0; i<t.size(); i++){
-        
-        bloco.h = t[i].getH();
-        bloco.w = t[i].getW();
-        bloco.x = t[i].getX();
-        bloco.y = t[i].getY();
-        //std::cout << "Bloco " << i << ":  W: "<< bloco.w << " H: "<< bloco.h << std::endl;
-        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-        SDL_RenderDrawRect(renderer, &bloco);
-        SDL_RenderFillRect( renderer, &bloco );
-    
+        for(int j=0; j<t[i].size(); j++){
+            bloco.h = t[i][j].getH();
+            bloco.w = t[i][j].getW();
+            bloco.x = t[i][j].getX();
+            bloco.y = t[i][j].getY();
+
+            SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+            SDL_RenderDrawRect(renderer, &bloco);
+            SDL_RenderFillRect( renderer, &bloco );
+        }
     } 
 
     //Inicializando a Bolinha
