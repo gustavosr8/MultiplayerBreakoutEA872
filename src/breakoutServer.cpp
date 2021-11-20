@@ -68,7 +68,8 @@ int main()
     //Inicializa os objetos da aplicação
 
     //Tijolos
-    std::vector<tijolo> t, t_param;
+    //std::vector<tijolo> t, t_param;
+    
 
     for (int i = 0; i < 7; i++)
     {
@@ -78,23 +79,220 @@ int main()
             t.push_back(NewTijolo);
         }
     }
-
+    //Bolinha
     bolinha bol = bolinha(8, 7);
     bolinha bol_param;
+
+    //Tijolos e barras
     std::vector<barra> bar, bar_param;
+    std::vector<std::vector<tijolo>> t, t_param;
+    std::vector<tijolo> t_aux;
+
+
+
     switch(players){
         case 1: 
             bar.push_back(barra(8,8));
+
+            for (int i=0; i<7; i++){
+                for(int j=4;j<9;j++){
+                    tijolo NewTijolo(i,j);
+                    t_aux.push_back(NewTijolo);
+                }
+            }
+            t.push_back(t_aux);
             break;
-        default:
-            bar.push_back(barra(8,8));
-            bar.push_back(barra(8,1));
+        
+        case 2:
+            bar.push_back(barra(8,6));
+            bar.push_back(barra(8,4));
+
+            for(int i=0; i<8;i++){
+                for(int j=0; j<2; j++){
+                    tijolo NewTijolo(i+4, j+7);
+                    t_aux.push_back(NewTijolo);
+                }
+            }
+            t.push_back(t_aux);
+            t_aux.clear();
+            for(int i=0; i<8;i++){
+                for(int j=0; j<2; j++){
+                    tijolo NewTijolo(i+4, j+2);
+                    t_aux.push_back(NewTijolo);
+                }
+            }
+            t.push_back(t_aux);
+
+        case 3:
+            bar.push_back(barra(4,6));
+            bar.push_back(barra(4,4));
+            bar.push_back(barra(12,6));
+
+            for(int i=0; i<5;i++){
+                for(int j=0; j<2; j++){
+                    tijolo NewTijolo(i+2, j+7);
+                    t_aux.push_back(NewTijolo);
+                }
+            }
+            t.push_back(t_aux);
+            t_aux.clear();
+            for(int i=0; i<5;i++){
+                for(int j=0; j<2; j++){
+                    tijolo NewTijolo(i+2, j+2);
+                    t_aux.push_back(NewTijolo);
+                }
+            }
+            t.push_back(t_aux);
+            t_aux.clear();
+            for(int i=0; i<5;i++){
+                for(int j=0; j<2; j++){
+                    tijolo NewTijolo(i+10, j+7);
+                    t_aux.push_back(NewTijolo);
+                }
+            }
+            t.push_back(t_aux);
+
+        case 4:
+            bar.push_back(barra(4,6));
+            bar.push_back(barra(4,4));
+            bar.push_back(barra(12,6));
+            bar.push_back(barra(12,4));
+
+            for(int i=0; i<5;i++){
+                for(int j=0; j<2; j++){
+                    tijolo NewTijolo(i+2, j+7);
+                    t_aux.push_back(NewTijolo);
+                }
+            }
+            t.push_back(t_aux);
+            t_aux.clear();
+            for(int i=0; i<5;i++){
+                for(int j=0; j<2; j++){
+                    tijolo NewTijolo(i+2, j+2);
+                    t_aux.push_back(NewTijolo);
+                }
+            }
+            t.push_back(t_aux);
+            t_aux.clear();
+            for(int i=0; i<5;i++){
+                for(int j=0; j<2; j++){
+                    tijolo NewTijolo(i+10, j+7);
+                    t_aux.push_back(NewTijolo);
+                }
+            }
+            t.push_back(t_aux);
+            t_aux.clear();
+            for(int i=0; i<5;i++){
+                for(int j=0; j<2; j++){
+                    tijolo NewTijolo(i+10, j+2);
+                    t_aux.push_back(NewTijolo);
+                }
+            }
+            t.push_back(t_aux);
+
+        case 5:
+            bar.push_back(barra(3,6));
+            bar.push_back(barra(3,4));
+            bar.push_back(barra(9,6));
+            bar.push_back(barra(9,4));
+            bar.push_back(barra(14,4));
+
+            for(int i=0; i<3;i++){
+                for(int j=0; j<2; j++){
+                    tijolo NewTijolo(i+2, j+7);
+                    t_aux.push_back(NewTijolo);
+                }
+            }
+            t.push_back(t_aux);
+            t_aux.clear();
+            for(int i=0; i<3;i++){
+                for(int j=0; j<2; j++){
+                    tijolo NewTijolo(i+2, j+2);
+                    t_aux.push_back(NewTijolo);
+                }
+            }
+            t.push_back(t_aux);
+            t_aux.clear();
+            for(int i=0; i<3;i++){
+                for(int j=0; j<2; j++){
+                    tijolo NewTijolo(i+8, j+7);
+                    t_aux.push_back(NewTijolo);
+                }
+            }
+            t.push_back(t_aux);
+            t_aux.clear();
+            for(int i=0; i<3;i++){
+                for(int j=0; j<2; j++){
+                    tijolo NewTijolo(i+8, j+2);
+                    t_aux.push_back(NewTijolo);
+                }
+            }
+            t.push_back(t_aux);
+            t_aux.clear();
+            for(int i=0; i<3;i++){
+                for(int j=0; j<2; j++){
+                    tijolo NewTijolo(i+13, j+2);
+                    t_aux.push_back(NewTijolo);
+                }
+            }
+            t.push_back(t_aux);
+
+        case 6:
+            bar.push_back(barra(3,6));
+            bar.push_back(barra(3,4));
+            bar.push_back(barra(9,6));
+            bar.push_back(barra(9,4));
+            bar.push_back(barra(14,6));
+            bar.push_back(barra(14,4));
+
+            for(int i=0; i<3;i++){
+                for(int j=0; j<2; j++){
+                    tijolo NewTijolo(i+2, j+7);
+                    t_aux.push_back(NewTijolo);
+                }
+            }
+            t.push_back(t_aux);
+            t_aux.clear();
+            for(int i=0; i<3;i++){
+                for(int j=0; j<2; j++){
+                    tijolo NewTijolo(i+2, j+2);
+                    t_aux.push_back(NewTijolo);
+                }
+            }
+            t.push_back(t_aux);
+            t_aux.clear();
+            for(int i=0; i<3;i++){
+                for(int j=0; j<2; j++){
+                    tijolo NewTijolo(i+8, j+7);
+                    t_aux.push_back(NewTijolo);
+                }
+            }
+            t.push_back(t_aux);
+            t_aux.clear();
+            for(int i=0; i<3;i++){
+                for(int j=0; j<2; j++){
+                    tijolo NewTijolo(i+8, j+2);
+                    t_aux.push_back(NewTijolo);
+                }
+            }
+            t.push_back(t_aux);
+            t_aux.clear();
+            for(int i=0; i<3;i++){
+                for(int j=0; j<2; j++){
+                    tijolo NewTijolo(i+13, j+7);
+                    t_aux.push_back(NewTijolo);
+                }
+            }
+            t.push_back(t_aux);
+            t_aux.clear();
+            for(int i=0; i<3;i++){
+                for(int j=0; j<2; j++){
+                    tijolo NewTijolo(i+13, j+2);
+                    t_aux.push_back(NewTijolo);
+                }
+            }
+            t.push_back(t_aux);
     }
-    
-    /*
-    barra bar = barra(8, 8);
-    barra bar_param;
-    */
 
     pontos p = pontos(0);
     vida l = vida();
