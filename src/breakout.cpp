@@ -31,9 +31,9 @@ int main()
     udp::endpoint remote_endpoint(ip_remoto, 9001);
     
     json js, jc;
-    char output[3500];
+    char output[5000];
 
-    for(int i = 0; i < 3500; i++){
+    for(int i = 0; i < 5000; i++){
         output[i] = 0;
     }
 
@@ -41,11 +41,11 @@ int main()
     meu_socket.send_to(boost::asio::buffer(v1), remote_endpoint);
 
     std::cout << v1 << std::endl;
-    std::cout << "Fim" << std::endl;
-    meu_socket.receive_from(boost::asio::buffer(output, 3500), remote_endpoint);
+    std::cout << "Server conectado" << std::endl;
+    meu_socket.receive_from(boost::asio::buffer(output, 5000), remote_endpoint);
     std::string s = output;
     int user_id =  stoi(s);
-    meu_socket.receive_from(boost::asio::buffer(output, 3500), remote_endpoint);
+    meu_socket.receive_from(boost::asio::buffer(output, 5000), remote_endpoint);
     
     std::stringstream output1;
     output1 << output;
@@ -84,7 +84,7 @@ int main()
     for(int i = 0; i < bar_param.size(); i++){
         bar_param[i].setX(bar_param[i].getXparam()*width);
         bar_param[i].setY(bar_param[i].getYparam()*heigth);
-    }    
+    }
     bol_param.setX(bol_param.getXparam()*width);
     bol_param.setY(bol_param.getYparam()*heigth);
     t = t_param;
@@ -95,15 +95,16 @@ int main()
     bool rodando = true;
     SDL_Event evento;
 
+
     //Ciclo de atualização e renderização
     
     while (rodando)
     {   
-        if (l.getValue() > 0 && t.size() > 0)
+        if (l.getValue() > 0 && t[user_id].size() > 0)
         {
             v.render();
         }
-        else if (t.size() < 1)
+        else if (t[user_id].size() < 1)
         {
             v.ganhou();
         }
@@ -118,7 +119,6 @@ int main()
                 rodando = false;
             }
         }
-
         key = getTeclado(v);
         std::string output2;
         jc["user_id"] = user_id;
@@ -128,21 +128,20 @@ int main()
         std::stringstream output3;
         output3 << jc;
         output2 = output3.str();
-        meu_socket.send_to(boost::asio::buffer(output2, 3500), remote_endpoint);
+        meu_socket.send_to(boost::asio::buffer(output2, 5000), remote_endpoint);
         if (key.Exit())
         {   
             rodando = false;
         }
-        for(int i = 0; i < 3500; i++){
+        for(int i = 0; i < 5000; i++){
             output[i] = 0;
         }
-
-        meu_socket.receive_from(boost::asio::buffer(output, 3500), remote_endpoint);
+        
+        meu_socket.receive_from(boost::asio::buffer(output, 5000), remote_endpoint);
         std::stringstream output4;
         output4 << output;
         js = json::parse(output4);
         cntr = js["Container"];
-               
         int l_temp = l.getValue();
         l = cntr.v;
         p = cntr.p;
@@ -164,20 +163,22 @@ int main()
         }else{
             bol.setX(cntr.bo.getXparam()*width);
             bol.setY(cntr.bo.getYparam()*heigth);
-        }    
+        }
+            
         w = t[0][0].getW();
         h = t[0][0].getH();
         t = cntr.t;
         for(int i = 0; i < t.size(); i++){
-            for(int j=0; i<t[i].size(); j++){
+            for(int j=0; j<t[i].size(); j++){
             t[i][j].setX(t[i][j].getXparam()*width);
             t[i][j].setY(t[i][j].getYparam()*heigth);
             t[i][j].setW(w);
             t[i][j].setH(h);
+            std::cout << i << " -- " << j << std::endl;
             }
         }
-        
-        if (l.getValue() > 0 && t.size() > 0)
+        std::cout << "Fim recebimento tijolos" << std::endl;
+        if (l.getValue() > 0 && t[user_id].size() > 0)
         {
             v.render();
         }

@@ -30,13 +30,13 @@ std::vector<teclado> keyboard;
 
 void receive(){
     while(1){
-        char output_client[3500];
+        char output_client[5000];
         udp::endpoint remote_endpoint;
 
-        for(int i = 0; i < 3500; i++){
+        for(int i = 0; i < 5000; i++){
             output_client[i] = 0;
         }
-        my_socket.receive_from(boost::asio::buffer(output_client, 3500), remote_endpoint);
+        my_socket.receive_from(boost::asio::buffer(output_client, 5000), remote_endpoint);
         std::stringstream output1;
         output1 << output_client;
         jc = json::parse(output1);
@@ -82,9 +82,9 @@ int main()
         case 1: 
             bar.push_back(barra(8,8));
 
-            for (int i=0; i<7; i++){
-                for(int j=4;j<9;j++){
-                    tijolo NewTijolo(i,j);
+            for (int i=0; i<8; i++){
+                for(int j=0;j<2;j++){
+                    tijolo NewTijolo(i+4,j+1);
                     t_aux.push_back(NewTijolo);
                 }
             }
