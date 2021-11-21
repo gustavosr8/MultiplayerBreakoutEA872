@@ -63,7 +63,7 @@ int main()
         my_socket.send_to(boost::asio::buffer(user_id, user_id.size()), remote_endpoints[players]);
         std::cout << "Fim de mensagem!" << std::endl;
         players++;
-    }while(players<5);
+    }while(players<6);
 
     //Inicializa os objetos da aplicação
 
@@ -79,7 +79,8 @@ int main()
 
 
     switch(players){
-        case 1: 
+        case 1:
+            std::cout << "1 jogador conectado. Iniciando jogo." << std::endl; 
             bar.push_back(barra(8,8));
 
             for (int i=0; i<8; i++){
@@ -90,26 +91,28 @@ int main()
             }
             t.push_back(t_aux);
             break;
+
         
         case 2:
+            std::cout << "2 jogadores conectado. Iniciando jogo." << std::endl;
             bar.push_back(barra(8,6));
             bar.push_back(barra(8,4));
 
             for(int i=0; i<8;i++){
                 for(int j=0; j<2; j++){
                     tijolo NewTijolo(i+4, j+7);
-                    t_aux.push_back(NewTijolo);
+                    t_aux.push_back(tijolo(i+4, j+7));
                 }
             }
             t.push_back(t_aux);
             t_aux.clear();
             for(int i=0; i<8;i++){
                 for(int j=0; j<2; j++){
-                    tijolo NewTijolo(i+4, j+2);
-                    t_aux.push_back(NewTijolo);
+                    t_aux.push_back(tijolo(i+4, j+2));
                 }
             }
             t.push_back(t_aux);
+            break;
 
         case 3:
             bar.push_back(barra(4,6));
@@ -118,27 +121,25 @@ int main()
 
             for(int i=0; i<5;i++){
                 for(int j=0; j<2; j++){
-                    tijolo NewTijolo(i+2, j+7);
-                    t_aux.push_back(NewTijolo);
+                    t_aux.push_back(tijolo(i+2, j+7));
                 }
             }
             t.push_back(t_aux);
             t_aux.clear();
             for(int i=0; i<5;i++){
                 for(int j=0; j<2; j++){
-                    tijolo NewTijolo(i+2, j+2);
-                    t_aux.push_back(NewTijolo);
+                    t_aux.push_back(tijolo(i+2, j+2));
                 }
             }
             t.push_back(t_aux);
             t_aux.clear();
             for(int i=0; i<5;i++){
                 for(int j=0; j<2; j++){
-                    tijolo NewTijolo(i+10, j+7);
-                    t_aux.push_back(NewTijolo);
+                    t_aux.push_back(tijolo(i+10, j+7));
                 }
             }
             t.push_back(t_aux);
+            break;
 
         case 4:
             bar.push_back(barra(4,6));
@@ -148,35 +149,32 @@ int main()
 
             for(int i=0; i<5;i++){
                 for(int j=0; j<2; j++){
-                    tijolo NewTijolo(i+2, j+7);
-                    t_aux.push_back(NewTijolo);
+                    t_aux.push_back(tijolo(i+2, j+7));
                 }
             }
             t.push_back(t_aux);
             t_aux.clear();
             for(int i=0; i<5;i++){
                 for(int j=0; j<2; j++){
-                    tijolo NewTijolo(i+2, j+2);
-                    t_aux.push_back(NewTijolo);
+                    t_aux.push_back(tijolo(i+2, j+2));
                 }
             }
             t.push_back(t_aux);
             t_aux.clear();
             for(int i=0; i<5;i++){
                 for(int j=0; j<2; j++){
-                    tijolo NewTijolo(i+10, j+7);
-                    t_aux.push_back(NewTijolo);
+                    t_aux.push_back(tijolo(i+10, j+7));
                 }
             }
             t.push_back(t_aux);
             t_aux.clear();
             for(int i=0; i<5;i++){
                 for(int j=0; j<2; j++){
-                    tijolo NewTijolo(i+10, j+2);
-                    t_aux.push_back(NewTijolo);
+                    t_aux.push_back(tijolo(i+10, j+2));
                 }
             }
             t.push_back(t_aux);
+            break;
 
         case 5:
             bar.push_back(barra(3,6));
@@ -187,43 +185,39 @@ int main()
 
             for(int i=0; i<3;i++){
                 for(int j=0; j<2; j++){
-                    tijolo NewTijolo(i+2, j+7);
-                    t_aux.push_back(NewTijolo);
+                    t_aux.push_back(tijolo(i+2, j+7));
                 }
             }
             t.push_back(t_aux);
             t_aux.clear();
             for(int i=0; i<3;i++){
                 for(int j=0; j<2; j++){
-                    tijolo NewTijolo(i+2, j+2);
-                    t_aux.push_back(NewTijolo);
+                    t_aux.push_back(tijolo(i+2,j+2));
                 }
             }
             t.push_back(t_aux);
             t_aux.clear();
             for(int i=0; i<3;i++){
                 for(int j=0; j<2; j++){
-                    tijolo NewTijolo(i+8, j+7);
-                    t_aux.push_back(NewTijolo);
+                    t_aux.push_back(tijolo(i+8, j+7));
                 }
             }
             t.push_back(t_aux);
             t_aux.clear();
             for(int i=0; i<3;i++){
                 for(int j=0; j<2; j++){
-                    tijolo NewTijolo(i+8, j+2);
-                    t_aux.push_back(NewTijolo);
+                    t_aux.push_back(tijolo(i+8, j+2));
                 }
             }
             t.push_back(t_aux);
             t_aux.clear();
             for(int i=0; i<3;i++){
                 for(int j=0; j<2; j++){
-                    tijolo NewTijolo(i+13, j+2);
-                    t_aux.push_back(NewTijolo);
+                    t_aux.push_back(tijolo(i+13, j+2));
                 }
             }
             t.push_back(t_aux);
+            break;
 
         case 6:
             bar.push_back(barra(3,6));
@@ -235,51 +229,46 @@ int main()
 
             for(int i=0; i<3;i++){
                 for(int j=0; j<2; j++){
-                    tijolo NewTijolo(i+2, j+7);
-                    t_aux.push_back(NewTijolo);
+                    t_aux.push_back(tijolo(i+2, j+7));
                 }
             }
             t.push_back(t_aux);
             t_aux.clear();
             for(int i=0; i<3;i++){
                 for(int j=0; j<2; j++){
-                    tijolo NewTijolo(i+2, j+2);
-                    t_aux.push_back(NewTijolo);
+                    t_aux.push_back(tijolo(i+2,j+2));
                 }
             }
             t.push_back(t_aux);
             t_aux.clear();
             for(int i=0; i<3;i++){
                 for(int j=0; j<2; j++){
-                    tijolo NewTijolo(i+8, j+7);
-                    t_aux.push_back(NewTijolo);
+                    t_aux.push_back(tijolo(i+8, j+7));
                 }
             }
             t.push_back(t_aux);
             t_aux.clear();
             for(int i=0; i<3;i++){
                 for(int j=0; j<2; j++){
-                    tijolo NewTijolo(i+8, j+2);
-                    t_aux.push_back(NewTijolo);
+                    t_aux.push_back(tijolo(i+8, j+2));
                 }
             }
             t.push_back(t_aux);
             t_aux.clear();
             for(int i=0; i<3;i++){
                 for(int j=0; j<2; j++){
-                    tijolo NewTijolo(i+13, j+7);
-                    t_aux.push_back(NewTijolo);
+                    t_aux.push_back(tijolo(i+13, j+7));
                 }
             }
             t.push_back(t_aux);
             t_aux.clear();
             for(int i=0; i<3;i++){
                 for(int j=0; j<2; j++){
-                    tijolo NewTijolo(i+13, j+2);
-                    t_aux.push_back(NewTijolo);
+                    t_aux.push_back(tijolo(i+13, j+2));
                 }
             }
             t.push_back(t_aux);
+            break;
     }
 
     pontos p = pontos(0);
