@@ -67,18 +67,6 @@ int main()
 
     //Inicializa os objetos da aplicação
 
-    //Tijolos
-    //std::vector<tijolo> t, t_param;
-    
-
-    for (int i = 0; i < 7; i++)
-    {
-        for (int j = 1; j < 6; j++)
-        {
-            tijolo NewTijolo(i, j+3);
-            t.push_back(NewTijolo);
-        }
-    }
     //Bolinha
     bolinha bol = bolinha(8, 7);
     bolinha bol_param;
@@ -316,8 +304,10 @@ int main()
     float temp;
     t_param = t;
     for(int i = 0; i < t.size(); i++){
-        t_param[i].setXparam((float)t[i].getX()/(float)width);
-        t_param[i].setYparam((float)t[i].getY()/(float)heigth);
+        for(int j=0; j<t[i].size(); j++){
+            t_param[i][j].setXparam((float)t[i][j].getX()/(float)width);
+            t_param[i][j].setYparam((float)t[i][j].getY()/(float)heigth);
+        }
     }
     //std::cout << "Barra: " << bar.print() << "   Bolinha: " << bol.print() << std::endl;
     bar_param = bar;
@@ -416,8 +406,10 @@ int main()
         //Objects Size Parameterization
         t_param = t;
         for(int i = 0; i < t.size(); i++){
-            t_param[i].setXparam((float)t[i].getX()/(float)width);
-            t_param[i].setYparam((float)t[i].getY()/(float)heigth);
+            for(int j=0; j<t[i].size();j++){
+                t_param[i][j].setXparam((float)t[i][j].getX()/(float)width);
+                t_param[i][j].setYparam((float)t[i][j].getY()/(float)heigth);
+            }
         }
         bar_param = bar;
         for(int i = 0; i < bar.size(); i++){

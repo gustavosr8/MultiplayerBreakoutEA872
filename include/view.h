@@ -45,10 +45,6 @@ class view{
         SDL_Rect Message_VidaValue_rect;
         SDL_Rect Message_PointValue_rect;
 
-
-
-
-
     public:
         /*! \brief Construtor do view
          *  

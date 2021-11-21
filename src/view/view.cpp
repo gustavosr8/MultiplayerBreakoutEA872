@@ -28,8 +28,8 @@ SDL_Rect* view::getBolinha(){return &bol;}
 SDL_Rect* view::getBarra(){return &bar;}
 std::vector<barra>& view::getBarras(){return ba;}
 std::vector<std::vector<tijolo> >& view::getTijolos(){return t;}
-pontos* view::getPonto(){return po;};
-vida* view::getVida(){return v;};
+pontos* view::getPonto(){return po;}
+vida* view::getVida(){return v;}
 
 
 int view::getWidth(){return SCREEN_WIDTH;};
@@ -217,8 +217,10 @@ int view::initClient(){
     }
     //Tijolos
     for(int i=0; i<t.size(); i++){
-        t[i].setW(t[i].getWmult()*SCREEN_WIDTH/16);
-        t[i].setH(t[i].getHmult()*SCREEN_HEIGHT/9);
+        for(int j=0; j<t[i].size(); j++){
+            t[i][j].setW(t[i][j].getWmult()*SCREEN_WIDTH/16);
+            t[i][j].setH(t[i][j].getHmult()*SCREEN_HEIGHT/9);
+        }
     } 
 
     //Inicializando a Bolinha

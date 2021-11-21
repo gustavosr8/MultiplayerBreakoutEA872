@@ -53,7 +53,7 @@ int main()
     
     js = json::parse(output1);
     container cntr;
-    std::vector<tijolo> t, t_param;
+    std::vector<std::vector<tijolo> > t, t_param;
     bolinha bol, bol_param;
     std::vector<barra> bar, bar_param;
     pontos p;
@@ -76,8 +76,10 @@ int main()
     int width = v.getWidth();
     int heigth = v.getHeigth();
     for(int i = 0; i < t_param.size(); i++){
-        t_param[i].setX(t_param[i].getXparam()*width);
-        t_param[i].setY(t_param[i].getYparam()*heigth);
+        for(int j=0; j<t_param[i].size(); j++){
+            t_param[i][j].setX(t_param[i][j].getXparam()*width);
+            t_param[i][j].setY(t_param[i][j].getYparam()*heigth);
+        }
     }
     for(int i = 0; i < bar_param.size(); i++){
         bar_param[i].setX(bar_param[i].getXparam()*width);
@@ -88,14 +90,8 @@ int main()
     t = t_param;
     bol = bol_param;
     bar = bar_param;
-    //std::cout << "Barra: " << bar.print() << "   Bolinha: " << bol.print() << std::endl;
     v.initClient();
-    /*
-    for(int i = 0; i < t_param.size(); i++){
-        std::cout << "Tijolos  X: " << t[i].getX() << "   Y: " << t[i].getY();
-        std::cout << " H: " << t[i].getH() << "   W: " << t[i].getW() << std::endl;
-    }*/
-    //std::cout << "Tijolos  H: " << t[0].getH() << "   W: " << t[0].getW() << std::endl;
+    
     bool rodando = true;
     SDL_Event evento;
 
@@ -103,7 +99,6 @@ int main()
     
     while (rodando)
     {   
-        //std::cout << "Barra: " << bar.print() << "   Bolinha: " << bol.print() << std::endl;
         if (l.getValue() > 0 && t.size() > 0)
         {
             v.render();
@@ -170,15 +165,16 @@ int main()
             bol.setX(cntr.bo.getXparam()*width);
             bol.setY(cntr.bo.getYparam()*heigth);
         }    
-        w = t[0].getW();
-        h = t[0].getH();
+        w = t[0][0].getW();
+        h = t[0][0].getH();
         t = cntr.t;
         for(int i = 0; i < t.size(); i++){
-            t[i].setX(t[i].getXparam()*width);
-            t[i].setY(t[i].getYparam()*heigth);
-            t[i].setW(w);
-            t[i].setH(h);
-            //std::cout << "Tijolo " << i << ":  X: "<< t[i].getX() << " Y: "<< t[i].getY() << std::endl;
+            for(int j=0; i<t[i].size(); j++){
+            t[i][j].setX(t[i][j].getXparam()*width);
+            t[i][j].setY(t[i][j].getYparam()*heigth);
+            t[i][j].setW(w);
+            t[i][j].setH(h);
+            }
         }
         
         if (l.getValue() > 0 && t.size() > 0)

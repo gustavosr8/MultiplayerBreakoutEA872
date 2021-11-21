@@ -13,7 +13,7 @@ class container {
         std::vector<barra> ba;
         bolinha bo;
         pontos p;
-        std::vector<tijolo> t;
+        std::vector <std::vector<tijolo> > t;
         teclado keyb;
         NLOHMANN_DEFINE_TYPE_INTRUSIVE(container, v, ba, bo, p, t, keyb);
 };
