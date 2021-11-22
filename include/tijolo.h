@@ -10,7 +10,7 @@ class tijolo{
     private:
         int x,y;                    /*!< Variaveis de posicao*/
         int h, w;                   /*!< Variaveis de dimensao*/
-        float x_param, y_param;
+        float x_param, y_param;     /*!< Fatores de parametrizacao da posicao*/
         float w_mult=1, h_mult=0.5; /*!< Fator de multiplicacao para visualizacao*/
         int color;                  /*!< Cor da barra*/
 

@@ -98,11 +98,16 @@ class view{
         */
         void perdeu(int user);
 
-        /*! \brief Vitoria
+        /*! \brief Vitoria Singleplayer
         *   
         *   Sequencia de acoes para quando um jogador ganha
         */
         void ganhou(int user);
+
+        /*! \brief Vitoria Multiplayer
+        *
+        *   Sequencia de acoes para quando um jogador ganha no multiplayer
+        */
         void ganhouMulti(int user_id);
         int window_create(int size);
         int quantidadeTijolos();

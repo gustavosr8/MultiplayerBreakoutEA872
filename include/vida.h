@@ -8,9 +8,9 @@
 
 class vida{
     private:
-        int value;      /*!< quantidade de vidas*/
-        float w_mult=2, h_mult=0.5;
-        int x = 0.5, y = 0.7; 
+        int value;                      /*!< quantidade de vidas*/
+        float w_mult=2, h_mult=0.5;     /*!< Multiplicadores para parametrizar altura e largura*/
+        int x = 0.5, y = 0.7;           /*!< Posicao da vida*/
 
     public:
         vida(int value_);

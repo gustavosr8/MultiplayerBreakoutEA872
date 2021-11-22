@@ -44,7 +44,6 @@ int view::init(){
 
     //Inicia e configura o TTF (vizualizacao de texto)
     TTF_Init();
-    //SDL_GetWindowSize(window, &SCREEN_WIDTH, &SCREEN_HEIGHT);
     int width, heigth;
     if(SCREEN_WIDTH/SCREEN_HEIGHT > 2.32){  
         width = 21;
@@ -453,7 +452,7 @@ int view::window_create(int size){
     SDL_WINDOWPOS_UNDEFINED,
     SCREEN_WIDTH,
     SCREEN_HEIGHT,
-    SDL_WINDOW_SHOWN/*SDL_WINDOW_FULLSCREEN_DESKTOP*/);
+    SDL_WINDOW_SHOWN);
     if (window==nullptr) { // Em caso de erro...
         std::cout << SDL_GetError();
         SDL_Quit();

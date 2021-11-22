@@ -17,8 +17,8 @@ class barra{
         int h, w;                       /*!< Variaveis de dimensao*/
         float w_mult = 2, h_mult = 0.25;/*!< Fator de multiplicacao para visualizacao*/       
         int color;                      /*!< Cor da barra*/
-        int lim_left, lim_rigth;    //colocar limites laterais na inicialização
-        bool show = true;
+        int lim_left, lim_rigth;        /*!< Limites laterais de movimento*/
+        bool show = true;               /*!< Diz se a barra deve ser mostrada na tela*/
 
     public:
         /*! \brief Construtor da barra

@@ -16,7 +16,6 @@ void controller::update(){
 
 void controller::updateMovimento(barra* ba, teclado keyb, bool space_on){
     std::vector<std::vector<tijolo> >&tijolo_ = v.getTijolos();
-    //SDL_Rect* barra = v.getBarra();
     SDL_Rect* bolinha = v.getBolinha();
     SDL_PumpEvents();
     int flag = 0;
@@ -31,7 +30,6 @@ void controller::updateMovimento(barra* ba, teclado keyb, bool space_on){
         if(ba->getX()+ba->getW()+veloc <= v.getWidth() && ba->getX()+ba->getW()+veloc <= ba->getRightLim())
             ba->setX(ba->getX()+veloc);
     } 
-    //barra->x = ba->getX(); 
 
     //Movimentação das Bolinhas
     if(bo->getPause() && bo->getExit()){ 
@@ -101,28 +99,25 @@ bool controller::colisaoBarra(barra* barra){
 
     int l1_x, l1_y, r1_x, r1_y, l2_x, l2_y, r2_x, r2_y;
 
-    //for(int i=0; i < barra_.size(); i++){
         
-        l1_x = bolinha->x + bo->getDirX();
-        l1_y = bolinha->y + bo->getDirY();
-        r1_x = bolinha->x + bolinha->w + bo->getDirX();
-        r1_y = bolinha->y + bolinha->h + bo->getDirY(); 
-        l2_x = barra->getX();
-        l2_y = barra->getY();
-        r2_x = barra->getX() + barra->getW();
-        r2_y = barra->getY() + barra->getH();
-
-        // Se um objeto esta a esquerda do outro
-        if (l1_x >= r2_x || l2_x >= r1_x){
-            return false;
-        }
-            
-        // Se um objeto esta a direita do outrp
-        if (r1_y <= l2_y || r2_y <= l1_y){
-            return false;
-        }
-    //}
-    return true;    
+    l1_x = bolinha->x + bo->getDirX();
+    l1_y = bolinha->y + bo->getDirY();
+    r1_x = bolinha->x + bolinha->w + bo->getDirX();
+    r1_y = bolinha->y + bolinha->h + bo->getDirY(); 
+    l2_x = barra->getX();
+    l2_y = barra->getY();
+    r2_x = barra->getX() + barra->getW();
+    r2_y = barra->getY() + barra->getH();
+    // Se um objeto esta a esquerda do outro
+    if (l1_x >= r2_x || l2_x >= r1_x){
+        return false;
+    }
+        
+    // Se um objeto esta a direita do outrp
+    if (r1_y <= l2_y || r2_y <= l1_y){
+        return false;
+    }
+     return true;    
 }
 
 bool controller::colisaoBloco(){

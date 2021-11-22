@@ -1,9 +1,9 @@
 #pragma once
 #include "json.hpp"
 
-/*! \brief Classe para os pontos
+/*! \brief Classe para oteclado
  *
- *  Classe utilizada para armazenar os pontos do jogador.
+ *  Classe armazena a funcao da tecla que foi pressionada
 */
 
 class teclado{

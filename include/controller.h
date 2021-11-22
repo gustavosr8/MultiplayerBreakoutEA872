@@ -17,10 +17,10 @@
 class controller{
     
     private:
-        view &v;        /*!< view (alocado previamente)*/
-        bolinha* bo;    /*!< bolinha (alocada previamente)*/
-        std::vector<teclado>& keyb;
-        int veloc = 20; /*!< velocidade de movimentacao da barrinha*/
+        view &v;                    /*!< view (alocado previamente)*/
+        bolinha* bo;                /*!< bolinha (alocada previamente)*/
+        std::vector<teclado>& keyb; /*!< tecla pressionada no cliente*/
+        int veloc = 20;             /*!< velocidade de movimentacao da barrinha*/
     
     public:
         /*! \brief Construtor do controller
@@ -28,8 +28,8 @@ class controller{
          *  Recebe um view, uma barra e uma bolinha
          * 
          * \param v_ um objeto view onde os objetos vao ser mostrados
-         * \param ba_ objeto barra
          * \param bo_ objeto bolinha
+         * \param keyb_ objeto teclado
         */
         controller(view &v_, bolinha* bo_, std::vector<teclado>& keyb_): v(v_), bo(bo_), keyb(keyb_){}
 
@@ -39,15 +39,20 @@ class controller{
         */
         void update();
 
+        
+        /*! \brief Movimento barrinha
+         *  
+         *  Recebe parametros de teclado e atualiza o movimento da barrinha 
+        */
+        void updateMovimento(barra* ba, teclado keyb, bool space_on);
+
+
         /*! \brief Colisao barra/bolinha
          *  
          *  checa a colisao entre a barra e a bolinha
          * 
          *  \return retorna true caso haja colisao
         */
-
-        void updateMovimento(barra* ba, teclado keyb, bool space_on);
-
         bool colisaoBarra(barra* barra);
 
         /*! \brief Colisao blocos/bolinha
@@ -76,6 +81,10 @@ class controller{
          * 
         */
         bool finish(int user);
+
+        /*! \brief Salva o jogo*/
         bool save(int user);
+
+        /*! \brief Carrega o jogo salvo*/
         bool load(int user);
 };

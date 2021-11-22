@@ -80,7 +80,6 @@ int main()
 
     switch(players){
         case 1:
-            std::cout << "1 jogador conectado. Iniciando jogo." << std::endl; 
             bar.push_back(barra(8,8));
 
             for (int i=0; i<10; i++){
@@ -94,7 +93,6 @@ int main()
 
         
         case 2:
-            std::cout << "2 jogadores conectado. Iniciando jogo." << std::endl;
             bar.push_back(barra(8,4));
             bar.push_back(barra(8,6));
             
@@ -322,7 +320,6 @@ int main()
         if(t[i].size() == 0)
             bar[i].setVisibility(false);
     }
-    //std::cout << "Barra: " << bar.print() << "   Bolinha: " << bol.print() << std::endl;
     bar_param = bar;
     for(int i = 0; i < bar.size(); i++){
         bar_param[i].setXparam((float)bar_param[i].getX()/(float)width);
@@ -344,7 +341,6 @@ int main()
     f.open("server.json");
     f << js;
     f.close();
-    //key = getTeclado(v);
     std::stringstream output1;
     output1 << js;
     std::string output = output1.str();
