@@ -3,13 +3,19 @@
 
 void controller::update(){
     std::vector<barra> &barra_ = v.getBarras();
+    bool space_on = false;
+    for(int i=0; i < barra_.size(); i++){
+        if(keyb[i].Space())
+            space_on = true;
+    }
 
     for(int i=0; i < barra_.size(); i++){
-        updateMovimento(&barra_[i], keyb[i]);
+        updateMovimento(&barra_[i], keyb[i], space_on);
     }
 }
 
-void controller::updateMovimento(barra* ba, teclado keyb){
+void controller::updateMovimento(barra* ba, teclado keyb, bool space_on){
+    std::vector<std::vector<tijolo> >&tijolo_ = v.getTijolos();
     //SDL_Rect* barra = v.getBarra();
     SDL_Rect* bolinha = v.getBolinha();
     SDL_PumpEvents();
@@ -17,11 +23,12 @@ void controller::updateMovimento(barra* ba, teclado keyb){
 
     //Movimentacao da barra
     if (keyb.Left()) {     //Se pressiona o direcional esquerdo, decrementa X
-        if(ba->getX()-veloc >= 0)
+        if(ba->getX()-veloc >= 0 && ba->getX()-veloc >= ba->getLeftLim())
             ba->setX(ba->getX()-veloc);
+            
     }
     if (keyb.Rigth()){     //Se pressiona o direcional direito, incrementa X
-        if(ba->getX()+ba->getW()+veloc <= v.getWidth())
+        if(ba->getX()+ba->getW()+veloc <= v.getWidth() && ba->getX()+ba->getW()+veloc <= ba->getRightLim())
             ba->setX(ba->getX()+veloc);
     } 
     //barra->x = ba->getX(); 
@@ -34,24 +41,26 @@ void controller::updateMovimento(barra* ba, teclado keyb){
         if(bo->getY() < bo->getH())
             bo->setDirY(-1*bo->getDirY());
         
-        if(colisaoBarra(ba)){
+        if(ba->isVisible() && colisaoBarra(ba)){
             if(keyb.Space()){ //Se a tecla espaco for pressionada, a bolinha pausa no meio da barra
                 bo->setPause(false);
                 bo->setX(ba->getX()+(ba->getW()/2));
-                bo->setY(ba->getY()-ba->getH());
+                bo->setY(ba->getY()-bo->getH());
             }
-            bo->setDirY(-1*bo->getDirY());
+            else{bo->setDirY(-1*bo->getDirY());}
         }
 
-        colisaoBloco(); //Checa a colisao com os blocos e toma as devidas decisoes sobre a movimentacao internamente
+        colisaoBloco(); //Checa a colisao com os blocos de tijolo e toma as devidas decisoes sobre a movimentacao internamente
 
         if(bo->getY() >= v.getHeigth()){ //caso a bolinha saia por baixo da tela, reinicia o movimento e diminui uma vida
-            bo->setX(ba->getX()+(ba->getW()/2));
-            bo->setY(ba->getY()-20);
-            bo->setDirY(-1*bo->getDirY());
-            bo->setExit(false);
-            vida* vi = v.getVida();
-            vi->setValue(vi->getValue()-1);
+            if(tijolo_.size() == 1){
+                bo->setX(ba->getX()+(ba->getW()/2));
+                bo->setY(ba->getY()-20);
+                bo->setExit(false);
+                vida* vi = v.getVida();
+                vi->setValue(vi->getValue()-1);
+            } 
+            bo->setDirY(-1*bo->getDirY());   
         }
 
         bo->setY(bo->getY()+bo->getDirY());
@@ -62,15 +71,17 @@ void controller::updateMovimento(barra* ba, teclado keyb){
         bo->setX(ba->getX()+(ba->getW()/2));
         bo->setY(ba->getY()-bo->getH());
         bo->setDirY(5);
+        bo->setDirX(5);
         bolinha->x = bo->getX();
         bolinha->y = bo->getY();
-        bo->setDirY(5);
     }else{
-        bo->setX(ba->getX()+(ba->getW()/2));
-        bo->setY(ba->getY()-bo->getH());
-        bolinha->x = bo->getX();
-        bolinha->y = bo->getY();
-        if(!keyb.Space()){
+        if(keyb.Space()){
+            bo->setX(ba->getX()+(ba->getW()/2));
+            bo->setY(ba->getY()-bo->getH());
+            bolinha->x = bo->getX();
+            bolinha->y = bo->getY();
+        }    
+        else{
             bo->setDirY(5);
             bo->setPause(true);
         }
@@ -140,7 +151,7 @@ bool controller::colisaoBloco(){
             }
             //Caso haja colisao, destroi o bloco e atualiza a pontuacao
             pontos* p = v.getPonto();
-            tijolo_.erase(tijolo_.begin()+i);
+            tijolo_[i].erase(tijolo_[i].begin()+j);
 
             p->setValue(p->getValue()+10);
             //Caso a colisao seja lateral, inverte a movimentacao lateral da bolinha
@@ -156,24 +167,25 @@ bool controller::colisaoBloco(){
 }
 
 //Se o botao S for pressionado, inicia o jogo
-void controller::start(){
-    if (keyb[0].Start()){
+void controller::start(int user){
+    
+    if (keyb[user].Start()){
         bo->setExit(true);
         bo->setPause(true);
     }    
 }
 
 //Se o botao Esc for pressionado, finaliza o jogo
-bool controller::save(){
-    if (keyb[0].Save()){
+bool controller::save(int user){
+    if (keyb[user].Save()){
         return true;
     } 
     return false;   
 }
 
 //Se o botao Esc for pressionado, finaliza o jogo
-bool controller::load(){
-    if (keyb[0].Load()){
+bool controller::load(int user){
+    if (keyb[user].Load()){
         bo->setExit(false);
         bo->setPause(false);
         return true;
@@ -182,8 +194,8 @@ bool controller::load(){
 }
 
 //Se o botao Esc for pressionado, finaliza o jogo
-bool controller::finish(){
-    if (keyb[0].Exit()){
+bool controller::finish(int user){
+    if (keyb[user].Exit()){
         return true;
     } 
     return false;   

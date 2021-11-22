@@ -118,12 +118,39 @@ int view::init(){
         for(int j=0; j<t[i].size();j++){
             t[i][j].setH(t[i][j].getHmult()*SCREEN_HEIGHT/9);
             t[i][j].setW(t[i][j].getWmult()*SCREEN_WIDTH/16);
-            t[i][j].setX(t[i][j].getX()*((SCREEN_WIDTH/16)+(t[i][j].getW()/1.5)));
-            t[i][j].setY(t[i][j].getY()*((SCREEN_HEIGHT/9)-(t[i][j].getH()*0.8)));
+            t[i][j].setX(t[i][j].getX()*((SCREEN_WIDTH/16)+(t[i][j].getW()/3)));
+            t[i][j].setY(((t[i][j].getY()*(SCREEN_HEIGHT/9))+(t[i][j].getH()/1.5)));
         }
     } 
+    
+    
     //Inicializando a Barras
     for(int i=0; i<ba.size(); i++){
+        //Inicializando limites laterais das Barras
+        if(ba.size() <=2){
+            ba[i].setLeftLim(0);
+            ba[i].setRigthLim(SCREEN_WIDTH);
+        }else if(ba.size() == 3 || ba.size() == 4){
+            if(ba[i].getX() == 4){
+                ba[i].setLeftLim(0);
+                ba[i].setRigthLim(SCREEN_WIDTH/2);
+            }else{
+                ba[i].setLeftLim(SCREEN_WIDTH/2);
+                ba[i].setRigthLim(SCREEN_WIDTH);
+            }
+        }else{
+            if(ba[i].getX() == 2){
+                ba[i].setLeftLim(0);
+                ba[i].setRigthLim(SCREEN_WIDTH/3);
+            }else if (ba[i].getX() == 7){
+                ba[i].setLeftLim(SCREEN_WIDTH/3);
+                ba[i].setRigthLim(SCREEN_WIDTH*(2/3));
+            }else {
+                ba[i].setLeftLim(SCREEN_WIDTH*(2/3));
+                ba[i].setRigthLim(SCREEN_WIDTH);
+            }
+        }
+
         ba[i].setX(ba[i].getX()*SCREEN_WIDTH/16);
         ba[i].setY(ba[i].getY()*SCREEN_HEIGHT/9);
         ba[i].setH(ba[i].getHmult()*SCREEN_HEIGHT/9);
@@ -236,20 +263,28 @@ int view::initClient(){
 }
 
 //Faz as atualizacoes necessarias para cada renderizacao da tela
-void view::render(){
+void view::render(int user){
 
     //Define a cor da tela como preta
     SDL_SetRenderDrawColor( renderer, 0, 0, 0, 0);
     SDL_RenderClear(renderer);
 
-    //Renderiza os textos
-    render_text(renderer, Message_Vida_rect.x, Message_Vida_rect.y, "Vida: ",Font, &Message_Vida_rect, &White);
-    render_text(renderer, Message_Pontos_rect.x, Message_Pontos_rect.y, "Pontos: ",Font, &Message_Pontos_rect, &White);
-    std::sprintf(num_char, "%d", v->getValue());
-    render_text(renderer, Message_VidaValue_rect.x, Message_VidaValue_rect.y, num_char,Font, &Message_VidaValue_rect, &White);
-    std::sprintf(num_char, "%d", po->getValue());
-    render_text(renderer, Message_PointValue_rect.x, Message_PointValue_rect.y, num_char,Font, &Message_PointValue_rect, &White);
-    
+    if(t.size() == 1){
+        //Renderiza os textos
+        render_text(renderer, Message_Vida_rect.x, Message_Vida_rect.y, "Vida: ",Font, &Message_Vida_rect, &White);
+        render_text(renderer, Message_Pontos_rect.x, Message_Pontos_rect.y, "Pontos: ",Font, &Message_Pontos_rect, &White);
+        std::sprintf(num_char, "%d", v->getValue());
+        render_text(renderer, Message_VidaValue_rect.x, Message_VidaValue_rect.y, num_char,Font, &Message_VidaValue_rect, &White);
+        std::sprintf(num_char, "%d", po->getValue());
+        render_text(renderer, Message_PointValue_rect.x, Message_PointValue_rect.y, num_char,Font, &Message_PointValue_rect, &White);
+    } else {
+        if(user == -1){
+            std::sprintf(num_char, "Server");
+        }else{
+            std::sprintf(num_char, "Player %d", user);
+        }  
+        render_text(renderer, Message_Vida_rect.x, Message_Vida_rect.y, num_char,Font, &Message_Vida_rect, &White);
+    }
     //Renderiza os tijolos
     for(int i=0; i<t.size(); i++){
         for(int j=0; j<t[i].size(); j++){
@@ -271,16 +306,18 @@ void view::render(){
     bol.y = bo->getY();
     
     for(int i=0; i<ba.size(); i++){
-        //Inicializando a Barra
-        bar.h = ba[i].getH();
-        bar.w = ba[i].getW();
-        bar.x = ba[i].getX();
-        bar.y = ba[i].getY();
+        if(ba[i].isVisible()){
+            //Inicializando a Barra
+            bar.h = ba[i].getH();
+            bar.w = ba[i].getW();
+            bar.x = ba[i].getX();
+            bar.y = ba[i].getY();
 
-        //Renderiza as barras
-        SDL_SetRenderDrawColor(renderer, 64, 244, 208, 255);
-        SDL_RenderDrawRect(renderer, &bar);
-        SDL_RenderFillRect( renderer, &bar );
+            //Renderiza as barras
+            SDL_SetRenderDrawColor(renderer, 64, 244, 208, 255);
+            SDL_RenderDrawRect(renderer, &bar);
+            SDL_RenderFillRect( renderer, &bar );
+        }    
     }
     //Renderiza as bolinhas
     SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
@@ -293,8 +330,8 @@ void view::render(){
 }
 
 //Mostra na tela a mensagem de derrota
-void view::perdeu(){
-    render();
+void view::perdeu(int user){
+    render(user);
     render_text(renderer, Message_PointValue_rect.x, Message_PointValue_rect.y, num_char,Font, &Message_PointValue_rect, &White);
      
     int font_size;
@@ -315,8 +352,8 @@ void view::perdeu(){
     SDL_Delay(100);
 }
 //Mostra na tela a mensagem de vitoria
-void view::ganhou(){
-    render();
+void view::ganhou(int user){
+    render(user);
     render_text(renderer, Message_PointValue_rect.x, Message_PointValue_rect.y, num_char,Font, &Message_PointValue_rect, &White);
     
     int font_size;
@@ -332,6 +369,33 @@ void view::ganhou(){
     Message_Fim_rect.w = 150;
     TTF_Font* Font2 = TTF_OpenFont(tmp,font_size);
     render_text(renderer, Message_Fim_rect.x, Message_Fim_rect.y, "GANHOU!!!",Font2, &Message_Fim_rect, &Green);
+    
+    SDL_RenderPresent(renderer);
+    SDL_Delay(100);
+}
+
+void view::ganhouMulti(int user_id){
+    render(-1);
+    render_text(renderer, Message_PointValue_rect.x, Message_PointValue_rect.y, num_char,Font, &Message_PointValue_rect, &White);
+    
+    int font_size;
+    if(SCREEN_HEIGHT > 2160){  
+        font_size = 80;
+    }else if(SCREEN_HEIGHT <= 720){
+        font_size = 40;
+    }else{
+        font_size = 70;
+    }
+    Message_Fim_rect.x = (SCREEN_WIDTH/2)-(8*font_size);   
+    Message_Fim_rect.y = SCREEN_HEIGHT/2; 
+    Message_Fim_rect.w = 150;
+    TTF_Font* Font2 = TTF_OpenFont(tmp,font_size);
+    std::stringstream fim;
+    fim << "PLAYER ";
+    fim << user_id;
+    fim << " GANHOU!!";
+    std::string output = fim.str();
+    render_text(renderer, Message_Fim_rect.x, Message_Fim_rect.y, output.c_str() , Font2, &Message_Fim_rect, &Green);
     
     SDL_RenderPresent(renderer);
     SDL_Delay(100);

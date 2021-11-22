@@ -46,7 +46,7 @@ class controller{
          *  \return retorna true caso haja colisao
         */
 
-        void updateMovimento(barra* ba, teclado keyb);
+        void updateMovimento(barra* ba, teclado keyb, bool space_on);
 
         bool colisaoBarra(barra* barra);
 
@@ -66,7 +66,7 @@ class controller{
          * (Tecla S)
          * 
         */
-        void start();
+        void start(int user);
 
         /*! \brief Finaliza o jogo
          *  
@@ -75,7 +75,7 @@ class controller{
          * (Tecla Esc)
          * 
         */
-        bool finish();
-        bool save();
-        bool load();
+        bool finish(int user);
+        bool save(int user);
+        bool load(int user);
 };

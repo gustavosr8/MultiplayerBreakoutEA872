@@ -83,9 +83,9 @@ int main()
             std::cout << "1 jogador conectado. Iniciando jogo." << std::endl; 
             bar.push_back(barra(8,8));
 
-            for (int i=0; i<8; i++){
-                for(int j=0;j<2;j++){
-                    tijolo NewTijolo(i+4,j+1);
+            for (int i=0; i<10; i++){
+                for(int j=0;j<4;j++){
+                    tijolo NewTijolo(i+1,j+1);
                     t_aux.push_back(NewTijolo);
                 }
             }
@@ -95,20 +95,21 @@ int main()
         
         case 2:
             std::cout << "2 jogadores conectado. Iniciando jogo." << std::endl;
-            bar.push_back(barra(8,6));
             bar.push_back(barra(8,4));
-
+            bar.push_back(barra(8,6));
+            
             for(int i=0; i<8;i++){
                 for(int j=0; j<2; j++){
-                    tijolo NewTijolo(i+4, j+7);
-                    t_aux.push_back(tijolo(i+4, j+7));
+                    tijolo NewTijolo(i+2, j+1);
+                    t_aux.push_back(NewTijolo);
                 }
             }
             t.push_back(t_aux);
             t_aux.clear();
             for(int i=0; i<8;i++){
                 for(int j=0; j<2; j++){
-                    t_aux.push_back(tijolo(i+4, j+2));
+                    tijolo NewTijolo(i+2, j+7);
+                    t_aux.push_back(NewTijolo);
                 }
             }
             t.push_back(t_aux);
@@ -118,24 +119,28 @@ int main()
             bar.push_back(barra(4,6));
             bar.push_back(barra(4,4));
             bar.push_back(barra(12,6));
+            
 
             for(int i=0; i<5;i++){
                 for(int j=0; j<2; j++){
-                    t_aux.push_back(tijolo(i+2, j+7));
+                    tijolo NewTijolo(i+1, j+7);
+                    t_aux.push_back(NewTijolo);
                 }
             }
             t.push_back(t_aux);
             t_aux.clear();
             for(int i=0; i<5;i++){
                 for(int j=0; j<2; j++){
-                    t_aux.push_back(tijolo(i+2, j+2));
+                    tijolo NewTijolo(i+1, j+1);
+                    t_aux.push_back(NewTijolo);
                 }
             }
             t.push_back(t_aux);
             t_aux.clear();
             for(int i=0; i<5;i++){
                 for(int j=0; j<2; j++){
-                    t_aux.push_back(tijolo(i+10, j+7));
+                    tijolo NewTijolo(i+7, j+7);
+                    t_aux.push_back(NewTijolo);
                 }
             }
             t.push_back(t_aux);
@@ -146,125 +151,141 @@ int main()
             bar.push_back(barra(4,4));
             bar.push_back(barra(12,6));
             bar.push_back(barra(12,4));
-
+            
             for(int i=0; i<5;i++){
                 for(int j=0; j<2; j++){
-                    t_aux.push_back(tijolo(i+2, j+7));
+                    tijolo NewTijolo(i+1, j+7);
+                    t_aux.push_back(NewTijolo);
                 }
             }
             t.push_back(t_aux);
             t_aux.clear();
             for(int i=0; i<5;i++){
                 for(int j=0; j<2; j++){
-                    t_aux.push_back(tijolo(i+2, j+2));
+                    tijolo NewTijolo(i+1, j+1);
+                    t_aux.push_back(NewTijolo);
                 }
             }
             t.push_back(t_aux);
             t_aux.clear();
             for(int i=0; i<5;i++){
                 for(int j=0; j<2; j++){
-                    t_aux.push_back(tijolo(i+10, j+7));
+                    tijolo NewTijolo(i+7, j+7);
+                    t_aux.push_back(NewTijolo);
                 }
             }
             t.push_back(t_aux);
             t_aux.clear();
             for(int i=0; i<5;i++){
                 for(int j=0; j<2; j++){
-                    t_aux.push_back(tijolo(i+10, j+2));
+                     tijolo NewTijolo(i+7, j+1);
+                    t_aux.push_back(NewTijolo);
                 }
             }
             t.push_back(t_aux);
             break;
 
         case 5:
-            bar.push_back(barra(3,6));
-            bar.push_back(barra(3,4));
-            bar.push_back(barra(9,6));
-            bar.push_back(barra(9,4));
-            bar.push_back(barra(14,4));
+            bar.push_back(barra(2,6));
+            bar.push_back(barra(2,4));
+            bar.push_back(barra(7,6));
+            bar.push_back(barra(7,4));
+            bar.push_back(barra(13,6));
 
             for(int i=0; i<3;i++){
                 for(int j=0; j<2; j++){
-                    t_aux.push_back(tijolo(i+2, j+7));
+                    tijolo NewTijolo(i+1, j+7);
+                    t_aux.push_back(NewTijolo);
                 }
             }
             t.push_back(t_aux);
             t_aux.clear();
             for(int i=0; i<3;i++){
                 for(int j=0; j<2; j++){
-                    t_aux.push_back(tijolo(i+2,j+2));
+                    tijolo NewTijolo(i+1, j+1);
+                    t_aux.push_back(NewTijolo);
                 }
             }
             t.push_back(t_aux);
             t_aux.clear();
             for(int i=0; i<3;i++){
                 for(int j=0; j<2; j++){
-                    t_aux.push_back(tijolo(i+8, j+7));
+                    tijolo NewTijolo(i+5, j+7);
+                    t_aux.push_back(NewTijolo);
                 }
             }
             t.push_back(t_aux);
             t_aux.clear();
             for(int i=0; i<3;i++){
                 for(int j=0; j<2; j++){
-                    t_aux.push_back(tijolo(i+8, j+2));
+                     tijolo NewTijolo(i+5, j+1);
+                    t_aux.push_back(NewTijolo);
                 }
             }
             t.push_back(t_aux);
             t_aux.clear();
             for(int i=0; i<3;i++){
                 for(int j=0; j<2; j++){
-                    t_aux.push_back(tijolo(i+13, j+2));
+                    tijolo NewTijolo(i+9, j+7);
+                    t_aux.push_back(NewTijolo);
                 }
             }
             t.push_back(t_aux);
             break;
 
         case 6:
-            bar.push_back(barra(3,6));
-            bar.push_back(barra(3,4));
-            bar.push_back(barra(9,6));
-            bar.push_back(barra(9,4));
-            bar.push_back(barra(14,6));
-            bar.push_back(barra(14,4));
+            bar.push_back(barra(2,6));
+            bar.push_back(barra(2,4));
+            bar.push_back(barra(7,6));
+            bar.push_back(barra(7,4));
+            bar.push_back(barra(13,4));
+            bar.push_back(barra(13,6));
+            
 
             for(int i=0; i<3;i++){
                 for(int j=0; j<2; j++){
-                    t_aux.push_back(tijolo(i+2, j+7));
+                    tijolo NewTijolo(i+1, j+7);
+                    t_aux.push_back(NewTijolo);
                 }
             }
             t.push_back(t_aux);
             t_aux.clear();
             for(int i=0; i<3;i++){
                 for(int j=0; j<2; j++){
-                    t_aux.push_back(tijolo(i+2,j+2));
+                    tijolo NewTijolo(i+1, j+1);
+                    t_aux.push_back(NewTijolo);
                 }
             }
             t.push_back(t_aux);
             t_aux.clear();
             for(int i=0; i<3;i++){
                 for(int j=0; j<2; j++){
-                    t_aux.push_back(tijolo(i+8, j+7));
+                    tijolo NewTijolo(i+5, j+7);
+                    t_aux.push_back(NewTijolo);
                 }
             }
             t.push_back(t_aux);
             t_aux.clear();
             for(int i=0; i<3;i++){
                 for(int j=0; j<2; j++){
-                    t_aux.push_back(tijolo(i+8, j+2));
+                     tijolo NewTijolo(i+5, j+1);
+                    t_aux.push_back(NewTijolo);
                 }
             }
             t.push_back(t_aux);
             t_aux.clear();
             for(int i=0; i<3;i++){
                 for(int j=0; j<2; j++){
-                    t_aux.push_back(tijolo(i+13, j+7));
+                    tijolo NewTijolo(i+9, j+1);
+                    t_aux.push_back(NewTijolo);
                 }
             }
             t.push_back(t_aux);
             t_aux.clear();
             for(int i=0; i<3;i++){
                 for(int j=0; j<2; j++){
-                    t_aux.push_back(tijolo(i+13, j+2));
+                    tijolo NewTijolo(i+9, j+7);
+                    t_aux.push_back(NewTijolo);
                 }
             }
             t.push_back(t_aux);
@@ -296,7 +317,10 @@ int main()
         for(int j=0; j<t[i].size(); j++){
             t_param[i][j].setXparam((float)t[i][j].getX()/(float)width);
             t_param[i][j].setYparam((float)t[i][j].getY()/(float)heigth);
+            
         }
+        if(t[i].size() == 0)
+            bar[i].setVisibility(false);
     }
     //std::cout << "Barra: " << bar.print() << "   Bolinha: " << bol.print() << std::endl;
     bar_param = bar;
@@ -335,50 +359,67 @@ int main()
     //Ciclo de atualização e renderização
     while (rodando)
     {
-           
-        c.start();
-        //Fazer alteração para funcionar só com single player
-        if (c.save())
-        {
-            cntr.v = l;
-            cntr.ba = bar;
-            cntr.bo = bol;
-            cntr.p = p;
-            cntr.t = t;
-            js["Container"] = cntr;
-            std::ofstream f;
-            f.open("server.json");
-            f << js;
-            f.close();
+        for(int i=0; i < players; i++){ 
+            c.start(i);
         }
-        if (c.load())
-        {
-            std::ifstream f;
-            f.open("server.json");
-            f >> js;
-            f.close();
-            cntr = js["Container"];
-            l = cntr.v;
-            bar = cntr.ba;
-            //Ele instancia a bolinha no último local em que a barra foi salva
-            bol.setX(cntr.ba[0].getX() + cntr.ba[0].getW() / 2);
-            bol.setY(cntr.ba[0].getY() - cntr.bo.getH());
-            p = cntr.p;
-            t = cntr.t;
-        }
-        if (l.getValue() > 0 && t.size() > 0)
-        {
-            c.update();
-            v.render();
-        }
-        
-        else if (t.size() < 1)
-        {
-            v.ganhou();
-        }
-        else
-        {
-            v.perdeu();
+        if(players == 1){
+            if (c.save(0))
+            {
+                cntr.v = l;
+                cntr.ba = bar;
+                cntr.bo = bol;
+                cntr.p = p;
+                cntr.t = t;
+                js["Container"] = cntr;
+                std::ofstream f;
+                f.open("server.json");
+                f << js;
+                f.close();
+            }
+            if (c.load(0))
+            {
+                std::ifstream f;
+                f.open("server.json");
+                f >> js;
+                f.close();
+                cntr = js["Container"];
+                l = cntr.v;
+                bar = cntr.ba;
+                //Ele instancia a bolinha no último local em que a barra foi salva
+                bol.setX(cntr.ba[0].getX() + cntr.ba[0].getW() / 2);
+                bol.setY(cntr.ba[0].getY() - cntr.bo.getH());
+                p = cntr.p;
+                t = cntr.t;
+            }
+            if (l.getValue() > 0 && t[0].size() > 0)
+            {
+                c.update();
+                v.render(-1);
+            }
+            
+            else if (t[0].size() < 1)
+            {
+                v.ganhou(-1);
+            }
+            else
+            {
+                v.perdeu(-1);
+            }
+        } else {
+            int counter = 0;
+            int user;
+            for(int i = 0; i < t.size(); i++){
+                if(t[i].size() > 0){
+                    counter++;
+                    user = i;
+                }    
+            }
+            if(counter == 1){
+                v.ganhouMulti(user);
+            }else{
+                c.update();
+                v.render(-1);
+            }
         }
         while (SDL_PollEvent(&evento))
         {
@@ -387,11 +428,6 @@ int main()
                 rodando = false;
             }
         }
-        teclado keyb = getTeclado(v);
-        if (keyb.Exit())
-        {
-            rodando = false;
-        }
         //Objects Size Parameterization
         t_param = t;
         for(int i = 0; i < t.size(); i++){
@@ -399,6 +435,7 @@ int main()
                 t_param[i][j].setXparam((float)t[i][j].getX()/(float)width);
                 t_param[i][j].setYparam((float)t[i][j].getY()/(float)heigth);
             }
+            if(t[i].size() < 1){bar[i].setVisibility(false);}
         }
         bar_param = bar;
         for(int i = 0; i < bar.size(); i++){
@@ -422,7 +459,12 @@ int main()
         
         for(int i=0; i<players; i++){
             my_socket.send_to(boost::asio::buffer(output_send, output_send.size()), remote_endpoints[i]);
-        }        
+        }     
+        teclado keyS = getTeclado(v);
+        if (keyS.Exit())
+        {
+            rodando = false;
+        }   
     }
     t1.join();
     v.quit();

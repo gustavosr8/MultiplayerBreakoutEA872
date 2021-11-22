@@ -26,7 +26,7 @@ int main()
     udp::endpoint local_endpoint(udp::v4(), 0);
     udp::socket meu_socket(io_service, local_endpoint);
     boost::asio::ip::address ip_remoto =
-        boost::asio::ip::address::from_string("25.63.189.194");
+        boost::asio::ip::address::from_string("25.51.223.228");
 
     udp::endpoint remote_endpoint(ip_remoto, 9001);
     
@@ -61,7 +61,6 @@ int main()
     teclado key;
     
     cntr = js["Container"];
-    //std::cout << js << std::endl;
     l = cntr.v;
     bar_param = cntr.ba;
     bol_param = cntr.bo;
@@ -102,15 +101,21 @@ int main()
     {   
         if (l.getValue() > 0 && t[user_id].size() > 0)
         {
-            v.render();
+            v.render(user_id);
+            int counter = 0;
+            for(int i = 0; i < t.size(); i++){
+                if (t[i].size() > 0) counter++;
+            }
+            if(t.size() > 1 && counter == 1 && t[user_id].size() > 0) v.ganhou(user_id);
         }
-        else if (t[user_id].size() < 1)
-        {
-            v.ganhou();
+        else if (t[user_id].size() < 1 && t.size() == 1)
+        {   
+            if(l.getValue() > 0)
+                v.ganhou(user_id);
         }
         else
         {
-            v.perdeu();
+            v.perdeu(user_id);
         }
         while (SDL_PollEvent(&evento))
         {
@@ -122,17 +127,11 @@ int main()
         key = getTeclado(v);
         std::string output2;
         jc["user_id"] = user_id;
-        //std::cout << jc << std::endl;
         jc["Teclado"] = key;
-        //std::cout << jc << std::endl;
         std::stringstream output3;
         output3 << jc;
         output2 = output3.str();
         meu_socket.send_to(boost::asio::buffer(output2, 5000), remote_endpoint);
-        if (key.Exit())
-        {   
-            rodando = false;
-        }
         for(int i = 0; i < 5000; i++){
             output[i] = 0;
         }
@@ -170,17 +169,19 @@ int main()
         t = cntr.t;
         for(int i = 0; i < t.size(); i++){
             for(int j=0; j<t[i].size(); j++){
-            t[i][j].setX(t[i][j].getXparam()*width);
-            t[i][j].setY(t[i][j].getYparam()*heigth);
-            t[i][j].setW(w);
-            t[i][j].setH(h);
-            std::cout << i << " -- " << j << std::endl;
+                t[i][j].setX(t[i][j].getXparam()*width);
+                t[i][j].setY(t[i][j].getYparam()*heigth);
+                t[i][j].setW(w);
+                t[i][j].setH(h);
             }
         }
-        std::cout << "Fim recebimento tijolos" << std::endl;
         if (l.getValue() > 0 && t[user_id].size() > 0)
         {
-            v.render();
+            v.render(user_id);
+        }
+        if (key.Exit())
+        {   
+            rodando = false;
         }
     }
     v.quit();

@@ -84,7 +84,7 @@ class view{
          *  
          *  Metodo que renderiza todos os objetos a cada ciclo definido
         */
-        void render();
+        void render(int user);
 
         /*! \brief Encerramento
          *  
@@ -96,13 +96,14 @@ class view{
         *   
         *   Sequencia de acoes para quando um jogador perde
         */
-        void perdeu();
+        void perdeu(int user);
 
         /*! \brief Vitoria
         *   
         *   Sequencia de acoes para quando um jogador ganha
         */
-        void ganhou();
+        void ganhou(int user);
+        void ganhouMulti(int user_id);
         int window_create(int size);
         int quantidadeTijolos();
         SDL_Rect* getTarget();
