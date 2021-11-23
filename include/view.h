@@ -24,9 +24,9 @@
 class view{
     private:
         
-        std::vector<tijolo>& t;      /*!< tijolo (alocado previamente)*/
+        std::vector<std::vector<tijolo> >& t;      /*!< tijolo (alocado previamente)*/
         bolinha *bo;                /*!< bolinha (alocado previamente)*/
-        barra *ba;                  /*!< barra (alocado previamente)*/
+        std::vector<barra>& ba;                  /*!< barra (alocado previamente)*/
         pontos* po;                 /*!< pontos (alocado previamente)*/
         vida* v;                    /*!< vida (alocado previamente)*/
 
@@ -45,10 +45,6 @@ class view{
         SDL_Rect Message_VidaValue_rect;
         SDL_Rect Message_PointValue_rect;
 
-
-
-
-
     public:
         /*! \brief Construtor do view
          *  
@@ -60,7 +56,7 @@ class view{
          * \param po_ objeto pontos
          * \param v_ objeto vida
         */
-        view(std::vector<tijolo>& t_, barra* ba_, bolinha* bo_, pontos* po_, vida* v_);
+        view(std::vector<std::vector<tijolo> >& t_, std::vector<barra>& ba_, bolinha* bo_, pontos* po_, vida* v_);
 
         /*! \brief Renderiza um texto
         *   
@@ -82,12 +78,13 @@ class view{
          *  Sequencia de acoes que inicializam a janela de visualizacao
         */
         int init();
+        int initClient();
 
         /*! \brief Renderizacao
          *  
          *  Metodo que renderiza todos os objetos a cada ciclo definido
         */
-        void render();
+        void render(int user);
 
         /*! \brief Encerramento
          *  
@@ -99,19 +96,27 @@ class view{
         *   
         *   Sequencia de acoes para quando um jogador perde
         */
-        void perdeu();
+        void perdeu(int user);
 
-        /*! \brief Vitoria
+        /*! \brief Vitoria Singleplayer
         *   
         *   Sequencia de acoes para quando um jogador ganha
         */
-        void ganhou();
+        void ganhou(int user);
+
+        /*! \brief Vitoria Multiplayer
+        *
+        *   Sequencia de acoes para quando um jogador ganha no multiplayer
+        */
+        void ganhouMulti(int user_id);
+        int window_create(int size);
         int quantidadeTijolos();
         SDL_Rect* getTarget();
         SDL_Rect* getBloco();
         SDL_Rect* getBolinha();
         SDL_Rect* getBarra();
-        std::vector<tijolo>& getTijolos();
+        std::vector<barra>& getBarras();
+        std::vector<std::vector<tijolo> >& getTijolos();
         pontos* getPonto();
         vida* getVida();
         int getWidth();

@@ -14,6 +14,8 @@ O jogo utiliza bibliotecas e programas externos para a sua instalação e para o
 - [SDL2](https://www.libsdl.org/download-2.0.php)
 - [SDL2_image](https://www.libsdl.org/projects/SDL_image/)
 - [SDL2_ttf](https://www.libsdl.org/projects/SDL_ttf/)
+- [Boost](https://www.boost.org/)
+- [Doxygen](https://www.doxygen.nl/index.html) 
 
 ### Instalação
 
@@ -23,14 +25,21 @@ Para instalar, certifique-se de ter um terminal aberto no diretório ```bin```, 
 - ```cd bin```
 - ```cmake ../```
 - ```make```
-- ```./Breakout```
 
 ## Como jogar
+Para iniciar o jogo, primeiro é necessário iniciar o server. Isso pode ser feito por meio do comando `./BreakoutServer`. Após isso, todos os jogadores devem abrir os clientes, com o comando `./Breakout`. Para cada jogador conectado, pressione 0 no terminal do servidor, e depois 1 quando todos estiverem conectados, iniciando a aplicação. O jogo tem dois modos: singleplayer e multiplayer.
 
-O objetivo do jogo é fazer a bolinha vermelha colidir com todos os tijolos enquanto não deixa ela cair. Para isso, há uma barrinha na parte inferior da tela que pode ser controlada com os direcionais esquerdo e direito.
+### Singlepayer
+O objetivo do siglepayer é o jogador destruir todos os tijolos brancos, acertando a bolinha neles, ao mesmo tempo que não pode deixar a bolinha cair. Ganha se destruir todos os tijolos e perde se perder todas as vidas.
+
+### Multiplayer
+O objetivo do multiplayer é destruir todos os tijolos dos outros jogadores enquanto defende os seus tijolos. Perde o jogador que tiver todos os tijolos destruidos, e ganha o último jogador a perder.
+
+### Controles
 - Tecla ```S```: Inicia o jogo.
 - Tecla ```Esc```: Encerra o jogo a qualquer momento.
 - Tecla ```Espaço```: Caso pressionada, prende a bolinha na barra, e a solta ao soltar a tecla.
+- Tecla ```Direcionais```: Movem a barrinha
 
 ## Documentação
 

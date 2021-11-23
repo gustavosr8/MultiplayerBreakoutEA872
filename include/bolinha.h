@@ -14,6 +14,7 @@ class bolinha{
     private:
         int x,y;                        /*!< Variaveis de posicao*/
         int h, w;                       /*!< Variaveis de dimensao*/
+        float x_param, y_param;
         float h_mult=0.25, w_mult=0.25; /*!< Fator de multiplicacao para visualizacao*/
         int color;                      /*!< Cor da bolinha*/
         bool exit = false;              /*!< Variavel de condicao. Tem valor true caso a bolinha atinja a parte inferior da tela*/
@@ -28,7 +29,7 @@ class bolinha{
         */
         bolinha(int x_, int y_);
         bolinha();
-        NLOHMANN_DEFINE_TYPE_INTRUSIVE(bolinha, x,y, dirX, dirY, w, h);
+        NLOHMANN_DEFINE_TYPE_INTRUSIVE(bolinha, x,y, dirX, dirY, w, h, x_param,y_param);
         int getX();
         int getY();
         int getW();
@@ -39,6 +40,10 @@ class bolinha{
         float getHmult();
         bool getExit();
         bool getPause();
+        float getXparam();
+        float getYparam();
+        void setXparam(float x_param_);
+        void setYparam(float y_param_);
         void setX(int x_);
         void setY(int y_);
         void setDirX(int dirX_);
@@ -47,4 +52,5 @@ class bolinha{
         void setH(int h_);
         void setExit(bool exit_);
         void setPause(bool pause_);
+        std::string print();
 };
